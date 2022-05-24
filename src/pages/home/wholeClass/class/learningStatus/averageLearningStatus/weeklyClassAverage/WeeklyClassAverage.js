@@ -1,7 +1,7 @@
 const WeeklyClassAverage = () => {
     return (
         <div>
-            WeeklyClassAverage
+            [WeeklyClassAverage]
         </div>
     )
 }

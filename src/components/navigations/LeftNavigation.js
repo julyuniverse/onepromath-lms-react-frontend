@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/images/logo.png";
 
 const LeftNavigation = () => {
     const [classMenu] = useState([
@@ -13,11 +14,17 @@ const LeftNavigation = () => {
         { id: 7, name: '미설정' },
     ])
     return (
-        <div>
-            [LeftNavigation]
+        <div className="min-h-screen w-[240px] bg-[#ffffff]">
+            <div className="h-[120px] flex justify-center items-center">
+                <Link to="/" className="block">
+                    <img src={Logo} alt="logo" />
+                </Link>
+            </div>
+            <div>
             {classMenu && classMenu.map((value, index) => (
                 <Link key={index} to={`/home/wholeclass/${value.id}`} className="block">{value.name}</Link>
             ))}
+            </div>
         </div>
     )
 }

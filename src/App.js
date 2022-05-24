@@ -61,11 +61,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path="/home" element={<Home />}></Route>
+      <div className="h-full w-[1440px] min-w-[1440px] mx-auto">
+        <Routes>
+        <Route path="/home/*" element={<Home />}></Route>
         {/* 상단에 위치하는 라우트들의 규칙을 모두 확인하고, 일치하는 라우트가 없다면 마지막 라우트가 화면에 나타나게 됨. */}
-        <Route path="/*" element={<Home />}></Route>
+        <Route path="*" element={<Home />}></Route>
       </Routes>
+      </div>      
     </div>
   );
 }

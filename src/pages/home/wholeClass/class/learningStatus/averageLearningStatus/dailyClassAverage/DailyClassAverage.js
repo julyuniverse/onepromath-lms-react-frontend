@@ -1,7 +1,7 @@
 const DailyClassAverage = () => {
     return (
         <div>
-            DailyClassAverage
+            [DailyClassAverage]
         </div>
     )
 }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { classes } from "../../../../api/axios";
 
-
 const Class = () => {
     const location = useLocation();
     const params = useParams();
@@ -11,24 +10,21 @@ const Class = () => {
     const getClass = () => {
         classes(window.sessionStorage.getItem("schoolinfono"), params.class)
             .then((res) => {
-                console.log(res.data);
                 setClassList(res.data);
             })
             .catch((error) => { console.error(error) })
-
     }
 
     useEffect(() => {
-        console.log("Class.js");
         getClass();
     }, [location])
 
     return (
-        <div>
-            [Class]
+        <div className="flex flex-wrap relative mt-[29px] w-[1200px]">
             {
                 classList && classList.map((value, index) => (
-                    <Link key={index} to={`/home/wholeclass/${params.class}/${value.schoolClassNo}/learningstatus`} className="block">
+                    <Link key={index} to={`/home/wholeclass/${params.class}/${value.schoolClassNo}/${value.className}/learningstatus`}
+                        className="block relative w-[192px] h-[192px] bg-[#ffffff] mr-[40px] mb-[40px] rounded-[10px] transition duration-300 ease-in-out transform shadow-md hover:shadow-lg hover:-translate-y-1">
                         {value.className}
                     </Link>
                 ))
