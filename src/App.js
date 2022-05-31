@@ -52,7 +52,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log("App.js");
     // let pathname = location.pathname;
     // let arr = pathname.split("/");
 

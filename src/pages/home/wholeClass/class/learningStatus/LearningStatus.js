@@ -17,6 +17,7 @@ const LearningStatus = () => {
             <Routes>
                 {/* 상위 경로 후행에 "*"를 설정하면 하위 경로에서는 상위 경로는 생략하고 이후 경로부터 설정. */}
                 <Route path="weeklylearningstatus" element={<WeeklyLearningStatus />}></Route>
+                <Route path="weeklylearningstatus/:startdate" element={<WeeklyLearningStatus />}></Route>
                 <Route path="averagelearningstatus/*" element={<AverageLearningStatus />}></Route>
                 <Route path="*" element={<WeeklyLearningStatus />}></Route>
             </Routes>

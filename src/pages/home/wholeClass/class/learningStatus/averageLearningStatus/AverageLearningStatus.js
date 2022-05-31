@@ -6,15 +6,14 @@ import DailyClassAverage from "./dailyClassAverage/DailyClassAverage";
 const AverageLearningStatus = () => {
     return (
         <div>
-            [AverageLearningStatus]
-            <div>
-                <Link to={`monthlyclassaverage`} className="block">
+            <div className="flex">
+                <Link to={`monthlyclassaverage`} className="block bg-[#ffffff]">
                     월별 학습 평균
                 </Link>
-                <Link to={`weeklyclassaverage`} className="block">
+                <Link to={`weeklyclassaverage`} className="block bg-[#ffffff]">
                     주별 학습 평균
                 </Link>
-                <Link to={`dailyclassaverage`} className="block">
+                <Link to={`dailyclassaverage`} className="block bg-[#ffffff]">
                     일별 학습 평균
                 </Link>
             </div>

@@ -20,7 +20,7 @@ const Class = () => {
     }, [location])
 
     return (
-        <div className="flex flex-wrap relative mt-[29px] w-[1200px]">
+        <div className="flex flex-wrap relative w-[1200px]">
             {
                 classList && classList.map((value, index) => (
                     <Link key={index} to={`/home/wholeclass/${params.class}/${value.schoolClassNo}/${value.className}/learningstatus`}
