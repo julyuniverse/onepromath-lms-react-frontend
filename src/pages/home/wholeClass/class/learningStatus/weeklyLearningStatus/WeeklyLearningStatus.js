@@ -25,19 +25,22 @@ const WeeklyLearningStatus = () => {
                 })
                 .catch((error) => console.error(error))
         } else {
-            // toISOString함수는 UTC 시간을 기준으로 반환하기 때문인데, 그 시간이 한국과 9시간 차이의 오프셋을 갖기 때문이다.
-            // UTC시간 보다 9시간 더해진 시간이 한국 시간이기 때문에 그 차이를 뺄 필요가 있다.
-            let timezoneOffset = new Date().getTimezoneOffset() * 60000;
-            let nowDate = new Date(Date.now() - timezoneOffset);
-            let day = nowDate.getDay();
-            let diff = nowDate.getDate() - (day - (day === 0 ? 5 : 2));
-            let startDate2 = new Date(nowDate.setDate(diff)).toISOString().substring(0, 10);
+            let nowDate = new Date();
+            let days = nowDate.getDay() === 0 ? 6 : nowDate.getDay() - 1
+            let tmpStartDate = new Date(nowDate.setDate(nowDate.getDate() - days));
+            let startDateYear = tmpStartDate.getFullYear();
+            let startDateMonth = (tmpStartDate.getMonth() + 1) < 10 ? "0" + (tmpStartDate.getMonth() + 1) : (tmpStartDate.getMonth() + 1);
+            let startDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
+            let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
             setStartDate(startDate2);
 
             let tmpEndDate = new Date(startDate2);
             let tmpEndDate2 = tmpEndDate.setDate(tmpEndDate.getDate() + 6);
             let tmpEndDate3 = new Date(tmpEndDate2);
-            let endDate = tmpEndDate3.toISOString().substring(0, 10);
+            let endDateYear = tmpEndDate3.getFullYear();
+            let endDateMonth = (tmpEndDate3.getMonth() + 1) < 10 ? "0" + (tmpEndDate3.getMonth() + 1) : (tmpEndDate3.getMonth() + 1);
+            let endDateDay = tmpEndDate3.getDate() < 10 ? "0" + tmpEndDate3.getDate() : tmpEndDate3.getDate();
+            let endDate = endDateYear + "-" + endDateMonth + "-" + endDateDay;
             setEndDate(endDate);
 
             weeklyStudents(startDate2, endDate, window.sessionStorage.getItem("schoolinfono"), params.classno)
@@ -53,14 +56,20 @@ const WeeklyLearningStatus = () => {
             let newDate = new Date(params.startdate);
             let tmpDate = newDate.setDate(newDate.getDate() + number);
             let tmpDate2 = new Date(tmpDate);
-            let startDate2 = tmpDate2.toISOString().substring(0, 10);
+            let tmpYear = tmpDate2.getFullYear();
+            let tmpMonth = (tmpDate2.getMonth() + 1) < 10 ? "0" + (tmpDate2.getMonth() + 1) : (tmpDate2.getMonth() + 1);
+            let tmpDay = tmpDate2.getDate() < 10 ? "0" + tmpDate2.getDate() : tmpDate2.getDate();
+            let startDate2 = tmpYear + "-" + tmpMonth + "-" + tmpDay;
 
             navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}`);
         } else {
             let newDate = new Date(startDate);
             let tmpDate = newDate.setDate(newDate.getDate() + number);
             let tmpDate2 = new Date(tmpDate);
-            let startDate2 = tmpDate2.toISOString().substring(0, 10);
+            let tmpYear = tmpDate2.getFullYear();
+            let tmpMonth = (tmpDate2.getMonth() + 1) < 10 ? "0" + (tmpDate2.getMonth() + 1) : (tmpDate2.getMonth() + 1);
+            let tmpDay = tmpDate2.getDate() < 10 ? "0" + tmpDate2.getDate() : tmpDate2.getDate();
+            let startDate2 = tmpYear + "-" + tmpMonth + "-" + tmpDay;
 
             navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}`);
         }
