@@ -8,6 +8,6 @@ export const classes = (schoolInfoNo, schoolYear) => { // 반 목록
     return axios.post("/api/class", {schoolInfoNo: schoolInfoNo, schoolYear: schoolYear });
 }
 
-export const weeklyStudents = (startDate, endDate, schoolInfoNo, schoolClassNo) => { // 모든 학생
-    return axios.post("/api/student/weeklystudents", {startDate: startDate, endDate: endDate, schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo});
+export const weeklyStudents = (startDate, endDate, schoolInfoNo, schoolClassNo, sort, order) => { // 모든 학생
+    return axios.post("/api/student/weeklystudents", {startDate: startDate, endDate: endDate, schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, sort: sort, order: order});
 }

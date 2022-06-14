@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const TopNavigation = () => {
+const TopNavigation = ({menu, setMenu, subMenu, setSubMenu, classMenu}) => {
     const location = useLocation();
-    const [menu, setMenu] = useState('전체 학급');
+    const [menuName, setMenuName] = useState('전체 학급');
     const [menuPathName, setMenuPathName] = useState("/home/wholeclass");
-    const [subMenu, setSubMenu] = useState("");
+    const [subMenuName, setSubMenuName] = useState("");
     const [subMenuPathName, setSubMenuPathName] = useState("");
     const [className, setClassName] = useState("");
     const [classNamePathName, setClassNamePathName] = useState("");
@@ -25,50 +25,50 @@ const TopNavigation = () => {
         });
 
         if (Array.isArray(arr) && arr.length === 0) {
-            setSubMenu("전체보기");
+            setSubMenuName("전체보기");
             setSubMenuPathName("/home/wholeclass/0");
             setClassName("");
             setClassNamePathName("");
         } else {
             // 메뉴
             if (arr[1] === "wholeclass") {
-                setMenu("전체 학급");
+                setMenuName("전체 학급");
                 setMenuPathName(`/${arr[0]}/${arr[1]}`);
 
                 // 서브 메뉴
                 if (arr[2] === "0") {
-                    setSubMenu("전체보기");
+                    setSubMenuName("전체보기");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "1") {
-                    setSubMenu("1학년");
+                    setSubMenuName("1학년");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "2") {
-                    setSubMenu("2학년");
+                    setSubMenuName("2학년");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "3") {
-                    setSubMenu("3학년");
+                    setSubMenuName("3학년");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "4") {
-                    setSubMenu("4학년");
+                    setSubMenuName("4학년");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "5") {
-                    setSubMenu("5학년");
+                    setSubMenuName("5학년");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "6") {
-                    setSubMenu("6학년");
+                    setSubMenuName("6학년");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "7") {
-                    setSubMenu("미설정");
+                    setSubMenuName("미설정");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else {
-                    setSubMenu("전체보기");
+                    setSubMenuName("전체보기");
                     setSubMenuPathName("/home/wholeclass/0");
                 }
 
                 // 반 이름
                 if (arr[4]) {
                     setClassName(arr[4]);
-                    setClassNamePathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}`);
+                    setClassNamePathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}`);
                 } else {
                     setClassName("");
                     setClassNamePathName("");
@@ -93,19 +93,28 @@ const TopNavigation = () => {
                 }
 
                 // 서브 학습 현황
-                if(arr[7]) {
-                    if(arr[7] === "monthlyclassaverage") {
+                if (arr[7]) {
+                    if (arr[7] === "monthlyclassaverage") {
                         setSubLearningStatus("월별 학습 평균");
-                    }else if(arr[7] === "weeklyclassaverage"){
+                    } else if (arr[7] === "weeklyclassaverage") {
                         setSubLearningStatus("주별 학습 평균");
-                    }else if(arr[7] === "dailyclassaverage"){
+                    } else if (arr[7] === "dailyclassaverage") {
                         setSubLearningStatus("일별 학습 평균");
                     }
                     setSubLearningStatusPathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}/${arr[6]}/${arr[7]}`);
-                }else{
+                } else {
                     setSubLearningStatus("");
                     setSubLearningStatusPathName("");
                 }
+            } else if (arr[1] === "help") {
+                setMenuName("고객 센터");
+                setMenuPathName(`/${arr[0]}/${arr[1]}`);
+                setSubMenuName("");
+                setSubMenuPathName("");
+                setClassName("");
+                setClassNamePathName("");
+                setLearningStatus("");
+                setSubLearningStatusPathName("");
             }
         }
     }
@@ -116,39 +125,70 @@ const TopNavigation = () => {
 
     return (
         <div className="h-[80px] bg-[#ffffff] flex items-center rounded-br-3xl shadow-[0_15px_15px_-25px_rgba(0,0,0,0.3)]">
-            <div className="flex">
+            <div className="flex text-[20px]">
                 {
-                    menu !== "" ? (
+                    menuName !== "" ? (
                         <div>
-                            <Link to={menuPathName}>{menu}</Link>
+                            <Link to={menuPathName} className="block" onClick={() => { if (menu === 1) { setSubMenu(0) } }}>
+                                <div className="flex items-center">
+                                    <div className="hover:text-[#0063ff]">{menuName}</div>
+                                </div></Link>
                         </div>
                     ) : (null)
                 }
                 {
-                    subMenu !== "" ? (
+                    subMenuName !== "" ? (
                         <div>
-                            <Link to={subMenuPathName}>{'>'}{subMenu}</Link>
+                            <Link to={subMenuPathName} className="block">
+                                <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    <div className="hover:text-[#0063ff]">{subMenuName}</div>
+                                </div>
+                            </Link>
                         </div>
                     ) : (null)
                 }
                 {
                     className !== "" ? (
                         <div>
-                            <Link to={classNamePathName}>{'>'}{decodeURIComponent(className)}</Link>
+                            <Link to={classNamePathName} className="block">
+                                <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    <div className="hover:text-[#0063ff]">{decodeURIComponent(className)}</div>
+                                </div>
+                            </Link>
                         </div>
                     ) : (null)
                 }
                 {
                     learningStatus !== "" ? (
                         <div>
-                            <Link to={learningStatusPathName}>{'>'}{learningStatus}</Link>
+                            <Link to={learningStatusPathName} className="block">
+                                <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    <div className="hover:text-[#0063ff]">{learningStatus}</div>
+                                </div>
+                            </Link>
                         </div>
                     ) : (null)
                 }
                 {
                     subLearningStatus !== "" ? (
                         <div>
-                            <Link to={subLearningStatusPathName}>{'>'}{subLearningStatus}</Link>
+                            <Link to={subLearningStatusPathName} className="block">
+                                <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    <div className="hover:text-[#0063ff]">{subLearningStatus}</div>
+                                </div>
+                            </Link>
                         </div>
                     ) : (null)
                 }

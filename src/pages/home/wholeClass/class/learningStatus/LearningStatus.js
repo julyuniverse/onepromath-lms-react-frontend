@@ -1,17 +1,38 @@
+import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import AverageLearningStatus from "./averageLearningStatus/AverageLearningStatus";
 import WeeklyLearningStatus from "./weeklyLearningStatus/WeeklyLearningStatus";
 
 const LearningStatus = () => {
+    const [tabMenu, setTabMenu] = useState(1);
+
     return (
         <div>
             <div className="flex">
                 {/* 상위 경로 후행에 "*"를 설정하면 하위 경로에서는 상위 경로는 생략하고 이후 경로부터 설정. */}
-                <Link to={`weeklylearningstatus`} className="block w-[192px] h-[80px] bg-[#ffffff]">
-                    주간 학습 현황
+                <Link to={`weeklylearningstatus`} className={tabMenu === 1 ? "block w-[192px] h-[70px] bg-[#ffffff] rounded-t-3xl relative" : "block w-[192px] h-[70px] bg-[#dce9ff] rounded-t-3xl relative"} onClick={() => { setTabMenu(1) }}>
+                    {
+                        tabMenu === 1 ? (
+                            <div className="absolute w-[4px] h-[40px] bg-[#0063ff] left-0 top-[15px] rounded-tr-3xl rounded-br-3xl">
+
+                            </div>
+                        ) : (null)
+                    }
+                    <div className="w-full h-full flex justify-center items-center text-[20px]">
+                        주간 학습 현황
+                    </div>
                 </Link>
-                <Link to={`averagelearningstatus`} className="block w-[192px] h-[80px] bg-[#ffffff] ml-[10px]">
-                    평균 학습 현황
+                <Link to={`averagelearningstatus`} className={tabMenu === 2 ? "block w-[192px] h-[70px] bg-[#ffffff] rounded-t-3xl relative ml-[10px]" : "block w-[192px] h-[70px] bg-[#dce9ff] rounded-t-3xl relative ml-[10px]"} onClick={() => { setTabMenu(2) }}>
+                    {
+                        tabMenu === 2 ? (
+                            <div className="absolute w-[4px] h-[40px] bg-[#0063ff] left-0 top-[15px] rounded-tr-3xl rounded-br-3xl">
+
+                            </div>
+                        ) : (null)
+                    }
+                    <div className="w-full h-full flex justify-center items-center text-[20px]">
+                        평균 학습 현황
+                    </div>
                 </Link>
             </div>
             <Routes>
