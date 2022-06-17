@@ -54,11 +54,11 @@ body {
   -o-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: "AppleSDGothicNeoR";
+  font-family: "NanumGothic";
 }
 
 @font-face {
-  font-family: 'AppleSDGothicNeoR';
-  src: local('AppleSDGothicNeoR'),
-  url('./assets/fonts/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('opentype');
+  font-family: 'NanumGothic';
+  src: local('NanumGothic'),
+  url('./assets/fonts/nanum-gothic/NanumGothic.otf') format('opentype');
 }

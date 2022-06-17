@@ -1,10 +1,32 @@
-import { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import AverageLearningStatus from "./averageLearningStatus/AverageLearningStatus";
 import WeeklyLearningStatus from "./weeklyLearningStatus/WeeklyLearningStatus";
 
 const LearningStatus = () => {
-    const [tabMenu, setTabMenu] = useState(1);
+    const location = useLocation();
+    const [tabMenu, setTabMenu] = useState(0);
+
+    const settingTabMenu = () => {
+        let pathname = location.pathname;
+        let arr = pathname.split("/");
+
+        arr = arr.filter((el) => {
+            return el !== null && el !== undefined && el !== "";
+        });
+
+        if (arr[6] === "weeklylearningstatus") {
+            setTabMenu(1);
+        } else if (arr[6] === "averagelearningstatus") {
+            setTabMenu(2);
+        } else {
+            setTabMenu(1);
+        }
+    }
+
+    useEffect(() => {
+        settingTabMenu();
+    }, [location])
 
     return (
         <div>
@@ -38,8 +60,10 @@ const LearningStatus = () => {
             <Routes>
                 {/* 상위 경로 후행에 "*"를 설정하면 하위 경로에서는 상위 경로는 생략하고 이후 경로부터 설정. */}
                 <Route path="weeklylearningstatus" element={<WeeklyLearningStatus />}></Route>
-                <Route path="weeklylearningstatus/:startdate" element={<WeeklyLearningStatus />}></Route>
-                <Route path="averagelearningstatus/*" element={<AverageLearningStatus />}></Route>
+                <Route path="weeklylearningstatus/:startdate/:sort/:order" element={<WeeklyLearningStatus />}></Route>
+                <Route path="averagelearningstatus" element={<AverageLearningStatus />}></Route>
+                <Route path="averagelearningstatus/:subtabmenu" element={<AverageLearningStatus />}></Route>
+                <Route path="averagelearningstatus/:subtabmenu/:startdate/:sort/:order" element={<AverageLearningStatus />}></Route>
                 <Route path="*" element={<WeeklyLearningStatus />}></Route>
             </Routes>
         </div>

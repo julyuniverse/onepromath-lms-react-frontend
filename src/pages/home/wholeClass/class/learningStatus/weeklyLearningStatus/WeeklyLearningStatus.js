@@ -11,22 +11,32 @@ const WeeklyLearningStatus = () => {
     const [weeklyStudentList, setWeeklyStudentList] = useState("");
     const [sort, setSort] = useState(1); // 학생 목록 정렬 기준
     const [order, setOrder] = useState(true); // 학생 목록 순 방향
+    const [helpHover, setHelpHover] = useState(false); // 헬프
 
     const getWeeklyStudents = () => { // 주간 모든 학생
         if (params.startdate) { // params.startdate가 존재한다면
             let tmpEndDate = new Date(params.startdate);
             let tmpEndDate2 = tmpEndDate.setDate(tmpEndDate.getDate() + 6);
             let tmpEndDate3 = new Date(tmpEndDate2);
-            let endDate = tmpEndDate3.toISOString().substring(0, 10);
+            let endDate2 = tmpEndDate3.toISOString().substring(0, 10);
             setStartDate(params.startdate);
-            setEndDate(endDate);
+            setEndDate(endDate2);
+            setSort(Number(params.sort)); // int 값을 url 파라미터로 사용 시 다시 받을 때 int 타입으로 변경해야 한다.
 
-            weeklyStudents(params.startdate, endDate, window.sessionStorage.getItem("schoolinfono"), params.classno, sort, order)
+            if (params.order === "true") { // boolean 값을 url 파라미터로 사용 시 다시 받을 때 boolean 타입으로 변경해야 한다.
+                setOrder(true);
+            } else {
+                setOrder(false);
+            }
+
+            weeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, params.startdate, endDate2, params.sort, params.order)
                 .then((res) => {
                     setWeeklyStudentList(res.data);
                 })
                 .catch((error) => console.error(error))
         } else {
+            setSort(1);
+            setOrder(true);
             let nowDate = new Date();
             let days = nowDate.getDay() === 0 ? 6 : nowDate.getDay() - 1
             let tmpStartDate = new Date(nowDate.setDate(nowDate.getDate() - days));
@@ -42,10 +52,10 @@ const WeeklyLearningStatus = () => {
             let endDateYear = tmpEndDate3.getFullYear();
             let endDateMonth = (tmpEndDate3.getMonth() + 1) < 10 ? "0" + (tmpEndDate3.getMonth() + 1) : (tmpEndDate3.getMonth() + 1);
             let endDateDay = tmpEndDate3.getDate() < 10 ? "0" + tmpEndDate3.getDate() : tmpEndDate3.getDate();
-            let endDate = endDateYear + "-" + endDateMonth + "-" + endDateDay;
-            setEndDate(endDate);
+            let endDate2 = endDateYear + "-" + endDateMonth + "-" + endDateDay;
+            setEndDate(endDate2);
 
-            weeklyStudents(startDate2, endDate, window.sessionStorage.getItem("schoolinfono"), params.classno, sort, order)
+            weeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true)
                 .then((res) => {
                     setWeeklyStudentList(res.data);
                 })
@@ -63,7 +73,7 @@ const WeeklyLearningStatus = () => {
             let tmpDay = tmpDate2.getDate() < 10 ? "0" + tmpDate2.getDate() : tmpDate2.getDate();
             let startDate2 = tmpYear + "-" + tmpMonth + "-" + tmpDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}`);
+            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}/${params.sort}/${params.order}`);
         } else {
             let newDate = new Date(startDate);
             let tmpDate = newDate.setDate(newDate.getDate() + number);
@@ -73,26 +83,19 @@ const WeeklyLearningStatus = () => {
             let tmpDay = tmpDate2.getDate() < 10 ? "0" + tmpDate2.getDate() : tmpDate2.getDate();
             let startDate2 = tmpYear + "-" + tmpMonth + "-" + tmpDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}`);
+            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}/${sort}/${order}`);
         }
     }
 
     const sortStudents = (thisSort, thisOrder) => { // 학생 목록 정렬, 순 설정
         let thisSort2 = thisSort;
         let thisOrder2 = thisOrder;
-        setSort(thisSort);
+
         if (sort !== thisSort) {
-            setOrder(true);
             thisOrder2 = true;
-        } else {
-            setOrder(thisOrder);
         }
 
-        weeklyStudents(startDate, endDate, window.sessionStorage.getItem("schoolinfono"), params.classno, thisSort2, thisOrder2)
-            .then((res) => {
-                setWeeklyStudentList(res.data);
-            })
-            .catch((error) => console.error(error))
+        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${params.startdate ? params.startdate : startDate}/${thisSort2}/${thisOrder2}`);
     }
 
     const hh = (seconds) => {
@@ -118,7 +121,7 @@ const WeeklyLearningStatus = () => {
     }, [location])
 
     return (
-        <div className="min-h-screen bg-[#ffffff] p-[40px] rounded-tr-3xl shadow-xl">
+        <div className="min-h-screen bg-[#ffffff] p-[40px] rounded-tr-3xl  rounded-br-3xl  rounded-bl-3xl shadow-md">
             <div>
                 <div className="flex items-center justify-end text-[14px]">
                     <div className="w-[10px] h-[10px] bg-[#ffea00] rounded-full"></div>&nbsp;1학년&nbsp;
@@ -188,7 +191,29 @@ const WeeklyLearningStatus = () => {
                     <div className="w-[120px] flex items-center">이름</div>
                     <div className="w-[120px] flex items-center">학습시간</div>
                     <div className="w-[80px] flex items-center">정확도</div>
-                    <div className="w-[120px] flex items-center">학습량</div>
+                    <div className="w-[120px] flex items-center">
+                        총 학습량&nbsp;
+                        <div className="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" onMouseOver={() => setHelpHover(true)} onMouseOut={() => setHelpHover(false)}>
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                            </svg>
+                            <div className={helpHover ? ("relative transition") : ("relative transition opacity-0")}>
+                                <div className="absolute top-[-34px] left-[2px] z-10">
+                                    <div className="absolute w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-[#525d67]"></div>
+                                </div>
+                                <div className="absolute top-[-124px] left-[-70px] flex bg-[#525d67] rounded-md shadow-sm p-[14px] whitespace-nowrap text-[14px] text-[#f7f8f9]">
+                                    <div className="pt-[6px] pr-[6px]">
+                                        <div className="w-[8px] h-[8px] bg-[#f7f8f9] rounded-xl"></div>
+                                    </div>
+                                    <div>
+                                        학습한 스테이지에<br />
+                                        해당하는 학년을<br />
+                                        의미합니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="w-[60px] flex justify-center items-center">월</div>
                     <div className="w-[60px] flex justify-center items-center">화</div>
                     <div className="w-[60px] flex justify-center items-center">수</div>

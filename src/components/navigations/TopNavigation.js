@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const TopNavigation = ({menu, setMenu, subMenu, setSubMenu, classMenu}) => {
+const TopNavigation = () => {
     const location = useLocation();
     const [menuName, setMenuName] = useState('전체 학급');
-    const [menuPathName, setMenuPathName] = useState("/home/wholeclass");
+    const [menuPathName, setMenuPathName] = useState("/home/wholeclass/999");
     const [subMenuName, setSubMenuName] = useState("");
     const [subMenuPathName, setSubMenuPathName] = useState("");
     const [className, setClassName] = useState("");
@@ -18,25 +18,22 @@ const TopNavigation = ({menu, setMenu, subMenu, setSubMenu, classMenu}) => {
         let pathname = location.pathname;
         let arr = pathname.split("/");
 
-        console.log(arr);
-
         arr = arr.filter((el) => {
             return el !== null && el !== undefined && el !== "";
         });
 
         if (Array.isArray(arr) && arr.length === 0) {
             setSubMenuName("전체보기");
-            setSubMenuPathName("/home/wholeclass/0");
+            setSubMenuPathName("/home/wholeclass/999");
             setClassName("");
             setClassNamePathName("");
         } else {
             // 메뉴
             if (arr[1] === "wholeclass") {
                 setMenuName("전체 학급");
-                setMenuPathName(`/${arr[0]}/${arr[1]}`);
 
                 // 서브 메뉴
-                if (arr[2] === "0") {
+                if (arr[2] === "999") {
                     setSubMenuName("전체보기");
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else if (arr[2] === "1") {
@@ -62,7 +59,7 @@ const TopNavigation = ({menu, setMenu, subMenu, setSubMenu, classMenu}) => {
                     setSubMenuPathName(`/${arr[0]}/${arr[1]}/${arr[2]}`);
                 } else {
                     setSubMenuName("전체보기");
-                    setSubMenuPathName("/home/wholeclass/0");
+                    setSubMenuPathName("/home/wholeclass/999");
                 }
 
                 // 반 이름
@@ -129,7 +126,7 @@ const TopNavigation = ({menu, setMenu, subMenu, setSubMenu, classMenu}) => {
                 {
                     menuName !== "" ? (
                         <div>
-                            <Link to={menuPathName} className="block" onClick={() => { if (menu === 1) { setSubMenu(0) } }}>
+                            <Link to={menuPathName} className="block">
                                 <div className="flex items-center">
                                     <div className="hover:text-[#0063ff]">{menuName}</div>
                                 </div></Link>

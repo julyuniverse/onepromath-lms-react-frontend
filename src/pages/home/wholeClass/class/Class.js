@@ -8,11 +8,19 @@ const Class = () => {
     const [classList, setClassList] = useState([]);
 
     const getClass = () => {
-        classes(window.sessionStorage.getItem("schoolinfono"), params.class)
-            .then((res) => {
-                setClassList(res.data);
-            })
-            .catch((error) => { console.error(error) })
+        if (params.class) { // params.class 존재한다면
+            classes(window.sessionStorage.getItem("schoolinfono"), params.class)
+                .then((res) => {
+                    setClassList(res.data);
+                })
+                .catch((error) => { console.error(error) });
+        } else {
+            classes(window.sessionStorage.getItem("schoolinfono"), 999)
+                .then((res) => {
+                    setClassList(res.data);
+                })
+                .catch((error) => { console.error(error) });
+        }
     }
 
     useEffect(() => {
@@ -23,7 +31,7 @@ const Class = () => {
         <div className="flex flex-wrap relative w-[1200px]">
             {
                 classList && classList.map((value, index) => (
-                    <Link key={index} to={`/home/wholeclass/${params.class}/${value.schoolClassNo}/${value.className}/learningstatus`}
+                    <Link key={index} to={`/home/wholeclass/${(params.class) ? params.class : 999}/${value.schoolClassNo}/${value.className}/learningstatus`}
                         className="block relative w-[192px] h-[192px] bg-[#ffffff] mr-[40px] mb-[40px] rounded-[10px] transition duration-300 ease-in-out transform shadow-md hover:shadow-lg hover:-translate-y-1">
                         {value.className}
                     </Link>

@@ -6,24 +6,11 @@ import WholeClass from "./wholeClass/WholeClass";
 import Help from "./help/Help";
 
 const Home = () => {
-    const [menu, setMenu] = useState(1);
-    const [subMenu, setSubMenu] = useState(0);
-    const [classMenu] = useState([
-        { id: 0, name: '전체보기' },
-        { id: 1, name: '1학년' },
-        { id: 2, name: '2학년' },
-        { id: 3, name: '3학년' },
-        { id: 4, name: '4학년' },
-        { id: 5, name: '5학년' },
-        { id: 6, name: '6학년' },
-        { id: 7, name: '미설정' },
-    ])
-
     return (
         <div className="flex">
-            <LeftNavigation menu={menu} setMenu={setMenu} subMenu={subMenu} setSubMenu={setSubMenu} classMenu={classMenu} />
+            <LeftNavigation />
             <div className="w-[1200px]">
-                <TopNavigation menu={menu} setMenu={setMenu} subMenu={subMenu} setSubMenu={setSubMenu} />
+                <TopNavigation />
                 <div className="p-[40px]">
                     <Routes>
                         {/* 상위 경로 후행에 "*"가 없는 상태에서 더 깊이 탐색하면 상위 경로가 더 이상 일치하지 않으므로 하위 경로가 렌더링 되지 않음. */}
