@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import AverageLearningStatus from "./averageLearningStatus/AverageLearningStatus";
 import WeeklyLearningStatus from "./weeklyLearningStatus/WeeklyLearningStatus";
+import MonthlyLearning from "./averageLearningStatus/monthlyLearning/MonthlyLearning";
 
 const LearningStatus = () => {
     const location = useLocation();
@@ -64,6 +65,7 @@ const LearningStatus = () => {
                 <Route path="averagelearningstatus" element={<AverageLearningStatus />}></Route>
                 <Route path="averagelearningstatus/:subtabmenu" element={<AverageLearningStatus />}></Route>
                 <Route path="averagelearningstatus/:subtabmenu/:startdate/:sort/:order" element={<AverageLearningStatus />}></Route>
+                <Route path="averagelearningstatus/1/:startdate/:studentno" element={<MonthlyLearning />}></Route>
                 <Route path="*" element={<WeeklyLearningStatus />}></Route>
             </Routes>
         </div>

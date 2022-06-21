@@ -12,6 +12,33 @@ const WeeklyLearningStatus = () => {
     const [sort, setSort] = useState(1); // 학생 목록 정렬 기준
     const [order, setOrder] = useState(true); // 학생 목록 순 방향
     const [helpHover, setHelpHover] = useState(false); // 헬프
+    const [hover, setHover] = useState(""); // 레벨, 챕터, 학습량
+    const schoolYearColor = [
+        {
+            "schoolYear": 1,
+            "color": "#ffea00"
+        },
+        {
+            "schoolYear": 2,
+            "color": "#ffa500"
+        },
+        {
+            "schoolYear": 3,
+            "color": "#ff0000"
+        },
+        {
+            "schoolYear": 4,
+            "color": "#ee82ee"
+        },
+        {
+            "schoolYear": 5,
+            "color": "#0000ff"
+        },
+        {
+            "schoolYear": 6,
+            "color": "#00ff00"
+        }
+    ]
 
     const getWeeklyStudents = () => { // 주간 모든 학생
         if (params.startdate) { // params.startdate가 존재한다면
@@ -32,6 +59,7 @@ const WeeklyLearningStatus = () => {
             weeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, params.startdate, endDate2, params.sort, params.order)
                 .then((res) => {
                     setWeeklyStudentList(res.data);
+                    console.log(res.data);
                 })
                 .catch((error) => console.error(error))
         } else {
@@ -224,65 +252,122 @@ const WeeklyLearningStatus = () => {
                     <div className="w-[100px]"></div>
                 </div>
                 {
-                    weeklyStudentList && weeklyStudentList.map((value, index) => (
-                        <div key={index} className={index === 0 ? "flex border-[2px] border-[#f3f7ff] h-[60px] rounded-md transition duration-150 hover:scale-[1.04] hover:shadow-lg" : "flex border-t-[0px] border-x-[2px] border-b-[2px] border-[#f3f7ff] h-[60px] rounded-md transition duration-150 hover:border-t-[2px] hover:scale-[1.04] hover:shadow-lg"}>
-                            <div className="w-[80px] flex justify-center items-center">
-                                <div className={value.sequence % 2 === 1 ? "w-[34px] h-[34px] bg-[#fff9eb] rounded-lg flex justify-center items-center" : "w-[34px] h-[34px] bg-[#eef4fb] rounded-lg flex justify-center items-center"}>
-                                    <div className={value.sequence % 2 === 1 ? "text-[#fac232] text-[18px] font-bold" : "text-[#3667bf] text-[18px] font-bold"}>
-                                        {value.sequence}
+                    weeklyStudentList && weeklyStudentList.length > 0 ? (
+                        weeklyStudentList && weeklyStudentList.map((value, index) => (
+                            <div key={index} className={index === 0 ? "flex border-[2px] border-[#f3f7ff] h-[60px] rounded-md transition duration-150 hover:scale-[1.02] hover:shadow-lg" : "flex border-t-[0px] border-x-[2px] border-b-[2px] border-[#f3f7ff] h-[60px] rounded-md transition duration-150 hover:border-t-[2px] hover:scale-[1.02] hover:shadow-lg"}>
+                                <div className="w-[80px] flex justify-center items-center">
+                                    <div className={value.sequence % 2 === 1 ? "w-[34px] h-[34px] bg-[#fff9eb] rounded-lg flex justify-center items-center" : "w-[34px] h-[34px] bg-[#eef4fb] rounded-lg flex justify-center items-center"}>
+                                        <div className={value.sequence % 2 === 1 ? "text-[#fac232] text-[18px] font-bold" : "text-[#3667bf] text-[18px] font-bold"}>
+                                            {value.sequence}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="w-[120px] flex items-center">{value.studentName}</div>
-                            <div className="w-[120px] flex items-center">
-                                {hh(value.learningTimeSeconds)}&nbsp;{mm(value.learningTimeSeconds)}
-                            </div>
-                            <div className="w-[80px] flex items-center">{value.accuracy}%</div>
-                            <div className="w-[120px] flex items-center">{value.learningCount}개</div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.mondayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.mondayLearningCount > 0 ? value.mondayLearningCount : ""}
+                                <div className="w-[120px] flex items-center">{value.studentName}</div>
+                                <div className="w-[120px] flex items-center">
+                                    {hh(value.learningTimeSeconds)}&nbsp;{mm(value.learningTimeSeconds)}
                                 </div>
-                            </div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.tuesdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.tuesdayLearningCount > 0 ? value.tuesdayLearningCount : ""}
-                                </div>
-                            </div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.wednesdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.wednesdayLearningCount > 0 ? value.wednesdayLearningCount : ""}
-                                </div>
-                            </div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.thursdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.thursdayLearningCount > 0 ? value.thursdayLearningCount : ""}
-                                </div>
-                            </div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.fridayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.fridayLearningCount > 0 ? value.fridayLearningCount : ""}
-                                </div>
-                            </div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.saturdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.saturdayLearningCount > 0 ? value.saturdayLearningCount : ""}
-                                </div>
-                            </div>
-                            <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <div className={value.sundayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
-                                    {value.sundayLearningCount > 0 ? value.sundayLearningCount : ""}
-                                </div>
-                            </div>
-                            <div className="w-[100px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                <Link to="" className="block w-[74px] h-[28px] bg-[#eef4fb] rounded-md">
-                                    <div className="h-full flex justify-center items-center text-[#3f8ce8]">
-                                        상세보기
+                                <div className="w-[80px] flex items-center">{value.accuracy}%</div>
+                                <div className="w-[120px] flex items-center" onMouseOver={() => setHover(index)} onMouseOut={() => setHover("")}>
+                                    <div className="relative">
+                                        <div className="flex items-center">
+                                            <div className="w-[20px]">
+                                                {
+                                                    value.level.slice(0, 1).map((value2, index2) => (
+                                                        <div key={index2} className="relative">
+                                                            <div className={`w-[10px] h-[10px] rounded-full bg-[${schoolYearColor[schoolYearColor.findIndex(v => v.schoolYear === value2.schoolYear)].color}]`}>
+                                                            </div>
+                                                            {
+                                                                hover === index ? (
+                                                                    <div className="relative">
+                                                                        <div className="absolute top-[-14px] left-[-20px] z-10">
+                                                                            <div className="absolute w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[10px] border-[#525d67]"></div>
+                                                                        </div>
+                                                                        <div className="absolute w-[160px] h-[160px] flex items-center top-[-84px] left-[-178px]">
+                                                                            <div className="flex justify-center w-[160px] bg-[#525d67] rounded-md shadow-sm p-[14px] whitespace-nowrap text-[14px] text-[#f7f8f9]">
+                                                                                <div>
+                                                                                    {
+                                                                                        value.level.slice(0, 3).map((value3, index3) => (
+                                                                                            <div key={index3} className={index3 !== 0 ? "flex mt-[2px]" : "flex"}>
+                                                                                                <div className="pt-[6px] pr-[6px]">
+                                                                                                    <div className={`w-[8px] h-[8px] bg-[${schoolYearColor[schoolYearColor.findIndex(v => v.schoolYear === value3.schoolYear)].color}] rounded-xl`}></div>
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    {value3.level}Lv-{value3.chapter}Ch: {value3.learningCount}개
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        ))
+                                                                                    }
+                                                                                    <div className="flex justify-center">
+                                                                                        {
+                                                                                            value.level.length > 3 ?
+                                                                                                (<div className="mt-[2px]">
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-[20px] w-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                                                                                    </svg>
+                                                                                                </div>) : (null)
+                                                                                        }
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                ) : (null)
+                                                            }
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                            <div>{value.learningCount}개</div>
+                                        </div>
                                     </div>
-                                </Link>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.mondayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.mondayLearningCount > 0 ? value.mondayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.tuesdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.tuesdayLearningCount > 0 ? value.tuesdayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.wednesdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.wednesdayLearningCount > 0 ? value.wednesdayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.thursdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.thursdayLearningCount > 0 ? value.thursdayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.fridayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.fridayLearningCount > 0 ? value.fridayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.saturdayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.saturdayLearningCount > 0 ? value.saturdayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[60px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <div className={value.sundayLearningCount > 0 ? "flex justify-center items-center w-full h-full" : "flex justify-center items-center w-full h-full bg-[#e1efff]"}>
+                                        {value.sundayLearningCount > 0 ? value.sundayLearningCount : ""}
+                                    </div>
+                                </div>
+                                <div className="w-[100px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
+                                    <Link to="" className="block w-[74px] h-[28px] bg-[#eef4fb] rounded-md">
+                                        <div className="h-full flex justify-center items-center text-[#3f8ce8]">
+                                            상세보기
+                                        </div>
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    ))
+                        ))
+                    ) : (<div className="flex justify-center">
+                        학생이 없어요.
+                    </div>)
                 }
             </div>
         </div>

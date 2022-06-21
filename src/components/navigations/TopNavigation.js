@@ -8,7 +8,6 @@ const TopNavigation = () => {
     const [subMenuName, setSubMenuName] = useState("");
     const [subMenuPathName, setSubMenuPathName] = useState("");
     const [className, setClassName] = useState("");
-    const [classNamePathName, setClassNamePathName] = useState("");
     const [learningStatus, setLearningStatus] = useState("");
     const [learningStatusPathName, setLearningStatusPathName] = useState("");
     const [subLearningStatus, setSubLearningStatus] = useState("");
@@ -26,7 +25,6 @@ const TopNavigation = () => {
             setSubMenuName("전체보기");
             setSubMenuPathName("/home/wholeclass/999");
             setClassName("");
-            setClassNamePathName("");
         } else {
             // 메뉴
             if (arr[1] === "wholeclass") {
@@ -65,10 +63,8 @@ const TopNavigation = () => {
                 // 반 이름
                 if (arr[4]) {
                     setClassName(arr[4]);
-                    setClassNamePathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}`);
                 } else {
                     setClassName("");
-                    setClassNamePathName("");
                 }
 
                 // 학습 현황
@@ -109,7 +105,6 @@ const TopNavigation = () => {
                 setSubMenuName("");
                 setSubMenuPathName("");
                 setClassName("");
-                setClassNamePathName("");
                 setLearningStatus("");
                 setSubLearningStatusPathName("");
             }
@@ -122,14 +117,15 @@ const TopNavigation = () => {
 
     return (
         <div className="h-[80px] bg-[#ffffff] flex items-center rounded-br-3xl shadow-[0_15px_15px_-25px_rgba(0,0,0,0.3)]">
-            <div className="flex text-[20px]">
+            <div className="flex text-[20px] font-semibold">
                 {
                     menuName !== "" ? (
                         <div>
                             <Link to={menuPathName} className="block">
                                 <div className="flex items-center">
                                     <div className="hover:text-[#0063ff]">{menuName}</div>
-                                </div></Link>
+                                </div>
+                            </Link>
                         </div>
                     ) : (null)
                 }
@@ -150,14 +146,14 @@ const TopNavigation = () => {
                 {
                     className !== "" ? (
                         <div>
-                            <Link to={classNamePathName} className="block">
+                            <div>
                                 <div className="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                     </svg>
                                     <div className="hover:text-[#0063ff]">{decodeURIComponent(className)}</div>
                                 </div>
-                            </Link>
+                            </div>
                         </div>
                     ) : (null)
                 }
