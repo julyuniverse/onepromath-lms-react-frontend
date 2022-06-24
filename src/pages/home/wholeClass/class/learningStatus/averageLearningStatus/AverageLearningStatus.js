@@ -642,13 +642,13 @@ const AverageLearningStatus = () => {
             <div className="bg-[#ffffff] p-[40px] rounded-tr-3xl rounded-br-3xl rounded-bl-3xl shadow-md">
                 <div>
                     <div className="flex">
-                        <div className={subTabMenu === 1 ? "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md text-[#3569e7] font-bold cursor-pointer" : "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md font-bold bg-[#3569e7] text-[#ffffff] cursor-pointer"} onClick={() => { settingSubTabeMenu(1) }}>
+                        <div className={subTabMenu === 1 ? "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] bg-[#3569e7] rounded-md text-[#ffffff] font-bold cursor-pointer" : "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md font-bold bg-[#ffffff] text-[#3569e7] cursor-pointer"} onClick={() => { settingSubTabeMenu(1) }}>
                             월별 학습 평균
                         </div>
-                        <div className={subTabMenu === 2 ? "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md text-[#3569e7] font-bold ml-[16px] cursor-pointer" : "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md font-bold bg-[#3569e7] text-[#ffffff] ml-[16px] cursor-pointer"} onClick={() => { settingSubTabeMenu(2) }}>
+                        <div className={subTabMenu === 2 ? "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] bg-[#3569e7] rounded-md text-[#ffffff] font-bold cursor-pointer ml-[16px]" : "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md font-bold bg-[#ffffff] text-[#3569e7] cursor-pointer ml-[16px]"} onClick={() => { settingSubTabeMenu(2) }}>
                             주별 학습 평균
                         </div>
-                        <div className={subTabMenu === 3 ? "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md text-[#3569e7] font-bold ml-[16px] cursor-pointer" : "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md font-bold bg-[#3569e7] text-[#ffffff] ml-[16px] cursor-pointer"} onClick={() => { settingSubTabeMenu(3) }}>
+                        <div className={subTabMenu === 3 ? "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] bg-[#3569e7] rounded-md text-[#ffffff] font-bold cursor-pointer ml-[16px]" : "w-[120px] h-[34px] flex justify-center items-center border-[2px] border-[#3569e7] rounded-md font-bold bg-[#ffffff] text-[#3569e7] cursor-pointer ml-[16px]"} onClick={() => { settingSubTabeMenu(3) }}>
                             일별 학습 평균
                         </div>
                     </div>
@@ -917,7 +917,7 @@ const AverageLearningStatus = () => {
                                         </table>
                                     </div>
                                     <Link
-                                        to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/${subTabMenu}/${startDate}/${value.studentNo}`}
+                                        to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName}/${subTabMenu}/${startDate}`}
                                         className={"w-[210px] h-[50px] mt-[10px] border-2 border-[#eef4fb] bottom-[16px] flex items-center justify-center rounded shadow-sm bg-[#eef4fb] hover:border-blue-500 hover:shadow"}>
                                         학습 결과 상세
                                     </Link>

@@ -10,8 +10,8 @@ const TopNavigation = () => {
     const [className, setClassName] = useState("");
     const [learningStatus, setLearningStatus] = useState("");
     const [learningStatusPathName, setLearningStatusPathName] = useState("");
-    const [subLearningStatus, setSubLearningStatus] = useState("");
-    const [subLearningStatusPathName, setSubLearningStatusPathName] = useState("");
+    const [learningDetails, setLearningDetails] = useState("");
+    const [learningDetailsPathName, setLearningDetailsPathName] = useState("");
 
     const linkNav = () => {
         let pathname = location.pathname;
@@ -20,7 +20,7 @@ const TopNavigation = () => {
         arr = arr.filter((el) => {
             return el !== null && el !== undefined && el !== "";
         });
-
+        
         if (Array.isArray(arr) && arr.length === 0) {
             setSubMenuName("전체보기");
             setSubMenuPathName("/home/wholeclass/999");
@@ -85,20 +85,31 @@ const TopNavigation = () => {
                     setLearningStatusPathName("");
                 }
 
-                // 서브 학습 현황
-                if (arr[7]) {
-                    if (arr[7] === "monthlyclassaverage") {
-                        setSubLearningStatus("월별 학습 평균");
-                    } else if (arr[7] === "weeklyclassaverage") {
-                        setSubLearningStatus("주별 학습 평균");
-                    } else if (arr[7] === "dailyclassaverage") {
-                        setSubLearningStatus("일별 학습 평균");
+                // 학습 상세
+                if (arr[6]) {
+                    if (arr[6] === "averagelearningstatus") {
+                        if (arr[10]) {
+                            if (arr[10] === "1") {
+                                setLearningDetails("월간 보고서");
+                                setLearningDetailsPathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}/${arr[6]}/${arr[7]}/${arr[8]}/${arr[9]}/${arr[10]}`)
+                            } else if (arr[10] === "2") {
+                                setLearningDetails("주별 학습 상세");
+                                setLearningDetailsPathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}/${arr[6]}/${arr[7]}/${arr[8]}/${arr[9]}/${arr[10]}`)
+
+                            } else if (arr[10] === "3") {
+                                setLearningDetails("일별 학습 상세");
+                                setLearningDetailsPathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}/${arr[6]}/${arr[7]}/${arr[8]}/${arr[9]}/${arr[10]}`)
+                            }
+                        } else {
+                            setLearningDetails("");
+                            setLearningDetailsPathName("");
+                        }
                     }
-                    setSubLearningStatusPathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}/${arr[6]}/${arr[7]}`);
                 } else {
-                    setSubLearningStatus("");
-                    setSubLearningStatusPathName("");
+                    setLearningDetails("");
+                    setLearningDetailsPathName("");
                 }
+
             } else if (arr[1] === "help") {
                 setMenuName("고객 센터");
                 setMenuPathName(`/${arr[0]}/${arr[1]}`);
@@ -106,7 +117,7 @@ const TopNavigation = () => {
                 setSubMenuPathName("");
                 setClassName("");
                 setLearningStatus("");
-                setSubLearningStatusPathName("");
+                setLearningDetails("");
             }
         }
     }
@@ -172,14 +183,14 @@ const TopNavigation = () => {
                     ) : (null)
                 }
                 {
-                    subLearningStatus !== "" ? (
+                    learningDetails !== "" ? (
                         <div>
-                            <Link to={subLearningStatusPathName} className="block">
+                            <Link to={learningDetailsPathName} className="block">
                                 <div className="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                     </svg>
-                                    <div className="hover:text-[#0063ff]">{subLearningStatus}</div>
+                                    <div className="hover:text-[#0063ff]">{learningDetails}</div>
                                 </div>
                             </Link>
                         </div>
