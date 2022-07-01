@@ -21,7 +21,7 @@ const AverageLearningStatus = () => {
     const [year, setYear] = useState("");
     const [month, setMonth] = useState("");
 
-    const getAverageStudents = () => { // 평균 모든 학생
+    const getAverageData = () => { // 평균 데이터
         if (params.subtabmenu) { // params.subtabmenu가 존재한다면
             if (Number(params.subtabmenu) === 1 && (!params.startdate)) { // 월별 학습 평균 (params.startdate가 없을 때)
                 setSubTabMenu(1);
@@ -40,38 +40,15 @@ const AverageLearningStatus = () => {
                 setMonth(tmpStartDateMonth);
                 let tmpStartDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
+                setStartDate(startDate2);
 
                 let tmpEndDateYear = tmpEndDate.getFullYear();
                 let tmpEndDateMonth = (tmpEndDate.getMonth() + 1) < 10 ? "0" + (tmpEndDate.getMonth() + 1) : (tmpEndDate.getMonth() + 1);
                 let tmpEndDateDay = tmpEndDate.getDate() < 10 ? "0" + tmpEndDate.getDate() : tmpEndDate.getDate();
                 let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
 
-                setStartDate(startDate2);
-                setEndDate(endDate2);
-
-                averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true)
-                    .then((res) => {
-                        setAverageStudentList(res.data);
-
-                        let tmpScatterChartData = new Array(
-                            {
-                                "id": "group A",
-                                "data": new Array()
-                            }
-                        );
-
-                        for (let i = 0; i < res.data.length; i++) {
-                            tmpScatterChartData[0].data[i] = {
-                                "studentName": res.data[i].studentName,
-                                "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                                "x": res.data[i].learningCount,
-                                "y": res.data[i].accuracy
-                            }
-                        }
-
-                        setScatterChartData(tmpScatterChartData);
-                    })
-                    .catch((error) => console.error(error))
+                getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true);
+                getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2);
             } else if (Number(params.subtabmenu) === 2 && (!params.startdate)) { // 주별 학습 평균 (params.startdate가 없을 때)
                 setSubTabMenu(2);
                 setSort(1);
@@ -95,29 +72,8 @@ const AverageLearningStatus = () => {
                 let endDate2 = endDateYear + "-" + endDateMonth + "-" + endDateDay;
                 setEndDate(endDate2);
 
-                averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true)
-                    .then((res) => {
-                        setAverageStudentList(res.data);
-
-                        let tmpScatterChartData = new Array(
-                            {
-                                "id": "group A",
-                                "data": new Array()
-                            }
-                        );
-
-                        for (let i = 0; i < res.data.length; i++) {
-                            tmpScatterChartData[0].data[i] = {
-                                "studentName": res.data[i].studentName,
-                                "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                                "x": res.data[i].learningCount,
-                                "y": res.data[i].accuracy
-                            }
-                        }
-
-                        setScatterChartData(tmpScatterChartData);
-                    })
-                    .catch((error) => console.error(error))
+                getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true);
+                getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2);
             } else if (Number(params.subtabmenu) === 3 && (!params.startdate)) { // 일별 학습 평균 (params.startdate가 없을 때)
                 setSubTabMenu(3);
                 setSort(1);
@@ -128,32 +84,10 @@ const AverageLearningStatus = () => {
                 let getMonth = (nowDate.getMonth() + 1) < 10 ? "0" + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
                 let getDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
                 let startDate2 = getFullYear + "-" + getMonth + "-" + getDay;
-
                 setStartDate(startDate2);
 
-                averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2, 1, true)
-                    .then((res) => {
-                        setAverageStudentList(res.data);
-
-                        let tmpScatterChartData = new Array(
-                            {
-                                "id": "group A",
-                                "data": new Array()
-                            }
-                        );
-
-                        for (let i = 0; i < res.data.length; i++) {
-                            tmpScatterChartData[0].data[i] = {
-                                "studentName": res.data[i].studentName,
-                                "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                                "x": res.data[i].learningCount,
-                                "y": res.data[i].accuracy
-                            }
-                        }
-
-                        setScatterChartData(tmpScatterChartData);
-                    })
-                    .catch((error) => console.error(error))
+                getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2, 1, true);
+                getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2);
             } else if (Number(params.subtabmenu) === 1) { // 월별 학습 평균 (params.startdate가 있을 때)
                 setSubTabMenu(1);
                 setSort(Number(params.sort)); // int 값을 url 파라미터로 사용 시 다시 받을 때 int 타입으로 변경해야 한다.
@@ -176,38 +110,15 @@ const AverageLearningStatus = () => {
                 setMonth(tmpStartDateMonth);
                 let tmpStartDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
+                setStartDate(startDate2);
 
                 let tmpEndDateYear = tmpEndDate.getFullYear();
                 let tmpEndDateMonth = (tmpEndDate.getMonth() + 1) < 10 ? "0" + (tmpEndDate.getMonth() + 1) : (tmpEndDate.getMonth() + 1);
                 let tmpEndDateDay = tmpEndDate.getDate() < 10 ? "0" + tmpEndDate.getDate() : tmpEndDate.getDate();
                 let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
 
-                setStartDate(startDate2);
-                setEndDate(endDate2);
-
-                averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, params.sort, params.order)
-                    .then((res) => {
-                        setAverageStudentList(res.data);
-
-                        let tmpScatterChartData = new Array(
-                            {
-                                "id": "group A",
-                                "data": new Array()
-                            }
-                        );
-
-                        for (let i = 0; i < res.data.length; i++) {
-                            tmpScatterChartData[0].data[i] = {
-                                "studentName": res.data[i].studentName,
-                                "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                                "x": res.data[i].learningCount,
-                                "y": res.data[i].accuracy
-                            }
-                        }
-
-                        setScatterChartData(tmpScatterChartData);
-                    })
-                    .catch((error) => console.error(error))
+                getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, params.sort, params.order);
+                getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2);
             } else if (Number(params.subtabmenu) === 2) { // 주별 학습 평균 (params.startdate가 있을 때)
                 setSubTabMenu(2);
                 setSort(Number(params.sort)); // int 값을 url 파라미터로 사용 시 다시 받을 때 int 타입으로 변경해야 한다.
@@ -236,29 +147,8 @@ const AverageLearningStatus = () => {
                 let endDate2 = endDateYear + "-" + endDateMonth + "-" + endDateDay;
                 setEndDate(endDate2);
 
-                averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, params.sort, params.order)
-                    .then((res) => {
-                        setAverageStudentList(res.data);
-
-                        let tmpScatterChartData = new Array(
-                            {
-                                "id": "group A",
-                                "data": new Array()
-                            }
-                        );
-
-                        for (let i = 0; i < res.data.length; i++) {
-                            tmpScatterChartData[0].data[i] = {
-                                "studentName": res.data[i].studentName,
-                                "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                                "x": res.data[i].learningCount,
-                                "y": res.data[i].accuracy
-                            }
-                        }
-
-                        setScatterChartData(tmpScatterChartData);
-                    })
-                    .catch((error) => console.error(error))
+                getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, params.sort, params.order);
+                getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2);
             } else if (Number(params.subtabmenu) === 3) { // 일별 학습 평균 (params.startdate가 있을 때)
                 setSubTabMenu(3);
                 setSort(Number(params.sort)); // int 값을 url 파라미터로 사용 시 다시 받을 때 int 타입으로 변경해야 한다.
@@ -274,32 +164,10 @@ const AverageLearningStatus = () => {
                 let getMonth = (nowDate.getMonth() + 1) < 10 ? "0" + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
                 let getDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
                 let startDate2 = getFullYear + "-" + getMonth + "-" + getDay;
-
                 setStartDate(startDate2);
 
-                averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2, params.sort, params.order)
-                    .then((res) => {
-                        setAverageStudentList(res.data);
-
-                        let tmpScatterChartData = new Array(
-                            {
-                                "id": "group A",
-                                "data": new Array()
-                            }
-                        );
-
-                        for (let i = 0; i < res.data.length; i++) {
-                            tmpScatterChartData[0].data[i] = {
-                                "studentName": res.data[i].studentName,
-                                "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                                "x": res.data[i].learningCount,
-                                "y": res.data[i].accuracy
-                            }
-                        }
-
-                        setScatterChartData(tmpScatterChartData);
-                    })
-                    .catch((error) => console.error(error))
+                getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2, params.sort, params.order);
+                getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2);
             }
         } else {
             let nowDate = new Date();
@@ -314,179 +182,50 @@ const AverageLearningStatus = () => {
             setMonth(tmpStartDateMonth);
             let tmpStartDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
+            setStartDate(startDate2);
 
             let tmpEndDateYear = tmpEndDate.getFullYear();
             let tmpEndDateMonth = (tmpEndDate.getMonth() + 1) < 10 ? "0" + (tmpEndDate.getMonth() + 1) : (tmpEndDate.getMonth() + 1);
             let tmpEndDateDay = tmpEndDate.getDate() < 10 ? "0" + tmpEndDate.getDate() : tmpEndDate.getDate();
             let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
 
-            setStartDate(startDate2);
-            setEndDate(endDate2);
-
-            averageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true)
-                .then((res) => {
-                    setAverageStudentList(res.data);
-
-                    let tmpScatterChartData = new Array(
-                        {
-                            "id": "group A",
-                            "data": new Array()
-                        }
-                    );
-
-                    for (let i = 0; i < res.data.length; i++) {
-                        tmpScatterChartData[0].data[i] = {
-                            "studentName": res.data[i].studentName,
-                            "learningTimeSeconds": res.data[i].learningTimeSeconds,
-                            "x": res.data[i].learningCount,
-                            "y": res.data[i].accuracy
-                        }
-                    }
-
-                    setScatterChartData(tmpScatterChartData);
-                })
-                .catch((error) => console.error(error))
+            getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true);
+            getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2)
         }
     }
 
-    const getAverageClass = () => {
-        if (params.subtabmenu) { // params.subtabmenu가 존재한다면
-            if (Number(params.subtabmenu) === 1 && (!params.startdate)) { // 월별 학습 평균 (params.startdate가 없을 때)
-                let nowDate = new Date();
-                let getFullYear = nowDate.getFullYear();
-                let getMonth = nowDate.getMonth();
-                let tmpStartDate = new Date(getFullYear, getMonth, 1);
-                let tmpEndDate = new Date(getFullYear, getMonth + 1, 0);
+    const getAverageStudents = (schoolNo, classNo, startDate, endDate, sort, order) => { // 평균 모든 학생
+        averageStudents(schoolNo, classNo, startDate, endDate, sort, order)
+            .then((res) => {
+                setAverageStudentList(res.data);
 
-                let tmpStartDateYear = tmpStartDate.getFullYear();
-                let tmpStartDateMonth = (tmpStartDate.getMonth() + 1) < 10 ? "0" + (tmpStartDate.getMonth() + 1) : (tmpStartDate.getMonth() + 1);
-                let tmpStartDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
-                let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
+                let tmpScatterChartData = new Array(
+                    {
+                        "id": "group A",
+                        "data": new Array()
+                    }
+                );
 
-                let tmpEndDateYear = tmpEndDate.getFullYear();
-                let tmpEndDateMonth = (tmpEndDate.getMonth() + 1) < 10 ? "0" + (tmpEndDate.getMonth() + 1) : (tmpEndDate.getMonth() + 1);
-                let tmpEndDateDay = tmpEndDate.getDate() < 10 ? "0" + tmpEndDate.getDate() : tmpEndDate.getDate();
-                let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
+                for (let i = 0; i < res.data.length; i++) {
+                    tmpScatterChartData[0].data[i] = {
+                        "studentName": res.data[i].studentName,
+                        "learningTimeSeconds": res.data[i].learningTimeSeconds,
+                        "x": res.data[i].learningCount,
+                        "y": res.data[i].accuracy
+                    }
+                }
 
-                averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2)
-                    .then((res) => {
-                        setAverageClassData(res.data);
-                    })
-                    .catch((error) => console.error(error))
-            } else if (Number(params.subtabmenu) === 2 && (!params.startdate)) { // 주별 학습 평균 (params.startdate가 없을 때)
-                let nowDate = new Date();
-                let days = nowDate.getDay() === 0 ? 6 : nowDate.getDay() - 1
-                let tmpStartDate = new Date(nowDate.setDate(nowDate.getDate() - days));
-                let startDateYear = tmpStartDate.getFullYear();
-                let startDateMonth = (tmpStartDate.getMonth() + 1) < 10 ? "0" + (tmpStartDate.getMonth() + 1) : (tmpStartDate.getMonth() + 1);
-                let startDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
-                let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
+                setScatterChartData(tmpScatterChartData);
+            })
+            .catch((error) => console.error(error))
+    }
 
-                let tmpEndDate = new Date(startDate2);
-                let tmpEndDate2 = tmpEndDate.setDate(tmpEndDate.getDate() + 6);
-                let tmpEndDate3 = new Date(tmpEndDate2);
-                let endDateYear = tmpEndDate3.getFullYear();
-                let endDateMonth = (tmpEndDate3.getMonth() + 1) < 10 ? "0" + (tmpEndDate3.getMonth() + 1) : (tmpEndDate3.getMonth() + 1);
-                let endDateDay = tmpEndDate3.getDate() < 10 ? "0" + tmpEndDate3.getDate() : tmpEndDate3.getDate();
-                let endDate2 = endDateYear + "-" + endDateMonth + "-" + endDateDay;
-
-                averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2)
-                    .then((res) => {
-                        setAverageClassData(res.data);
-                    })
-                    .catch((error) => console.error(error))
-            } else if (Number(params.subtabmenu) === 3 && (!params.startdate)) { // 일별 학습 평균 (params.startdate가 없을 때)
-                let nowDate = new Date();
-                let getFullYear = nowDate.getFullYear();
-                let getMonth = (nowDate.getMonth() + 1) < 10 ? "0" + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
-                let getDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
-                let startDate2 = getFullYear + "-" + getMonth + "-" + getDay;
-
-                averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2)
-                    .then((res) => {
-                        setAverageClassData(res.data);
-                    })
-                    .catch((error) => console.error(error))
-            } else if (Number(params.subtabmenu) === 1) { // 월별 학습 평균 (params.startdate가 있을 때)
-                let nowDate = new Date(params.startdate);
-                let getFullYear = nowDate.getFullYear();
-                let getMonth = nowDate.getMonth();
-                let tmpStartDate = new Date(getFullYear, getMonth, 1);
-                let tmpEndDate = new Date(getFullYear, getMonth + 1, 0);
-
-                let tmpStartDateYear = tmpStartDate.getFullYear();
-                let tmpStartDateMonth = (tmpStartDate.getMonth() + 1) < 10 ? "0" + (tmpStartDate.getMonth() + 1) : (tmpStartDate.getMonth() + 1);
-                let tmpStartDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
-                let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
-
-                let tmpEndDateYear = tmpEndDate.getFullYear();
-                let tmpEndDateMonth = (tmpEndDate.getMonth() + 1) < 10 ? "0" + (tmpEndDate.getMonth() + 1) : (tmpEndDate.getMonth() + 1);
-                let tmpEndDateDay = tmpEndDate.getDate() < 10 ? "0" + tmpEndDate.getDate() : tmpEndDate.getDate();
-                let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
-
-                averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2)
-                    .then((res) => {
-                        setAverageClassData(res.data);
-                    })
-                    .catch((error) => console.error(error))
-            } else if (Number(params.subtabmenu) === 2) { // 주별 학습 평균 (params.startdate가 있을 때)
-                let nowDate = new Date(params.startdate);
-                let days = nowDate.getDay() === 0 ? 6 : nowDate.getDay() - 1
-                let tmpStartDate = new Date(nowDate.setDate(nowDate.getDate() - days));
-                let startDateYear = tmpStartDate.getFullYear();
-                let startDateMonth = (tmpStartDate.getMonth() + 1) < 10 ? "0" + (tmpStartDate.getMonth() + 1) : (tmpStartDate.getMonth() + 1);
-                let startDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
-                let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
-
-                let tmpEndDate = new Date(startDate2);
-                let tmpEndDate2 = tmpEndDate.setDate(tmpEndDate.getDate() + 6);
-                let tmpEndDate3 = new Date(tmpEndDate2);
-                let endDateYear = tmpEndDate3.getFullYear();
-                let endDateMonth = (tmpEndDate3.getMonth() + 1) < 10 ? "0" + (tmpEndDate3.getMonth() + 1) : (tmpEndDate3.getMonth() + 1);
-                let endDateDay = tmpEndDate3.getDate() < 10 ? "0" + tmpEndDate3.getDate() : tmpEndDate3.getDate();
-                let endDate2 = endDateYear + "-" + endDateMonth + "-" + endDateDay;
-
-                averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2)
-                    .then((res) => {
-                        setAverageClassData(res.data);
-                    })
-                    .catch((error) => console.error(error))
-            } else if (Number(params.subtabmenu) === 3) { // 일별 학습 평균 (params.startdate가 있을 때)
-                let nowDate = new Date(params.startdate);
-                let getFullYear = nowDate.getFullYear();
-                let getMonth = (nowDate.getMonth() + 1) < 10 ? "0" + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
-                let getDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
-                let startDate2 = getFullYear + "-" + getMonth + "-" + getDay;
-
-                averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2)
-                    .then((res) => {
-                        setAverageClassData(res.data);
-                    })
-                    .catch((error) => console.error(error))
-            }
-        } else {
-            let nowDate = new Date();
-            let getFullYear = nowDate.getFullYear();
-            let getMonth = nowDate.getMonth();
-            let tmpStartDate = new Date(getFullYear, getMonth, 1);
-            let tmpEndDate = new Date(getFullYear, getMonth + 1, 0);
-
-            let tmpStartDateYear = tmpStartDate.getFullYear();
-            let tmpStartDateMonth = (tmpStartDate.getMonth() + 1) < 10 ? "0" + (tmpStartDate.getMonth() + 1) : (tmpStartDate.getMonth() + 1);
-            let tmpStartDateDay = tmpStartDate.getDate() < 10 ? "0" + tmpStartDate.getDate() : tmpStartDate.getDate();
-            let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
-
-            let tmpEndDateYear = tmpEndDate.getFullYear();
-            let tmpEndDateMonth = (tmpEndDate.getMonth() + 1) < 10 ? "0" + (tmpEndDate.getMonth() + 1) : (tmpEndDate.getMonth() + 1);
-            let tmpEndDateDay = tmpEndDate.getDate() < 10 ? "0" + tmpEndDate.getDate() : tmpEndDate.getDate();
-            let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
-
-            averageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2)
-                .then((res) => {
-                    setAverageClassData(res.data);
-                })
-                .catch((error) => console.error(error))
-        }
+    const getAverageClass = (schoolNo, classNo, startDate, endDate) => {
+        averageClass(schoolNo, classNo, startDate, endDate)
+            .then((res) => {
+                setAverageClassData(res.data);
+            })
+            .catch((error) => console.error(error))
     }
 
     // 월별, 주별, 일별 변경 시
@@ -514,17 +253,11 @@ const AverageLearningStatus = () => {
                 let getFullYear2 = nowDate2.getFullYear();
                 let getMonth2 = nowDate2.getMonth();
                 let tmpStartDate2 = new Date(getFullYear2, getMonth2, 1);
-                let tmpEndDate2 = new Date(getFullYear2, getMonth2 + 1, 0);
 
                 let tmpStartDateYear = tmpStartDate2.getFullYear();
                 let tmpStartDateMonth = (tmpStartDate2.getMonth() + 1) < 10 ? "0" + (tmpStartDate2.getMonth() + 1) : (tmpStartDate2.getMonth() + 1);
                 let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
-
-                let tmpEndDateYear = tmpEndDate2.getFullYear();
-                let tmpEndDateMonth = (tmpEndDate2.getMonth() + 1) < 10 ? "0" + (tmpEndDate2.getMonth() + 1) : (tmpEndDate2.getMonth() + 1);
-                let tmpEndDateDay = tmpEndDate2.getDate() < 10 ? "0" + tmpEndDate2.getDate() : tmpEndDate2.getDate();
-                let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
 
                 navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/1/${startDate2}/${sort}/${order}`);
             } else if (Number(params.subtabmenu) === 2 && (!params.startdate)) { // 주별 학습 평균 (params.startdate가 없을 때)
@@ -600,22 +333,11 @@ const AverageLearningStatus = () => {
             let getFullYear2 = nowDate2.getFullYear();
             let getMonth2 = nowDate2.getMonth();
             let tmpStartDate2 = new Date(getFullYear2, getMonth2, 1);
-            let tmpEndDate2 = new Date(getFullYear2, getMonth2 + 1, 0);
 
             let tmpStartDateYear = tmpStartDate2.getFullYear();
-            setYear(tmpStartDateYear);
             let tmpStartDateMonth = (tmpStartDate2.getMonth() + 1) < 10 ? "0" + (tmpStartDate2.getMonth() + 1) : (tmpStartDate2.getMonth() + 1);
-            setMonth(tmpStartDateMonth);
             let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
-
-            let tmpEndDateYear = tmpEndDate2.getFullYear();
-            let tmpEndDateMonth = (tmpEndDate2.getMonth() + 1) < 10 ? "0" + (tmpEndDate2.getMonth() + 1) : (tmpEndDate2.getMonth() + 1);
-            let tmpEndDateDay = tmpEndDate2.getDate() < 10 ? "0" + tmpEndDate2.getDate() : tmpEndDate2.getDate();
-            let endDate2 = tmpEndDateYear + "-" + tmpEndDateMonth + "-" + tmpEndDateDay;
-
-            setStartDate(startDate2);
-            setEndDate(endDate2);
 
             navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/1/${startDate2}/${sort}/${order}`);
         }
@@ -633,8 +355,7 @@ const AverageLearningStatus = () => {
     }
 
     useEffect(() => {
-        getAverageStudents();
-        getAverageClass();
+        getAverageData();
     }, [location])
 
     return (
@@ -822,8 +543,8 @@ const AverageLearningStatus = () => {
             </div>
 
             <div>
-                <div className="flex justify-between mt-[40px]">
-                    <div className="text-[20px] font-bold">학생 학습 현황</div>
+                <div className="flex justify-between mt-[50px]">
+                    <div className="text-[24px] font-bold">학생 학습 현황</div>
                     <div className="flex">
                         <div className="flex items-center cursor-pointer w-[80px] h-[40px]" onClick={() => { sortStudents(1, !order); }}>
                             <div className="relative w-6 h-4">
@@ -887,42 +608,42 @@ const AverageLearningStatus = () => {
                     <div className={"flex flex-wrap relative w-[1160px]"}>
                         {
                             averageStudentList && averageStudentList.length > 0 ? (
-                            averageStudentList && averageStudentList.map((value, index) => (
-                                <div key={index}
-                                    className={"relative w-[250px] h-[250px] py-[19px] px-[20px] bg-[#ffffff] mr-[40px] mb-[40px] rounded-xl transition duration-300 ease-in-out transform shadow-md hover:shadow-lg hover:-translate-y-1"}>
-                                    <div className={"font-bold text-[24px]"}>{value.studentName}</div>
-                                    <div className={"mt-2"}>
-                                        <table style={{ fontSize: "17px" }} className={"font-medium"}>
-                                            <tbody>
-                                                <tr>
-                                                    <td style={{ width: "98px", padding: "5px 0" }} className={"text-gray-500"}>학습량</td>
-                                                    <td>{value.learningCount}개</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ padding: "5px 0" }} className={"text-gray-500"}>평균 정확도</td>
-                                                    <td>{value.accuracy}%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ padding: "5px 0" }} className={"text-gray-500"}>총 학습시간</td>
-                                                    <td>
-                                                        {
-                                                            parseInt(value.learningTimeSeconds / 60) > 0 ? (
-                                                                parseInt(value.learningTimeSeconds / 60) + "분 "
-                                                            ) : (null)
-                                                        }
-                                                        {value.learningTimeSeconds % 60}초
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                averageStudentList && averageStudentList.map((value, index) => (
+                                    <div key={index}
+                                        className={"relative w-[250px] h-[250px] py-[19px] px-[20px] bg-[#ffffff] mr-[40px] mb-[40px] rounded-xl transition duration-300 ease-in-out transform shadow-md hover:shadow-lg hover:-translate-y-1"}>
+                                        <div className={"font-bold text-[24px]"}>{value.studentName}</div>
+                                        <div className={"mt-2"}>
+                                            <table style={{ fontSize: "17px" }} className={"font-medium"}>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style={{ width: "98px", padding: "5px 0" }} className={"text-gray-500"}>학습량</td>
+                                                        <td>{value.learningCount}개</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style={{ padding: "5px 0" }} className={"text-gray-500"}>평균 정확도</td>
+                                                        <td>{value.accuracy}%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style={{ padding: "5px 0" }} className={"text-gray-500"}>총 학습시간</td>
+                                                        <td>
+                                                            {
+                                                                parseInt(value.learningTimeSeconds / 60) > 0 ? (
+                                                                    parseInt(value.learningTimeSeconds / 60) + "분 "
+                                                                ) : (null)
+                                                            }
+                                                            {value.learningTimeSeconds % 60}초
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <Link
+                                            to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName}/${subTabMenu}/${startDate}`}
+                                            className={"w-[210px] h-[50px] mt-[10px] border-2 border-[#eef4fb] bottom-[16px] flex items-center justify-center rounded shadow-sm bg-[#eef4fb] hover:border-blue-500 hover:shadow"}>
+                                            학습 결과 상세
+                                        </Link>
                                     </div>
-                                    <Link
-                                        to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName}/${subTabMenu}/${startDate}`}
-                                        className={"w-[210px] h-[50px] mt-[10px] border-2 border-[#eef4fb] bottom-[16px] flex items-center justify-center rounded shadow-sm bg-[#eef4fb] hover:border-blue-500 hover:shadow"}>
-                                        학습 결과 상세
-                                    </Link>
-                                </div>
-                            ))
+                                ))
                             ) : (
                                 <div className="w-[1120px] bg-[#ffffff] rounded-xl shadow-md flex items-center p-[20px]">
                                     학생이 없어요.

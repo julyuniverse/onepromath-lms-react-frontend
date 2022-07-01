@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/home/Home';
 import { useEffect } from 'react';
 import { login } from "./api/axios";
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   const location = useLocation();
@@ -60,6 +61,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <ScrollToTop />
       <div className="h-full w-[1440px] min-w-[1440px] mx-auto">
         <Routes>
         <Route path="/home/*" element={<Home />}></Route>

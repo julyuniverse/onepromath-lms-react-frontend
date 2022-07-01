@@ -3,19 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/bar": "^0.75.0",
+    "@nivo/core": "^0.75.0",
+    "@nivo/pie": "^0.75.0",
+    "@nivo/scatterplot": "^0.75.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-loader-spinner": "^5.1.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "@nivo/bar": "^0.75.0",
-    "@nivo/core": "^0.75.0",
-    "@nivo/pie": "^0.75.0",
-    "@nivo/scatterplot": "^0.75.0"
+    "react-spinners-kit": "^1.9.1",
+    "react-to-print": "^2.14.7",
+    "spinners-react": "^1.0.7",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

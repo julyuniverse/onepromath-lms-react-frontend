@@ -40,7 +40,7 @@ const WeeklyLearningStatus = () => {
         }
     ]
 
-    const getWeeklyStudents = () => { // 주간 모든 학생
+    const weeklyLearningData = () => { // 주간 모든 학생
         if (params.startdate) { // params.startdate가 존재한다면
             let tmpEndDate = new Date(params.startdate);
             let tmpEndDate2 = tmpEndDate.setDate(tmpEndDate.getDate() + 6);
@@ -56,12 +56,7 @@ const WeeklyLearningStatus = () => {
                 setOrder(false);
             }
 
-            weeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, params.startdate, endDate2, params.sort, params.order)
-                .then((res) => {
-                    setWeeklyStudentList(res.data);
-                    console.log(res.data);
-                })
-                .catch((error) => console.error(error))
+            getWeeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, params.startdate, endDate2, params.sort, params.order);
         } else {
             setSort(1);
             setOrder(true);
@@ -83,12 +78,17 @@ const WeeklyLearningStatus = () => {
             let endDate2 = endDateYear + "-" + endDateMonth + "-" + endDateDay;
             setEndDate(endDate2);
 
-            weeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true)
+            getWeeklyStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, endDate2, 1, true);
+        }
+    }
+
+    const getWeeklyStudents = (schoolNo, classNo, startDate, endDate, sort, order) => {
+        weeklyStudents(schoolNo, classNo, startDate, endDate, sort, order)
                 .then((res) => {
+                    console.log(res.data);
                     setWeeklyStudentList(res.data);
                 })
                 .catch((error) => console.error(error))
-        }
     }
 
     const onChangeDate = (number) => { // 날짜 변경
@@ -145,11 +145,11 @@ const WeeklyLearningStatus = () => {
     }
 
     useEffect(() => {
-        getWeeklyStudents();
+        weeklyLearningData();
     }, [location])
 
     return (
-        <div className="min-h-screen bg-[#ffffff] p-[40px] rounded-tr-3xl  rounded-br-3xl  rounded-bl-3xl shadow-md">
+        <div className="min-h-screen bg-[#ffffff] p-[40px] rounded-tr-3xl rounded-br-3xl rounded-bl-3xl shadow-md">
             <div>
                 <div className="flex items-center justify-end text-[14px]">
                     <div className="w-[10px] h-[10px] bg-[#ffea00] rounded-full"></div>&nbsp;1학년&nbsp;
@@ -165,7 +165,7 @@ const WeeklyLearningStatus = () => {
             </div>
             <div className="flex justify-between mt-[40px]">
                 <div className="flex bg-[#f3f7ff] rounded-lg shadow">
-                    <div className="flex items-center cursor-pointer w-[80px] h-[40px]" onClick={() => { sortStudents(1, !order); }}>
+                    <div className="flex justify-center items-center cursor-pointer w-[80px] h-[40px]" onClick={() => { sortStudents(1, !order); }}>
                         <div className="relative w-6 h-4">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 className={sort === 1 && order ? "h-4 w-4 absolute top-0 left-0 text-[#0063ff] select-none" : "h-4 w-4 absolute top-0 left-0 text-[#999c9f] select-none"} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -179,7 +179,7 @@ const WeeklyLearningStatus = () => {
                         <div className={sort === 1 ? "text-[#0063ff] select-none" : "text-[#999c9f] select-none"}>이름</div>
                     </div>
 
-                    <div className="flex items-center cursor-pointer w-[90px] h-[40px]" onClick={() => { sortStudents(2, !order); }}>
+                    <div className="flex justify-center items-center cursor-pointer w-[90px] h-[40px]" onClick={() => { sortStudents(2, !order); }}>
                         <div className="relative w-6 h-4">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 className={sort === 2 && order ? "h-4 w-4 absolute top-0 left-0 text-[#0063ff] select-none" : "h-4 w-4 absolute top-0 left-0 text-[#999c9f] select-none"} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -357,7 +357,7 @@ const WeeklyLearningStatus = () => {
                                     </div>
                                 </div>
                                 <div className="w-[100px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                    <Link to="" className="block w-[74px] h-[28px] bg-[#eef4fb] rounded-md">
+                                    <Link to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName}/2/${startDate}`} className="block w-[74px] h-[28px] bg-[#eef4fb] rounded-md">
                                         <div className="h-full flex justify-center items-center text-[#3f8ce8]">
                                             상세보기
                                         </div>

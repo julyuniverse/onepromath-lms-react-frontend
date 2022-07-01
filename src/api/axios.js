@@ -9,15 +9,15 @@ export const classes = (schoolInfoNo, schoolYear) => { // 반 목록
 }
 
 export const weeklyStudents = (schoolInfoNo, schoolClassNo, startDate, endDate, sort, order) => { // 주간 모든 학생
-    return axios.post("/api/student/weeklystudents", { schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, startDate: startDate, endDate: endDate, sort: sort, order: order });
+    return axios.post("/api/student/weekly-students", { schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, startDate: startDate, endDate: endDate, sort: sort, order: order });
 }
 
 export const averageStudents = (schoolInfoNo, schoolClassNo, startDate, endDate, sort, order) => { // 평균 모든 학생
-    return axios.post("/api/student/averagestudents", { schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, startDate: startDate, endDate: endDate, sort: sort, order: order });
+    return axios.post("/api/student/average-students", { schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, startDate: startDate, endDate: endDate, sort: sort, order: order });
 }
 
 export const averageClass = (schoolInfoNo, schoolClassNo, startDate, endDate) => { // 평균 반
-    return axios.post("/api/class/averageclass", { schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, startDate: startDate, endDate: endDate });
+    return axios.post("/api/class/average-class", { schoolInfoNo: schoolInfoNo, schoolClassNo: schoolClassNo, startDate: startDate, endDate: endDate });
 }
 
 export const calendar = (studentNo, startDate) => { // 달력 (출석, 학습량)
@@ -26,4 +26,32 @@ export const calendar = (studentNo, startDate) => { // 달력 (출석, 학습량
 
 export const monthlyLearningData = (studentNo, startDate, count) => { // 월별 학습 데이터
     return axios.post("/api/learning/monthly-learning-data", { studentNo: studentNo, startDate: startDate, count: count });
+}
+
+export const weeklyLearningData = (studentNo, startDate) => { // 주별 학습 데이터
+    return axios.post("/api/learning/weekly-learning-data", { studentNo: studentNo, startDate: startDate });
+}
+
+export const levelData = (studentNo, startDate, endDate) => { // 레벨 데이터
+    return axios.post("/api/learning/level-data", { studentNo: studentNo, startDate: startDate, endDate: endDate });
+}
+
+export const levelAndChapterData = (studentNo, startDate, endDate) => { // 레벨과 챕터 데이터
+    return axios.post("/api/learning/level-and-chapter-data", { studentNo: studentNo, startDate: startDate, endDate: endDate });
+}
+
+export const learningData = (studentNo, startDate, endDate) => { // 학습 데이터
+    return axios.post("/api/learning/learning-data", { studentNo: studentNo, startDate: startDate, endDate: endDate });
+}
+
+export const attendanceWeek = (studentNo, startDate) => { // 주간 (출석, 학습 데이터)
+    return axios.post("/api/attendance/week", { studentNo: studentNo, startDate: startDate });
+}
+
+export const lastWeekAndThisWeekLearningData = (studentNo, startDate) => { // 지난주와 이번 주의 학습 데이터
+    return axios.post("/api/learning/last-week-and-this-week-learning-data", { studentNo: studentNo, startDate: startDate });
+}
+
+export const dailyLearningData = (studentNo, startDate, endDate) => { // 일별 학습 데이터
+    return axios.post("/api/learning/daily-learning-data", { studentNo: studentNo, startDate: startDate, endDate: endDate });
 }

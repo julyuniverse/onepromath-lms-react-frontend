@@ -89,7 +89,7 @@ const LeftNavigation = () => {
                         <div>
                             {classMenu && classMenu.map((value, index) => (
                                 <Link key={index} to={`/home/wholeclass/${value.id}`} className="block">
-                                    <div className={subMenu === value.id ? "flex items-center h-[50px] pl-[60px] text-[#72787f]" : "flex items-center h-[50px] pl-[60px] text-[#999c9f]"}>
+                                    <div className={subMenu === value.id ? "flex items-center h-[50px] pl-[60px] text-[#72787f] font-semibold" : "flex items-center h-[50px] pl-[60px] text-[#999c9f]"}>
                                         {value.name}
                                     </div>
                                 </Link>
