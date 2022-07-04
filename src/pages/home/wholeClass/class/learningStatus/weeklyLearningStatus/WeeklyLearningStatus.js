@@ -215,9 +215,9 @@ const WeeklyLearningStatus = () => {
             </div>
             <div className="mt-[40px]">
                 <div className="flex h-[60px]">
-                    <div className="w-[80px]"></div>
-                    <div className="w-[120px] flex items-center">이름</div>
-                    <div className="w-[120px] flex items-center">학습시간</div>
+                    <div className="w-[70px]"></div>
+                    <div className="w-[140px] flex items-center">이름</div>
+                    <div className="w-[110px] flex items-center">학습시간</div>
                     <div className="w-[80px] flex items-center">정확도</div>
                     <div className="w-[120px] flex items-center">
                         총 학습량&nbsp;
@@ -255,15 +255,15 @@ const WeeklyLearningStatus = () => {
                     weeklyStudentList && weeklyStudentList.length > 0 ? (
                         weeklyStudentList && weeklyStudentList.map((value, index) => (
                             <div key={index} className={index === 0 ? "flex border-[2px] border-[#f3f7ff] h-[60px] rounded-md transition duration-150 hover:scale-[1.02] hover:shadow-lg" : "flex border-t-[0px] border-x-[2px] border-b-[2px] border-[#f3f7ff] h-[60px] rounded-md transition duration-150 hover:border-t-[2px] hover:scale-[1.02] hover:shadow-lg"}>
-                                <div className="w-[80px] flex justify-center items-center">
+                                <div className="w-[70px] flex justify-center items-center">
                                     <div className={value.sequence % 2 === 1 ? "w-[34px] h-[34px] bg-[#fff9eb] rounded-lg flex justify-center items-center" : "w-[34px] h-[34px] bg-[#eef4fb] rounded-lg flex justify-center items-center"}>
                                         <div className={value.sequence % 2 === 1 ? "text-[#fac232] text-[18px] font-bold" : "text-[#3667bf] text-[18px] font-bold"}>
                                             {value.sequence}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-[120px] flex items-center">{value.studentName}</div>
-                                <div className="w-[120px] flex items-center">
+                                <div className="w-[140px] flex items-center">{value.studentName.length > 8 ? value.studentName.substring(0, 8) + "..." : value.studentName}</div>
+                                <div className="w-[110px] flex items-center">
                                     {hh(value.learningTimeSeconds)}&nbsp;{mm(value.learningTimeSeconds)}
                                 </div>
                                 <div className="w-[80px] flex items-center">{value.accuracy}%</div>

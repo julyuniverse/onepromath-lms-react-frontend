@@ -611,7 +611,7 @@ const AverageLearningStatus = () => {
                                 averageStudentList && averageStudentList.map((value, index) => (
                                     <div key={index}
                                         className={"relative w-[250px] h-[250px] py-[19px] px-[20px] bg-[#ffffff] mr-[40px] mb-[40px] rounded-xl transition duration-300 ease-in-out transform shadow-md hover:shadow-lg hover:-translate-y-1"}>
-                                        <div className={"font-bold text-[24px]"}>{value.studentName}</div>
+                                        <div className={"font-bold text-[24px]"}>{value.studentName.length > 8 ? value.studentName.substring(0, 8) + "..." : value.studentName}</div>
                                         <div className={"mt-2"}>
                                             <table style={{ fontSize: "17px" }} className={"font-medium"}>
                                                 <tbody>
@@ -638,7 +638,7 @@ const AverageLearningStatus = () => {
                                             </table>
                                         </div>
                                         <Link
-                                            to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName}/${subTabMenu}/${startDate}`}
+                                            to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName.length > 8 ? value.studentName.substring(0, 8) + "..." : value.studentName}/${subTabMenu}/${startDate}`}
                                             className={"w-[210px] h-[50px] mt-[10px] border-2 border-[#eef4fb] bottom-[16px] flex items-center justify-center rounded shadow-sm bg-[#eef4fb] hover:border-blue-500 hover:shadow"}>
                                             학습 결과 상세
                                         </Link>

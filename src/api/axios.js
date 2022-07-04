@@ -44,6 +44,10 @@ export const learningData = (studentNo, startDate, endDate) => { // 학습 데�
     return axios.post("/api/learning/learning-data", { studentNo: studentNo, startDate: startDate, endDate: endDate });
 }
 
+export const students = (schoolNo, classNo) => { // 모든 학생
+    return axios.post("/api/student/students", { schoolNo: schoolNo, classNo: classNo });
+}
+
 export const attendanceWeek = (studentNo, startDate) => { // 주간 (출석, 학습 데이터)
     return axios.post("/api/attendance/week", { studentNo: studentNo, startDate: startDate });
 }
@@ -54,4 +58,12 @@ export const lastWeekAndThisWeekLearningData = (studentNo, startDate) => { // �
 
 export const dailyLearningData = (studentNo, startDate, endDate) => { // 일별 학습 데이터
     return axios.post("/api/learning/daily-learning-data", { studentNo: studentNo, startDate: startDate, endDate: endDate });
+}
+
+export const accountInfo = (userNo) => { // 계정 정보 (userNo 기준)
+    return axios.post("/api/account/info", { userNo: userNo });
+}
+
+export const accountInfo2 = (profileNo) => { // 계정 정보 (profileNo 기준)
+    return axios.post("/api/account/info2", { profileNo: profileNo });
 }

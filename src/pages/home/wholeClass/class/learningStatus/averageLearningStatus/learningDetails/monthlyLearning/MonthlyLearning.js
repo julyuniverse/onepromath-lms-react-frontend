@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { calendar, learningData, levelAndChapterData, levelData, monthlyLearningData, weeklyLearningData } from "../../../../../../../../api/axios";
+import { calendar, learningData, levelAndChapterData, levelData, monthlyLearningData, students, weeklyLearningData } from "../../../../../../../../api/axios";
 import { useReactToPrint } from 'react-to-print'; // 프린트 api
 import Learning from "../../../../../../../../assets/images/learning.png";
 import Accuracy from "../../../../../../../../assets/images/accuracy.png";
@@ -16,6 +16,7 @@ import GoodTrophy from "../../../../../../../../assets/images/goodTrophy.png";
 import GoodBadge from "../../../../../../../../assets/images/goodBadge.png";
 import BadBadge from "../../../../../../../../assets/images/badBadge.png";
 import ClassicSpinnerLoader from "../../../../../../../../components/ClassicSpinnerLoader";
+import { encode } from "../../../../../../../../components/Crypto";
 
 const MonthlyLearning = () => {
     const location = useLocation();
@@ -72,6 +73,12 @@ const MonthlyLearning = () => {
     const [weekLearningData, setWeekLearningData] = useState([]);
     const [numberOfLearningData, setNmberOfLearningData] = useState(0);
     const monthlyReportContent = useRef();
+    const linkAddressInput = useRef(); // 링크 주소 값
+    const linkAddressCopyCheck = useRef(); // 복사 확인 아이콘
+    const linkAddressBox = useRef(); // 링크 주소 박스
+    const [linkAddressBoxShow, setLinkAddressBoxShow] = useState(false); // 링크 주소 박스 출력
+    const [students2, setStudents2] = useState([]); // 모든 학생
+    const [encryptProfileNo, setEncryptProfileNo] = useState(""); // 유저넘버 암호화
 
     const getMonthData = async () => {
         if (params.startdate) { // params.startdate가 있을 때
@@ -96,6 +103,7 @@ const MonthlyLearning = () => {
 
             setYear(tmpStartDateYear);
             setMonth(tmpStartDateMonth);
+            setEncryptProfileNo(encodeURIComponent(encode(params.studentno))); // Encrypt, encodeURIComponent
 
             await getCalendar(params.studentno, startDate2);
             await getMonthlyLearningData(params.studentno, startDate2, 4);
@@ -103,6 +111,7 @@ const MonthlyLearning = () => {
             await getLevelData(params.studentno, startDate2, endDate2);
             await getLevelAndChapterData(params.studentno, startDate2, endDate2);
             await getLearningData(params.studentno, startDate2, endDate2);
+            await getStudents(window.sessionStorage.getItem("schoolinfono"), params.classno);
         } else {
             let nowDate = new Date();
             let getFullYear = nowDate.getFullYear();
@@ -125,6 +134,7 @@ const MonthlyLearning = () => {
 
             setYear(tmpStartDateYear);
             setMonth(tmpStartDateMonth);
+            setEncryptProfileNo(encodeURIComponent(encode(params.studentno))); // Encrypt, encodeURIComponent
 
             await getCalendar(params.studentno, startDate2);
             await getMonthlyLearningData(params.studentno, startDate2, 4);
@@ -132,6 +142,7 @@ const MonthlyLearning = () => {
             await getLevelData(params.studentno, startDate2, endDate2);
             await getLevelAndChapterData(params.studentno, startDate2, endDate2);
             await getLearningData(params.studentno, startDate2, endDate2);
+            await getStudents(window.sessionStorage.getItem("schoolinfono"), params.classno);
         }
     }
 
@@ -473,6 +484,15 @@ const MonthlyLearning = () => {
             .catch((error) => console.error(error))
     }
 
+    // 학생 목록
+    const getStudents = async (schoolNo, classNo) => {
+        await students(schoolNo, classNo)
+            .then((res) => {
+                setStudents2(res.data);
+            })
+            .catch((error) => console.error(error))
+    }
+
     const onChangeDate = (number) => {
         if (params.startdate) { // params.startdate가 있을 때
             let nowDate = new Date(params.startdate);
@@ -561,6 +581,58 @@ const MonthlyLearning = () => {
         onAfterPrint: () => monthlyReportContent.current.classList.add("opacity-0", "h-0", "overflow-hidden"),
     });
 
+    const linkAddressCopy = () => { // 링크 주소 복사
+        // Browser compatibility 알림
+        if (!document.queryCommandSupported("copy")) {
+            alert("복사 기능을 지원하지 않는 브라우저에요.");
+            return;
+        }
+
+        // 선택 후 복사
+        linkAddressInput.current.focus();
+        linkAddressInput.current.select();
+        document.execCommand('copy');
+
+        // 복사 완료 시
+        linkAddressCopyCheck.current.classList.remove("hidden");
+        const hidden = setTimeout(() => linkAddressCopyCheck.current.classList.add("hidden"), 3000);
+        return () => clearTimeout(hidden);
+    }
+
+    const onCLicklinkAddressBox = () => { // 링크 박스 활성화 버튼
+        setLinkAddressBoxShow(!linkAddressBoxShow);
+    }
+
+    const onChangeProfileNumber = (event) => { // Select box on Change
+        const student = students2.find(student => Number(student.studentNo) === Number(event.target.value));
+        let studentName = student.studentName.length > 8 ? student.studentName.substring(0, 8) + "..." : student.studentName;
+
+        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${student.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
+    }
+
+    const onChangeProfileNumber2 = (chevron) => { // 방향 클릭 시 studentNo 변경
+        const student = students2.find(student => Number(student.studentNo) === Number(params.studentno));
+        const index = students2.indexOf(student);
+
+        if (chevron === "left") {
+            if (index > 0) {
+                let student2 = students2[index - 1];
+                let studentName = student2.studentName.length > 8 ? student2.studentName.substring(0, 8) + "..." : student2.studentName;
+
+                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${student2.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
+            }
+        } else if (chevron === "right") {
+            const lastIndex = students2.length - 1;
+
+            if (lastIndex > index) {
+                let student2 = students2[index + 1];
+                let studentName = student2.studentName.length > 8 ? student2.studentName.substring(0, 8) + "..." : student2.studentName;
+
+                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${student2.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
+            }
+        }
+    }
+
     useEffect(async () => {
         setIsLoading(true);
         await getMonthData();
@@ -571,12 +643,74 @@ const MonthlyLearning = () => {
         <div className="text-[18px]">
             {
                 isLoading ? (
-                    <ClassicSpinnerLoader />
+                    <ClassicSpinnerLoader size={80} />
                 ) : (null)
             }
             <ScrollToTopButton />
             <div className="flex justify-between mt-[40px]">
-                <div className="w-[200px]"></div>
+                <div className="w-[400px] flex justify-start pl-[40px]">
+                    <div className="flex justify-evenly items-center w-[9rem] h-[2.75rem] bg-[#b6b9bc] rounded-md cursor-pointer" onClick={onCLicklinkAddressBox}>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#f7f8f9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                            </svg>
+                        </div>
+                        <div className={"text-[#f7f8f9] text-[18px] select-none"}>
+                            카카오톡 링크
+                        </div>
+                    </div>
+
+                    <div ref={linkAddressBox} className={linkAddressBoxShow ? ("absolute") : ("hidden")}>
+                        <div className="absolute top-[20px]">
+                            <div className="absolute right-[-64px] top-[24px] z-10">
+                                <div className="absolute w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[10px] border-b-[#d0d7de]"></div>
+                                <div className="absolute w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-[#ffffff] left-[2px] top-[2px]"></div>
+                            </div>
+                            <div className="absolute top-[33px] right-[-444px] bg-[#ffffff] border-[1px] border-[#d0d7de] rounded p-2 shadow-sm">
+                                <div className="flex items-center border-[1px] border-[#d0d7de] rounded-md px-2 bg-[#f6f8fa]">
+                                    <input type="text" className="w-[20.875rem] h-6 bg-[#f6f8fa]" ref={linkAddressInput} value={`http://localhost:3000/monthly-report/25/0/${encryptProfileNo}/${params.startdate}`} readOnly />
+                                    <div className="bg-[#cccccc] w-[0.063rem] h-[2.125rem] ml-2"></div>
+                                    <div className="relative w-[3.125rem] ml-2">
+                                        <div>
+                                            <div className="flex justify-center">
+                                                <svg onClick={linkAddressCopy} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 cursor-pointer text-[#cccccc] hover:text-[#000000]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+
+                                            <div className="text-[14px]">
+                                                복사하기
+                                            </div>
+                                        </div>
+
+                                        <div ref={linkAddressCopyCheck} className="bg-[#f6f8fa] absolute top-0 left-0 w-[3.125rem] h-[2.813rem] hidden">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="absolute h-6 w-6 top-0 left-3 text-[#1a7f37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            <div className="absolute left-[5px] top-[23px] whitespace-nowrap inline-block text-[14px]">
+                                                복사됨!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-2 text-[16px]">
+                                    위 링크를 복사해서 카카오톡이나 메시지로 보내보세요!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-evenly items-center w-[96px] h-[44px] bg-[#b6b9bc] rounded-md ml-2 cursor-pointer" onClick={handlePrint}>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#f7f8f9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
+                        </div>
+                        <div className={"text-[#f7f8f9] text-[18px] select-none"}>
+                            프린트
+                        </div>
+                    </div>
+                </div>
                 <div className="flex items-center">
                     <div className="w-[32px] h-[32px] bg-[#e4e7e9] rounded-lg flex justify-center items-center cursor-pointer" onClick={() => onChangeDate(-1)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -592,15 +726,24 @@ const MonthlyLearning = () => {
                         </svg>
                     </div>
                 </div>
-                <div className="w-[200px] flex justify-end pr-[40px]">
-                    <div className="flex justify-evenly items-center w-[96px] h-[44px] bg-[#b6b9bc] rounded-md ml-2 cursor-pointer" onClick={handlePrint}>
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#f7f8f9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                <div className="w-[400px] pr-[40px]">
+                    <div className="flex justify-end items-center">
+                        <div className="flex justify-center items-center bg-[#e2e3e5] h-[34px] px-[3px] rounded-md cursor-pointer" onClick={() => onChangeProfileNumber2("left")}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#474d53" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                             </svg>
                         </div>
-                        <div className={"text-[#f7f8f9] text-[18px] select-none"}>
-                            프린트
+                        <select value={params.studentno} onChange={onChangeProfileNumber} className="text-[14pt] h-[34px] px-[8px] bg-[#f0f1f3] rounded-md ml-[8px] border border-[#e2e3e5] cursor-pointer">
+                            {
+                                students2 && students2.map((value, index) => (
+                                    <option key={index} value={value.studentNo}>{value.studentName.length > 8 ? value.studentName.substring(0, 8) + "..." : value.studentName}</option>
+                                ))
+                            }
+                        </select>
+                        <div className="flex justify-center items-center bg-[#e2e3e5] h-[34px] px-[3px] rounded-md ml-[8px] cursor-pointer" onClick={() => onChangeProfileNumber2("right")}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#474d53" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -4102,119 +4245,121 @@ const MonthlyLearning = () => {
                     </div>
                 </div>
 
-                {[...Array(numberOfLearningData)].map((num, index) => {
-                    return (
-                        <div key={index} className="flex justify-center w-[920px] h-[1301px]">
-                            <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
-                                <div className="mt-[50px] flex px-[60px]">
-                                    <div className="flex items-center">
-                                        <div>
-                                            <div className="w-[10px] h-[10px] rounded-full bg-[#0063ff]"></div>
+                <div className="relative w-[920px] border">
+                    {[...Array(numberOfLearningData)].map((num, index) => {
+                        return (
+                            <div key={index} className="flex justify-center">
+                                <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                                    <div className="mt-[50px] flex px-[60px]">
+                                        <div className="flex items-center">
+                                            <div>
+                                                <div className="w-[10px] h-[10px] rounded-full bg-[#0063ff]"></div>
+                                            </div>
+                                            <div className="flex text-[16px] font-semibold ml-[8px]">
+                                                <span className="text-[#1b1d1f]">정확도</span>
+                                                <span className="text-[#0063ff]">&nbsp;90% 이상은 파란색</span>
+                                                <span className="text-[#1b1d1f]">입니다.</span>
+                                            </div>
                                         </div>
-                                        <div className="flex text-[16px] font-semibold ml-[8px]">
-                                            <span className="text-[#1b1d1f]">정확도</span>
-                                            <span className="text-[#0063ff]">&nbsp;90% 이상은 파란색</span>
-                                            <span className="text-[#1b1d1f]">입니다.</span>
+
+                                        <div className="flex items-center ml-[50px]">
+                                            <div>
+                                                <div className="w-[10px] h-[10px] rounded-full bg-[#d61313]"></div>
+                                            </div>
+                                            <div className="flex text-[16px] font-semibold ml-[8px]">
+                                                <span className="text-[#1b1d1f]">정확도</span>
+                                                <span className="text-[#d61313]">&nbsp;50% 이하는 빨간색</span>
+                                                <span className="text-[#1b1d1f]">입니다.</span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center ml-[50px]">
-                                        <div>
-                                            <div className="w-[10px] h-[10px] rounded-full bg-[#d61313]"></div>
+                                    <div className="px-[60px]">
+                                        <div className="flex items-center text-[#464c52] font-semibold mt-[20px] h-[50px] border-b">
+                                            <div className="w-[80px] pl-[10px]">날짜</div>
+                                            <div className="w-[100px]">학습 모드</div>
+                                            <div className="w-[120px]">레벨/단원</div>
+                                            <div className="w-[360px]">스테이지명</div>
+                                            <div className="w-[100px]">학습시간</div>
+                                            <div className="w-[80px]">등급</div>
+                                            <div className="w-[80px]">정확도</div>
                                         </div>
-                                        <div className="flex text-[16px] font-semibold ml-[8px]">
-                                            <span className="text-[#1b1d1f]">정확도</span>
-                                            <span className="text-[#d61313]">&nbsp;50% 이하는 빨간색</span>
-                                            <span className="text-[#1b1d1f]">입니다.</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="px-[60px]">
-                                    <div className="flex items-center text-[#464c52] font-semibold mt-[20px] h-[50px] border-b">
-                                        <div className="w-[80px] pl-[10px]">날짜</div>
-                                        <div className="w-[100px]">학습 모드</div>
-                                        <div className="w-[120px]">레벨/단원</div>
-                                        <div className="w-[360px]">스테이지명</div>
-                                        <div className="w-[100px]">학습시간</div>
-                                        <div className="w-[80px]">등급</div>
-                                        <div className="w-[80px]">정확도</div>
-                                    </div>
-                                    <Fragment>
-                                        {
-                                            learningData3 && learningData3.slice(0 + (23 * index), 23 + (23 * index)).map((value, index) => (
-                                                <div key={index}>
-                                                    <div className="flex items-center text-[#1b1d1f] h-[44px]">
-                                                        <div className="w-[80px] pl-[10px]">{value.month}.{value.day}</div>
-                                                        <div className="w-[100px]">{value.learningMode}</div>
-                                                        <div className="w-[120px]">{value.level}레벨/{value.chapter}단원</div>
-                                                        <div className="w-[360px] relative">
-                                                            <div>{value.unitName && value.unitName.length > 22 ? value.unitName.substr(0, 22) + ".." : value.unitName}</div>
-                                                            <div className="absolute top-0 left-0 w-[360px] h-[44px] opacity-0 hover:opacity-100">
-                                                                <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
-                                                                    {value.unitName}
+                                        <Fragment>
+                                            {
+                                                learningData3 && learningData3.slice(0 + (23 * index), 23 + (23 * index)).map((value, index) => (
+                                                    <div key={index}>
+                                                        <div className="flex items-center text-[#1b1d1f] h-[44px]">
+                                                            <div className="w-[80px] pl-[10px]">{value.month}.{value.day}</div>
+                                                            <div className="w-[100px]">{value.learningMode}</div>
+                                                            <div className="w-[120px]">{value.level}레벨/{value.chapter}단원</div>
+                                                            <div className="w-[360px] relative">
+                                                                <div>{value.unitName && value.unitName.length > 22 ? value.unitName.substr(0, 22) + ".." : value.unitName}</div>
+                                                                <div className="absolute top-0 left-0 w-[360px] h-[44px] opacity-0 hover:opacity-100">
+                                                                    <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
+                                                                        {value.unitName}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div className="w-[100px]">
-                                                            {mm2(value.learningTimeSeconds)} {ss2(value.learningTimeSeconds)}
-                                                        </div>
-                                                        <div className="w-[80px]">
-                                                            {
-                                                                value.learningMode === "일프로 도전" ? (
-                                                                    <Fragment>
-                                                                        {
-                                                                            value.grade === 1 ? (
-                                                                                <span>성공</span>
-                                                                            ) : (
-                                                                                <span>실패</span>
-                                                                            )
-                                                                        }
-                                                                    </Fragment>
+                                                            <div className="w-[100px]">
+                                                                {mm2(value.learningTimeSeconds)} {ss2(value.learningTimeSeconds)}
+                                                            </div>
+                                                            <div className="w-[80px]">
+                                                                {
+                                                                    value.learningMode === "일프로 도전" ? (
+                                                                        <Fragment>
+                                                                            {
+                                                                                value.grade === 1 ? (
+                                                                                    <span>성공</span>
+                                                                                ) : (
+                                                                                    <span>실패</span>
+                                                                                )
+                                                                            }
+                                                                        </Fragment>
 
 
-                                                                ) : (
-                                                                    <span>
-                                                                        {value.grade}%
-                                                                    </span>
-                                                                )
-                                                            }
-                                                        </div>
-                                                        <div className="w-[80px]">
-                                                            {
-                                                                value.accuracy >= 90 ? (
-                                                                    <span className="text-[#0063ff]">{value.accuracy}%</span>
-                                                                ) : (
-                                                                    value.accuracy <= 50 ? (
-                                                                        <span className="text-[#d61313]">{value.accuracy}%</span>
                                                                     ) : (
-                                                                        <span>{value.accuracy}%</span>
+                                                                        <span>
+                                                                            {value.grade}%
+                                                                        </span>
                                                                     )
-                                                                )
-                                                            }
+                                                                }
+                                                            </div>
+                                                            <div className="w-[80px]">
+                                                                {
+                                                                    value.accuracy >= 90 ? (
+                                                                        <span className="text-[#0063ff]">{value.accuracy}%</span>
+                                                                    ) : (
+                                                                        value.accuracy <= 50 ? (
+                                                                            <span className="text-[#d61313]">{value.accuracy}%</span>
+                                                                        ) : (
+                                                                            <span>{value.accuracy}%</span>
+                                                                        )
+                                                                    )
+                                                                }
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            ))
-                                        }
-                                    </Fragment>
-                                </div>
+                                                ))
+                                            }
+                                        </Fragment>
+                                    </div>
 
-                                <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
-                                    <div className="w-[80px]">
-                                    </div>
-                                    <div>
-                                        {year}.{month}
-                                    </div>
-                                    <div className="w-[80px] text-right pr-[40px]">
-                                        {8 + index}
+                                    <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="w-[80px]">
+                                        </div>
+                                        <div>
+                                            {year}.{month}
+                                        </div>
+                                        <div className="w-[80px] text-right pr-[40px]">
+                                            {8 + index}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
             {/* 프린트 컨텐츠 종료 */}
         </div>

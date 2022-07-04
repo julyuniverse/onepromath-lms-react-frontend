@@ -428,7 +428,7 @@ const WeeklyLearning = () => {
         <div>
             {
                 isLoading ? (
-                    <ClassicSpinnerLoader />
+                    <ClassicSpinnerLoader size={80} />
                 ) : (null)
             }
             <ScrollToTopButton />
