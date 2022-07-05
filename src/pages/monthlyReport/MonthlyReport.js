@@ -931,22 +931,22 @@ const MonthlyReport = () => {
                                         <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:mt-[50px] lg:text-[32px]">
                                             총 학습 현황
                                         </div>
-                                        <div className="px-[60px] mt-[50px]">
+                                        <div className="mt-[20px] px-[4px] lg:px-[60px] lg:mt-[50px]">
                                             <div className="flex border-t">
-                                                <div className="flex items-center w-[290px] h-[100px] text-[20px] text-[#464c52] font-bold pl-[40px]">학습량 (스테이지 개수)</div>
-                                                <div className="flex justify-end items-center w-[260px] h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">학습량 (스테이지 개수)</div>
+                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
-                                                        <span className="text-[#0063ff] text-[42px]">{learningCount}</span>
-                                                        <span className="text-[#0063ff] text-[26px] ml-[6px]">개</span>
+                                                        <span className="text-[#0063ff] lg:text-[42px]">{learningCount}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">개</span>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[370px] h-[100px] pr-[40px]">
+                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonLearningCount === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[20px] text-[#5c5e60]">저번 달과 동일</div>
+                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
                                                                 <div className="ml-[14px]">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#7e7e7e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
                                                                 </div>
@@ -954,18 +954,18 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonLearningCount > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">+ 저번 달보다 {preMonthComparisonLearningCount}개 증가</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonLearningCount}개 증가</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#17b20e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
                                                                     </div>
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">- 저번 달보다 {Math.abs(preMonthComparisonLearningCount)}개 감소</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonLearningCount)}개 감소</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#d61313]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
                                                                     </div>
@@ -977,20 +977,20 @@ const MonthlyReport = () => {
                                             </div>
 
                                             <div className="flex border-t">
-                                                <div className="flex items-center w-[290px] h-[100px] text-[20px] text-[#464c52] font-bold pl-[40px]">정확도</div>
-                                                <div className="flex justify-end items-center w-[260px] h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">정확도</div>
+                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
-                                                        <span className="text-[#0063ff] text-[42px]">{averageAccuracy}</span>
-                                                        <span className="text-[#0063ff] text-[26px] ml-[6px]">%</span>
+                                                        <span className="text-[#0063ff] lg:text-[42px]">{averageAccuracy}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">%</span>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[370px] h-[100px] pr-[40px]">
+                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonAccuracy === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[20px] text-[#5c5e60]">저번 달과 동일</div>
+                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
                                                                 <div className="ml-[14px]">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#7e7e7e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
                                                                 </div>
@@ -998,18 +998,18 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonAccuracy > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">+ 저번 달보다 {preMonthComparisonAccuracy}% 증가</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonAccuracy}% 증가</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#17b20e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
                                                                     </div>
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">- 저번 달보다 {Math.abs(preMonthComparisonAccuracy)}% 감소</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonAccuracy)}% 감소</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#d61313]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
                                                                     </div>
@@ -1021,33 +1021,33 @@ const MonthlyReport = () => {
                                             </div>
 
                                             <div className="flex border-t">
-                                                <div className="flex items-center w-[290px] h-[100px] text-[20px] text-[#464c52] font-bold pl-[40px]">학습시간</div>
-                                                <div className="flex justify-end items-center w-[260px] h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">학습시간</div>
+                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
 
-                                                        <span className="text-[#0063ff] text-[42px]">{mm(learningTimeSeconds)}</span>
-                                                        <span className="text-[#0063ff] text-[26px] ml-[6px]">분</span>
+                                                        <span className="text-[#0063ff] lg:text-[42px]">{mm(learningTimeSeconds)}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">분</span>
 
 
                                                         {
                                                             ss(learningTimeSeconds) !== "" ? (
                                                                 <Fragment>
 
-                                                                    <span className="text-[#0063ff] text-[42px] ml-[8px]">{ss(learningTimeSeconds)}</span>
-                                                                    <span className="text-[#0063ff] text-[26px] ml-[6px]">초</span>
+                                                                    <span className="text-[#0063ff] ml-[2px] lg:text-[42px] lg:ml-[8px]">{ss(learningTimeSeconds)}</span>
+                                                                    <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">초</span>
                                                                 </Fragment>
                                                             ) : (null)
                                                         }
 
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[370px] h-[100px] pr-[40px]">
+                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonLearningTimeSeconds === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[20px] text-[#5c5e60]">저번 달과 동일</div>
+                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
                                                                 <div className="ml-[14px]">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#7e7e7e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
                                                                 </div>
@@ -1055,18 +1055,18 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonLearningTimeSeconds > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">+ 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 증가</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 증가</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#17b20e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
                                                                     </div>
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">- 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 감소</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 감소</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#d61313]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
                                                                     </div>
@@ -1078,22 +1078,22 @@ const MonthlyReport = () => {
                                             </div>
 
                                             <div className="flex border-t border-b">
-                                                <div className="flex items-center w-[290px] h-[100px] text-[20px] text-[#464c52] font-bold pl-[40px]">문제 개수</div>
-                                                <div className="flex justify-end items-center w-[260px] h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">문제 개수</div>
+                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
 
-                                                        <span className="text-[#0063ff] text-[42px]">{problemCount}</span>
-                                                        <span className="text-[#0063ff] text-[26px] ml-[6px]">개</span>
+                                                        <span className="text-[#0063ff] lg:text-[42px]">{problemCount}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">개</span>
 
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[370px] h-[100px] pr-[40px]">
+                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonProblemCount === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[20px] text-[#5c5e60]">저번 달과 동일</div>
+                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
                                                                 <div className="ml-[14px]">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#7e7e7e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
                                                                 </div>
@@ -1101,18 +1101,18 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonProblemCount > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">+ 저번 달보다 {preMonthComparisonProblemCount}개 증가</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonProblemCount}개 증가</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#17b20e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
                                                                     </div>
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[20px] text-[#5c5e60]">- 저번 달보다 {Math.abs(preMonthComparisonProblemCount)}개 감소</div>
+                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonProblemCount)}개 감소</div>
                                                                     <div className="ml-[14px]">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#d61313]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
                                                                     </div>
@@ -1124,25 +1124,25 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className=" font-bold text-[#061b3b] text-center text-[14px] mt-[20px] lg:text-[32px] lg:mt-[50px]">
                                             학습 모드별 비율
                                         </div>
 
-                                        <div className="mt-[50px] flex justify-center">
+                                        <div className="mt-[20px] flex justify-center lg:mt-[50px]">
                                             <div>
                                                 <div className="flex items-center">
-                                                    <div className="flex items-center w-[200px] pl-[10px]">
+                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#558fe8] rounded-full"></div>
                                                         <div className={topLearningMode === 1 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>오늘의 학습</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 1 ? "text-[#d61313] w-[100px]" : "w-[100px]"}>
+                                                    <div className={topLearningMode === 1 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
                                                         <span>
                                                             {dailyModePercent}%
                                                         </span>
                                                     </div>
-                                                    <div className="w-[620px] pr-[10px]">
+                                                    <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
                                                             <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
                                                                 <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
@@ -1153,18 +1153,18 @@ const MonthlyReport = () => {
                                                 </div>
 
                                                 <div className="flex items-center mt-[30px]">
-                                                    <div className="flex items-center w-[200px] pl-[10px]">
+                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#fac232] rounded-full"></div>
                                                         <div className={topLearningMode === 2 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>자유 학습</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 2 ? "text-[#d61313] w-[100px]" : "w-[100px]"}>
+                                                    <div className={topLearningMode === 2 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
                                                         <span>
                                                             {freeModePercent}%
                                                         </span>
                                                     </div>
-                                                    <div className="w-[620px] pr-[10px]">
+                                                    <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
                                                             <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
                                                                 <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
@@ -1175,18 +1175,18 @@ const MonthlyReport = () => {
                                                 </div>
 
                                                 <div className="flex items-center mt-[30px]">
-                                                    <div className="flex items-center w-[200px] pl-[10px]">
+                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#f67b70] rounded-full"></div>
                                                         <div className={topLearningMode === 3 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>일프로 도전</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 3 ? "text-[#d61313] w-[100px]" : "w-[100px]"}>
+                                                    <div className={topLearningMode === 3 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
                                                         <span>
                                                             {oneproModePercent}%
                                                         </span>
                                                     </div>
-                                                    <div className="w-[620px] pr-[10px]">
+                                                    <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
                                                             <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
                                                                 <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
@@ -1197,18 +1197,18 @@ const MonthlyReport = () => {
                                                 </div>
 
                                                 <div className="flex items-center mt-[30px]">
-                                                    <div className="flex items-center w-[200px] pl-[10px]">
+                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#3bc7b9] rounded-full"></div>
                                                         <div className={topLearningMode === 4 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>연산 월드</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 4 ? "text-[#d61313] w-[100px]" : "w-[100px]"}>
+                                                    <div className={topLearningMode === 4 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
                                                         <span>
                                                             {worldModePercent}%
                                                         </span>
                                                     </div>
-                                                    <div className="w-[620px] pr-[10px]">
+                                                    <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
                                                             <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
                                                                 <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
