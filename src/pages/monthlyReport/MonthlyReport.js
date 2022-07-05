@@ -1,9 +1,10 @@
 /*
 * width < 1024px
 font-size:
-    기본: 16px
-    제목: 20px
-    부제목: 18px
+    기본: 12px
+    제목: 14px
+    부제목: 13px
+    헬프: 11px
 각 페이지
 넓이: auto
 높이: 800px
@@ -124,7 +125,6 @@ const MonthlyReport = () => {
                                 setErrorMessage("생성된 프로필이 없습니다.\n프로필을 생성해 주세요.");
                             } else {
                                 setIsError(false);
-                                setIsLoading(true);
                                 setProfiles(accountInfo.profiles);
                                 for (let i = 0; i < accountInfo.profiles.length; i++) {
                                     if (accountInfo.profiles[i].profileNo === Number(profileNo)) {
@@ -133,7 +133,6 @@ const MonthlyReport = () => {
                                     }
                                 }
                                 await getMonthData(profileNo);
-                                setIsLoading(false);
                             }
                         }
                     }
@@ -153,7 +152,6 @@ const MonthlyReport = () => {
                             setErrorMessage("학교 또는 학원 계정이 아닙니다.\n다시 한번 확인해 주세요.");
                         } else {
                             setIsError(false);
-                            setIsLoading(true);
                             setProfiles(accountInfo.profiles);
                             for (let i = 0; i < accountInfo.profiles.length; i++) {
                                 if (accountInfo.profiles[i].profileNo === Number(profileNo)) {
@@ -162,7 +160,6 @@ const MonthlyReport = () => {
                                 }
                             }
                             await getMonthData(profileNo);
-                            setIsLoading(false);
                         }
                     }
                 }
@@ -181,7 +178,6 @@ const MonthlyReport = () => {
                             setErrorMessage("유료 계정입니다.\n매월 1일 오후 12시 월간 보고서를 기다려 주세요.");
                         } else {
                             setIsError(false);
-                            setIsLoading(true);
                             setProfiles(accountInfo.profiles);
                             for (let i = 0; i < accountInfo.profiles.length; i++) {
                                 if (accountInfo.profiles[i].profileNo === Number(profileNo)) {
@@ -190,7 +186,6 @@ const MonthlyReport = () => {
                                 }
                             }
                             await getMonthData(profileNo);
-                            setIsLoading(false);
                         }
                     }
                 }
@@ -682,7 +677,9 @@ const MonthlyReport = () => {
     };
 
     useEffect(async () => {
+        setIsLoading(true);
         await checkUser();
+        setIsLoading(false);
     }, [location])
 
     return (
@@ -690,7 +687,7 @@ const MonthlyReport = () => {
             {
                 !isEmpty ? (
                     !isError ? (
-                        <div className="text-[18px] pb-[40px]">
+                        <div className="text-[12px] pb-[40px] lg:text-[18px]">
                             {
                                 isLoading ? (
                                     <ClassicSpinnerLoader size={40} />
@@ -701,21 +698,21 @@ const MonthlyReport = () => {
                             {
                                 userType === 21 ? (
                                     <div className={
-                                        "relative w-full mb-[10px] flex justify-end" + " " +
-                                        "lg:w-[62.5rem] lg:mx-auto lg:mb-[30px] lg:mt-[20px]"
+                                        "relative w-full px-[4px] my-[20px] flex justify-end" + " " +
+                                        "lg:w-[1040px] lg:mx-auto lg:my-[40px] lg:px-[0px]"
                                     }>
                                         {
                                             profiles && profiles.map((value, index) => (
-                                                <div key={index} className="w-[20%] px-[2px] lg:px-[4px]">
+                                                <div key={index} className="w-[19%] pl-[4px] lg:pl-[6px]">
                                                     <div
                                                         className={
                                                             Number(profileNo) === value.profileNo ? (
-                                                                "rounded shadow-sm hover:cursor-pointer flex justify-center items-center py-[4px] bg-[#0063ff] mb-[4px] text-[#ffffff] w-full text-[11pt] lg:text-[18pt] lg:py-[10px]"
+                                                                "rounded shadow-sm hover:cursor-pointer flex justify-center items-center py-[4px] bg-[#0063ff] text-[#ffffff] w-full lg:text-[20px] lg:py-[10px]"
                                                             ) : (
-                                                                "rounded shadow-sm hover:cursor-pointer flex justify-center items-center py-[4px] bg-[#ffffff] mb-[4px] text-[#000000] w-full text-[11pt] lg:text-[18pt] lg:py-[10px]"
+                                                                "rounded shadow-sm hover:cursor-pointer flex justify-center items-center py-[4px] bg-[#ffffff] text-[#000000] w-full lg:text-[20px] lg:py-[10px]"
                                                             )
                                                         }
-                                                        onClick={!isLoading ? (() => { onChangeProfile(value.profileNo) }) : (null)}
+                                                        onClick={() => { onChangeProfile(value.profileNo)}}
                                                     >
                                                         {value.profileName && value.profileName.length > 4 ? value.profileName.substr(0, 4) + ".." : value.profileName}
                                                     </div>
@@ -738,31 +735,31 @@ const MonthlyReport = () => {
                                 ) : (null)
                             }
 
-                            <div className="mt-[20px] text-[14px] lg:mt-[40px] lg:text-[18px]">
+                            <div className="mt-[20px] lg:mt-[40px]">
                                 <div className="flex justify-center px-[4px] lg:px-[0px]">
                                     <div className="bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
                                         <div className="px-[40px] pt-[50px] h-[100px]">
-                                            <div className="text-[18px] text-[#72787f] lg:text-[24px]">상위 1%가 선택한 연산앱 '일프로연산'</div>
+                                            <div className="text-[16px] text-[#72787f] lg:text-[24px]">상위 1%가 선택한 연산앱 '일프로연산'</div>
                                             <hr className="border-2 mt-[20px]" />
                                         </div>
                                         <div className="flex justify-center items-center h-[500px] lg:h-[1100px]">
                                             <div className="text-center">
-                                                <div className="text-[30px] font-semibold text-[#72787f] mt-[110px]">
+                                                <div className="text-[20px] font-semibold text-[#72787f] mt-[110px]">
                                                     {window.sessionStorage.getItem("schoolname")}
                                                 </div>
-                                                <div className="text-[22px] font-semibold text-[#72787f] lg:text-[40px]">
+                                                <div className="text-[20px] font-semibold text-[#72787f] lg:text-[40px]">
                                                     {profile.profileName}
                                                 </div>
-                                                <div className="text-[44px] font-extrabold text-[#0063ff] lg:text-[80px]">
+                                                <div className="text-[40px] font-extrabold text-[#0063ff] lg:text-[80px]">
                                                     학습 보고서
                                                 </div>
-                                                <div className="text-[20px] text-[#464c52] mt-[110px] lg:text-[30px]">
+                                                <div className="text-[18px] text-[#464c52] mt-[110px] lg:text-[30px]">
                                                     {year}.{month}
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="h-[200px] flex justify-center items-center text-[100px] font-black text-[#edf4ff] lg:text-[220px]">
+                                        <div className="h-[200px] flex justify-center items-center text-[80px] font-black text-[#edf4ff] lg:text-[220px]">
                                             1%MATH
                                         </div>
                                     </div>
@@ -770,11 +767,11 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[20px] font-bold text-[#061b3b] text-center mt-[20px] lg:mt-[50px] lg:text-[32px]">
+                                        <div className="text-[14px] font-bold text-[#061b3b] text-center mt-[20px] lg:mt-[50px] lg:text-[32px]">
                                             출석 현황
                                         </div>
                                         <div className="flex justify-center">
-                                            <div className="flex justify-center w-full px-[10px] text-[16px] font-semibold text-[#464c52] mt-[20px] lg:mt-[50px] lg:text-[20px] lg:px-[0px]">
+                                            <div className="flex justify-center w-full px-[10px] text-[13px] font-semibold text-[#464c52] mt-[20px] lg:mt-[50px] lg:text-[20px] lg:px-[0px]">
                                                 <div className="pl-[10px] w-[14.2%] h-[30px] lg:pl-[20px] lg:w-[130px] lg:h-[40px]">일</div>
                                                 <div className="pl-[10px] w-[14.2%] h-[30px] lg:pl-[20px] lg:w-[130px] lg:h-[40px]">월</div>
                                                 <div className="pl-[10px] w-[14.2%] h-[30px] lg:pl-[20px] lg:w-[130px] lg:h-[40px]">화</div>
@@ -786,13 +783,13 @@ const MonthlyReport = () => {
                                         </div>
 
                                         <div className="flex justify-center">
-                                            <div className="w-full px-[10px] lg:px-[0px]">
+                                            <div className="w-full px-[4px] lg:px-[0px] lg:w-[920px]">
                                                 {
                                                     calendarData && calendarData.map((value, index) => (
-                                                        <div key={index} className="flex border-t-[1px]">
+                                                        <div key={index} className="flex justify-center border-t-[1px]">
                                                             {
                                                                 calendarData[index] && calendarData[index].map((value2, index2) => (
-                                                                    <div key={index2} className={value2.sequence === 1 ? "w-[14.2%] h-[70px] p-[4px] lg:w-[130px] lg:h-[130px] lg:p-[20px]" : "w-[14.2%] h-[70px] p-[4px] border-l-[1px] lg:w-[130px] lg:h-[130px] lg:p-[20px]"}>
+                                                                    <div key={index2} className={value2.sequence === 1 ? "w-[14.2%] h-[68px] p-[4px] lg:w-[130px] lg:h-[130px] lg:p-[20px]" : "w-[14.2%] h-[68px] p-[4px] border-l-[1px] lg:w-[130px] lg:h-[130px] lg:p-[20px]"}>
                                                                         <div className="flex justify-between items-center">
                                                                             <div className={value2.learningDate >= startDate && value2.learningDate < endDate ? "text-[#000000]" : "text-[#adb0b2]"}>
                                                                                 {value2.day}일
@@ -800,17 +797,17 @@ const MonthlyReport = () => {
                                                                             <div>
                                                                                 {
                                                                                     value2.attendanceStatus ? (
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#0063ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] text-[#0063ff] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                                         </svg>
-                                                                                    ) : (null)
+                                                                                ) : (null)
                                                                                 }
                                                                             </div>
                                                                         </div>
                                                                         <div>
                                                                             {
                                                                                 value2.attendanceStatus ? (
-                                                                                    <div className={value2.learningCount > 0 ? "mt-[40px] text-[20px] text-right text-[#0063ff]" : "mt-[40px] text-[20px] text-right text-[#b6b9bc]"}>
+                                                                                    <div className={value2.learningCount > 0 ? "mt-[24px] text-right text-[#0063ff] lg:text-[20px] lg:mt-[40px]" : "mt-[24px] text-right text-[#b6b9bc] lg:text-[20px] lg:mt-[40px]"}>
                                                                                         {value2.learningCount}개
                                                                                     </div>
                                                                                 ) : (null)
@@ -825,9 +822,9 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="px-[60px] mt-[50px] text-[20px] text-[#464c52] font-bold">
+                                        <div className="px-[4px] mt-[20px] text-[#464c52] font-bold lg:px-[60px] lg:mt-[50px] lg:text-[20px]">
                                             <div className="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                 </svg>
                                                 <div className="ml-[8px]">
@@ -835,7 +832,7 @@ const MonthlyReport = () => {
                                                 </div>
                                             </div>
                                             <div className="flex items-center mt-[20px]">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                 </svg>
                                                 <div className="ml-[8px]">
@@ -859,69 +856,69 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:text-[32px] lg:mt-[50px]">
                                             평균 학습 현황
                                         </div>
-                                        <div className="mt-[50px]">
-                                            <div className="px-[60px]">
-                                                <div className="text-right text-[#adb0b2] text-[16px]">
+                                        <div className="mt-[20px] lg:mt-[50px]">
+                                            <div className="px-[4px] lg:px-[60px]">
+                                                <div className="text-[11px] text-right text-[#adb0b2] lg:text-[16px]">
                                                     * 출석한 날 기준 평균
                                                 </div>
                                             </div>
 
                                             <div className="mt-[20px]">
                                                 <div className="flex justify-center">
-                                                    <div className="flex w-[306px] justify-center">
-                                                        <div className="w-[100px] flex justify-center items-center">
-                                                            <img src={Learning} alt={"learning"} />
+                                                    <div className="flex justify-center w-[33%] lg:w-[306px]">
+                                                        <div className="flex justify-center items-center w-[30%] lg:w-[100px]">
+                                                            <img src={Learning} alt={"learning"} className="w-[30px] lg:w-auto" />
                                                         </div>
-                                                        <div className="w-[146px] pl-[20px]">
+                                                        <div className="w-[70%] pl-[10px] lg:w-[146px] lg:pl-[20px]">
                                                             <div className="text-[#464c52] mt-[6px]">
                                                                 학습량
                                                             </div>
-                                                            <div className="mt-[10px]">
-                                                                <span className="text-[28px] font-semibold text-[#0063ff]">
+                                                            <div className="mt-[4px] lg:mt-[10px]">
+                                                                <span className="text-[12px] font-semibold text-[#0063ff] lg:text-[28px]">
                                                                     {averageLearningCount}
                                                                 </span>
-                                                                <span className="text-[20px] font-semibold text-[#0063ff] ml-[2px]">개</span>
+                                                                <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:text-[20px]">개</span>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex w-[306px] justify-center">
-                                                        <div className="w-[100px] flex justify-center items-center">
-                                                            <img src={Accuracy} alt={"accuracy"} />
+                                                    <div className="flex justify-center w-[33%] lg:w-[306px]">
+                                                        <div className="flex justify-center items-center w-[30%] lg:w-[100px]">
+                                                            <img src={Accuracy} alt={"accuracy"} className="w-[30px] lg:w-auto" />
                                                         </div>
-                                                        <div className="w-[146px] pl-[20px]">
+                                                        <div className="w-[70%] pl-[10px] lg:w-[146px] lg:pl-[20px]">
                                                             <div className="text-[#464c52] mt-[6px]">
                                                                 정확도
                                                             </div>
-                                                            <div className="mt-[10px]">
-                                                                <span className="text-[28px] font-semibold text-[#0063ff]">{averageAccuracy}</span>
-                                                                <span className="text-[20px] font-semibold text-[#0063ff] ml-[2px]">%</span>
+                                                            <div className="mt-[4px] lg:mt-[10px]">
+                                                            <span className="text-[12px] font-semibold text-[#0063ff] lg:text-[28px]">{averageAccuracy}</span>
+                                                            <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:text-[20px]">%</span>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex w-[306px] justify-center">
-                                                        <div className="w-[100px] flex justify-center items-center">
-                                                            <img src={Time} alt={"time"} />
+                                                    <div className="flex justify-center w-[33%] lg:w-[306px]">
+                                                        <div className="flex justify-center items-center w-[30%] lg:w-[100px]">
+                                                            <img src={Time} alt={"time"} className="w-[30px] lg:w-auto" />
                                                         </div>
-                                                        <div className="w-[146px] pl-[20px]">
+                                                        <div className="w-[70%] pl-[10px] lg:w-[146px] lg:pl-[20px]">
                                                             <div className="text-[#464c52] mt-[6px]">
                                                                 학습시간
                                                             </div>
-                                                            <div className="mt-[10px]">
-                                                                <span className="text-[28px] font-semibold text-[#0063ff]">{mm(averageLearningTimeSeconds)}</span>
+                                                            <div className="mt-[4px] lg:mt-[10px]">
+                                                                <span className="text-[12px] font-semibold text-[#0063ff] lg:text-[28px]">{mm(averageLearningTimeSeconds)}</span>
                                                                 {
                                                                     mm(averageLearningTimeSeconds) !== "" ? (
-                                                                        <span className="text-[20px] font-semibold text-[#0063ff] ml-[2px]">분</span>
+                                                                        <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:text-[20px]">분</span>
                                                                     ) : (null)
                                                                 }
-                                                                <span className="text-[28px] font-semibold text-[#0063ff] ml-[4px]">{ss(averageLearningTimeSeconds)}</span>
+                                                                <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:ml-[4px] lg:text-[28px]">{ss(averageLearningTimeSeconds)}</span>
                                                                 {
                                                                     ss(averageLearningTimeSeconds) !== "" ? (
-                                                                        <span className="text-[20px] font-semibold text-[#0063ff] ml-[2px]">초</span>
+                                                                        <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:text-[20px]">초</span>
                                                                     ) : (null)
                                                                 }
                                                             </div>
@@ -931,7 +928,7 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:mt-[50px] lg:text-[32px]">
                                             총 학습 현황
                                         </div>
                                         <div className="px-[60px] mt-[50px]">
