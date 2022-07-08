@@ -1265,7 +1265,7 @@ const MonthlyReport = () => {
                                                     axisRight={null}
                                                     axisBottom={{
                                                         tickSize: 0,
-                                                        tickPadding: 10,
+                                                        tickPadding: 20,
                                                         tickRotation: 0,
                                                         format: (e) => {
                                                             let thisDate = new Date(e);
@@ -1369,7 +1369,7 @@ const MonthlyReport = () => {
                                                     axisRight={null}
                                                     axisBottom={{
                                                         tickSize: 0,
-                                                        tickPadding: 10,
+                                                        tickPadding: 20,
                                                         tickRotation: 0,
                                                         format: (e) => {
                                                             let thisDate = new Date(e);
@@ -1473,7 +1473,7 @@ const MonthlyReport = () => {
                                                     axisRight={null}
                                                     axisBottom={{
                                                         tickSize: 0,
-                                                        tickPadding: 10,
+                                                        tickPadding: 20,
                                                         tickRotation: 0,
                                                         format: (e) => {
                                                             let thisDate = new Date(e);
@@ -1599,7 +1599,7 @@ const MonthlyReport = () => {
                                                     axisRight={null}
                                                     axisBottom={{
                                                         tickSize: 0,
-                                                        tickPadding: 10,
+                                                        tickPadding: 20,
                                                         tickRotation: 0,
                                                         format: (e) => {
                                                             let startDate = new Date(e);
@@ -1705,7 +1705,7 @@ const MonthlyReport = () => {
                                                     axisRight={null}
                                                     axisBottom={{
                                                         tickSize: 0,
-                                                        tickPadding: 10,
+                                                        tickPadding: 20,
                                                         tickRotation: 0,
                                                         format: (e) => {
                                                             let startDate = new Date(e);
@@ -1811,7 +1811,7 @@ const MonthlyReport = () => {
                                                     axisRight={null}
                                                     axisBottom={{
                                                         tickSize: 0,
-                                                        tickPadding: 10,
+                                                        tickPadding: 20,
                                                         tickRotation: 0,
                                                         format: (e) => {
                                                             let startDate = new Date(e);

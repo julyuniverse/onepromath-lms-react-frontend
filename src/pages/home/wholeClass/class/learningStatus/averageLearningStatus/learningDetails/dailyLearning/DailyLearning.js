@@ -10,6 +10,7 @@ import ClassicSpinnerLoader from "../../../../../../../../components/ClassicSpin
 import DatePicker from "react-datepicker"; // react date picker API
 import { ko } from "date-fns/esm/locale"; // react date picker 한국어 설정에 필요한 API
 import "react-datepicker/dist/react-datepicker.css"; // react date picker css import
+import ScrollToTop from '../../../../../../../../components/ScrollToTop';
 
 const DailyLearning = () => {
     const location = useLocation();
@@ -261,8 +262,9 @@ const DailyLearning = () => {
                 isLoading ? (
                     <ClassicSpinnerLoader size={80} />
                 ) : (null)
-            }
+            }            
             <ScrollToTopButton />
+            <ScrollToTop />
             <div className="flex justify-between items-center mt-[40px]">
                 <div className="w-[200px]">
                     <div className="text-[24px] font-bold">
@@ -276,11 +278,11 @@ const DailyLearning = () => {
                         </svg>
                     </div>
 
-                    <div className="w-[150px] px-[20px] font-bold text-[#464c52] select-none text-center">
+                    <div className="w-[190px] px-[20px] font-bold text-[#464c52] select-none text-center">
                         <DatePicker
                             calendarClassName="rasta-stripes"
                             locale={ko}
-                            dateFormat="yyyy-MM-dd"
+                            dateFormat="yyyy-MM-dd (eee)"
                             selected={datePickerStartDate}
                             onChange={ReactDatePickerOnChange}
                             customInput={<ReactDatePickerCustomInput />}
@@ -661,7 +663,7 @@ const DailyLearning = () => {
                     </div>
                 </div>
 
-                <div className="px-[30px]">
+                <div className="px-[30px] pb-[10px]">
                     <div className="flex items-center text-[#464c52] font-semibold mt-[20px] h-[50px] border-b">
                         <div className="w-[80px] pl-[10px]">번호</div>
                         <div className="w-[80px]">날짜</div>

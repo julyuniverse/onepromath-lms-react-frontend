@@ -61,7 +61,6 @@ const LearningDetails = () => {
 
             <hr className="mt-[40px] border-[1px] border-[#d7e1fa]" />
 
-
             <Routes>
                 <Route path="1" element={<MonthlyLearning />}></Route>
                 <Route path="1/:startdate" element={<MonthlyLearning />}></Route>

@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/home/Home';
 import { Fragment, useEffect, useState } from 'react';
 import { login } from "./api/axios";
-import ScrollToTop from './components/ScrollToTop';
 import MonthlyReport from './pages/monthlyReport/MonthlyReport';
 
 const App = () => {
@@ -86,7 +85,6 @@ const App = () => {
         ) : (
           isLogin ? (
             <Fragment>
-              <ScrollToTop />
               <div className="h-full w-[1440px] min-w-[1440px] mx-auto">
                 <Routes>
                   <Route path="/home/*" element={<Home />}></Route>

@@ -17,6 +17,7 @@ import GoodBadge from "../../../../../../../../assets/images/goodBadge.png";
 import BadBadge from "../../../../../../../../assets/images/badBadge.png";
 import ClassicSpinnerLoader from "../../../../../../../../components/ClassicSpinnerLoader";
 import { encode } from "../../../../../../../../components/Crypto";
+import ScrollToTop from '../../../../../../../../components/ScrollToTop';
 
 const MonthlyLearning = () => {
     const location = useLocation();
@@ -647,6 +648,7 @@ const MonthlyLearning = () => {
                 ) : (null)
             }
             <ScrollToTopButton />
+            <ScrollToTop />
             <div className="flex justify-between mt-[40px]">
                 <div className="w-[400px] flex justify-start pl-[40px]">
                     <div className="flex justify-evenly items-center w-[9rem] h-[2.75rem] bg-[#b6b9bc] rounded-md cursor-pointer" onClick={onCLicklinkAddressBox}>
@@ -2580,6 +2582,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             출석 현황
                         </div>
@@ -2670,6 +2673,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             평균 학습 현황
                         </div>
@@ -3064,6 +3068,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             월별 학습 결과 비교
                         </div>
@@ -3400,6 +3405,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             주별 학습 결과 그래프
                         </div>
@@ -3740,6 +3746,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             학습 레벨/단원 분석
                         </div>
@@ -3969,6 +3976,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             우수/취약 스테이지
                         </div>
@@ -4077,6 +4085,7 @@ const MonthlyLearning = () => {
 
                 <div className="flex justify-center">
                     <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                        <div className="h-[20px]"></div>
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             상세 학습 결과
                         </div>
@@ -4239,11 +4248,12 @@ const MonthlyLearning = () => {
                     </div>
                 </div>
 
-                <div className="relative w-[920px]">
+                <div className="relative w-[920px] h-[1300px]">
                     {[...Array(numberOfLearningData)].map((num, index) => {
                         return (
                             <div key={index} className="flex justify-center">
                                 <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
+                                    <div className="h-[20px]"></div>
                                     <div className="mt-[50px] flex px-[60px]">
                                         <div className="flex items-center">
                                             <div>

@@ -429,11 +429,11 @@ const AverageLearningStatus = () => {
                                     </div>
                                 </Fragment>,
                                 3: <Fragment>
-                                    <div className="w-[150px] text-[18px] px-[20px] font-bold text-[#464c52] select-none text-center">
+                                    <div className="w-[190px] text-[18px] px-[20px] font-bold text-[#464c52] select-none text-center">
                                         <DatePicker
                                             calendarClassName="rasta-stripes"
                                             locale={ko}
-                                            dateFormat="yyyy-MM-dd"
+                                            dateFormat="yyyy-MM-dd (eee)"
                                             selected={datePickerStartDate}
                                             onChange={ReactDatePickerOnChange}
                                             customInput={<ReactDatePickerCustomInput />}

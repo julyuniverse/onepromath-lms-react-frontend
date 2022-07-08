@@ -8,6 +8,7 @@ import Time from "../../../../../../../../assets/images/time.png";
 import { ResponsiveBar } from '@nivo/bar'; // nivo bar chart api
 import { ResponsivePie } from '@nivo/pie'; // nivo pie chart api
 import ClassicSpinnerLoader from "../../../../../../../../components/ClassicSpinnerLoader";
+import ScrollToTop from '../../../../../../../../components/ScrollToTop';
 
 const WeeklyLearning = () => {
     const location = useLocation();
@@ -432,6 +433,7 @@ const WeeklyLearning = () => {
                 ) : (null)
             }
             <ScrollToTopButton />
+            <ScrollToTop />
             <div className="flex justify-between items-center mt-[40px]">
                 <div className="w-[200px]">
                     <div className="text-[24px] font-bold">
@@ -1225,7 +1227,7 @@ const WeeklyLearning = () => {
                     </div>
                 </div>
 
-                <div className="px-[30px]">
+                <div className="px-[30px] pb-[10px]">
                     <div className="flex items-center text-[#464c52] font-semibold mt-[20px] h-[50px] border-b">
                         <div className="w-[80px] pl-[10px]">번호</div>
                         <div className="w-[80px]">날짜</div>
