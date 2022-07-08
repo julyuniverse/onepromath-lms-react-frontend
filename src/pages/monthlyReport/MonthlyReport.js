@@ -1950,8 +1950,8 @@ const MonthlyReport = () => {
                                         </div>
 
                                         <div className="mt-[20px]">
-                                            <div className="flex justify-center items-center px-[4px] lg:px-[0px]">
-                                                <div className="w-[35%] h-[180px] pr-[4px] lg:w-[320px] lg:h-[320px] lg:pr-[0px]">
+                                            <div className="flex justify-center items-center">
+                                                <div className="w-[40%] h-[180px] lg:w-[320px] lg:h-[320px]">
                                                     <ResponsivePie
                                                         data={levelData2}
                                                         margin={{ top: 20, right: 0, bottom: 20, left: 0 }}
@@ -1979,7 +1979,7 @@ const MonthlyReport = () => {
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="w-[65%] h-[180px] lg:w-[600px] lg:h-[320px] lg:pl-[20px]">
+                                                <div className="w-[60%] h-[180px] lg:w-[600px] lg:h-[320px] lg:pl-[20px]">
                                                     {
                                                         maxLevel > 0 ? (
                                                             <div className="flex flex-wrap flex-col h-[180px] lg:h-[320px]">
@@ -2037,8 +2037,8 @@ const MonthlyReport = () => {
                                         </div>
 
                                         <div className="mt-[20px]">
-                                            <div className="flex justify-center items-center px-[4px] lg:px-[0px]">
-                                                <div className="w-[35%] h-[180px] pr-[4px] lg:w-[320px] lg:h-[320px] lg:pr-[0px]">
+                                            <div className="flex justify-center items-center">
+                                                <div className="w-[40%] h-[180px] lg:w-[320px] lg:h-[320px]">
                                                     <ResponsivePie
                                                         data={levelAndChapterData2}
                                                         margin={{ top: 20, right: 0, bottom: 20, left: 0 }}
@@ -2066,7 +2066,7 @@ const MonthlyReport = () => {
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="w-[65%] h-[180px] lg:w-[600px] lg:h-[320px] lg:pl-[20px]">
+                                                <div className="w-[60%] h-[180px] lg:w-[600px] lg:h-[320px] lg:pl-[20px]">
                                                     {
                                                         levelAndChapterMaxLevel > 0 ? (
                                                             <div>
@@ -2077,10 +2077,10 @@ const MonthlyReport = () => {
                                                                                 {
                                                                                     levelAndChapterData2 && levelAndChapterData2.slice(0, 12).map((value, index) => (
                                                                                         <div key={index} className={value.level === levelAndChapterMaxLevel && value.chapter === levelAndChapterMaxChapter ? "flex items-center h-[30px] text-[#0063ff] lg:h-[50px]" : "flex items-center h-[30px] text-[#464c52] lg:h-[50px]"}>
-                                                                                            <div className="w-[10%] flex justify-center items-center lg:w-[10px]">
+                                                                                            <div className="w-[6%] flex justify-center items-center lg:w-[10px]">
                                                                                                 <div style={{ width: "10px", height: "10px", borderRadius: "25px", background: value.color }}></div>
                                                                                             </div>
-                                                                                            <div className="relative w-[60%] lg:w-[430px] lg:pl-[10px]">
+                                                                                            <div className="relative w-[64%] lg:w-[430px] lg:pl-[10px]">
                                                                                                 <div className="hidden lg:block">
                                                                                                     <div className="text-[10px] lg:text-[18px]">{value.level}레벨 {value.chapter}단원 [{value.chapterName && value.chapterName.length > 21 ? value.chapterName.substr(0, 21) + ".." : value.chapterName}]</div>
                                                                                                     <div className="absolute top-0 left-[10px] w-[430px] h-[28px] opacity-0 lg:hover:opacity-100">
