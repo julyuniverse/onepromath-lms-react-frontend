@@ -33,9 +33,9 @@ const LearningDetails = () => {
     return (
         <div>
             <div className="flex justify-between">
-                <div className="w-[200px] text-[20px] font-bold">
-                    {params.studentname}님의<br />
-                    학습 상세 결과
+                <div className="w-[240px] text-[20px] font-bold">
+                    <span className="text-[22px] text-[#3382ff] pr-[2px]">{params.studentname}</span>님의<br />
+                    학습 결과 상세
                 </div>
                 <div className="flex">
                     <Link to={`1`} className="block">
@@ -55,11 +55,11 @@ const LearningDetails = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="w-[200px]"></div>
+                <div className="w-[240px]"></div>
 
             </div>
 
-            <hr className="mt-[40px] border-[2px] border-[#d7e1fa]" />
+            <hr className="mt-[40px] border-[1px] border-[#d7e1fa]" />
 
 
             <Routes>

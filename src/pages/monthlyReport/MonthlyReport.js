@@ -712,7 +712,7 @@ const MonthlyReport = () => {
                                                                 "rounded shadow-sm hover:cursor-pointer flex justify-center items-center py-[4px] bg-[#ffffff] text-[#000000] w-full lg:text-[20px] lg:py-[10px]"
                                                             )
                                                         }
-                                                        onClick={() => { onChangeProfile(value.profileNo)}}
+                                                        onClick={() => { onChangeProfile(value.profileNo) }}
                                                     >
                                                         {value.profileName && value.profileName.length > 4 ? value.profileName.substr(0, 4) + ".." : value.profileName}
                                                     </div>
@@ -800,7 +800,7 @@ const MonthlyReport = () => {
                                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] text-[#0063ff] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                                         </svg>
-                                                                                ) : (null)
+                                                                                    ) : (null)
                                                                                 }
                                                                             </div>
                                                                         </div>
@@ -841,13 +841,13 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 1
                                             </div>
                                         </div>
@@ -894,8 +894,8 @@ const MonthlyReport = () => {
                                                                 정확도
                                                             </div>
                                                             <div className="mt-[4px] lg:mt-[10px]">
-                                                            <span className="text-[12px] font-semibold text-[#0063ff] lg:text-[28px]">{averageAccuracy}</span>
-                                                            <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:text-[20px]">%</span>
+                                                                <span className="text-[12px] font-semibold text-[#0063ff] lg:text-[28px]">{averageAccuracy}</span>
+                                                                <span className="text-[12px] font-semibold text-[#0063ff] ml-[2px] lg:text-[20px]">%</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -933,19 +933,19 @@ const MonthlyReport = () => {
                                         </div>
                                         <div className="mt-[20px] px-[4px] lg:px-[60px] lg:mt-[50px]">
                                             <div className="flex border-t">
-                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">학습량 (스테이지 개수)</div>
-                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[32%] h-[50px] text-[10px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">학습량 (스테이지 개수)</div>
+                                                <div className="flex justify-end items-center w-[20%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
-                                                        <span className="text-[#0063ff] lg:text-[42px]">{learningCount}</span>
-                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">개</span>
+                                                        <span className="text-[#0063ff] text-[10px] lg:text-[42px]">{learningCount}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] text-[10px] lg:text-[26px] lg:ml-[6px]">개</span>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
+                                                <div className="flex justify-end items-center w-[48%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonLearningCount === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
-                                                                <div className="ml-[14px]">
+                                                                <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">저번 달과 동일</div>
+                                                                <div className="ml-[4px] lg:ml-[14px]">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
@@ -954,8 +954,8 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonLearningCount > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonLearningCount}개 증가</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonLearningCount}개 증가</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
@@ -963,8 +963,8 @@ const MonthlyReport = () => {
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonLearningCount)}개 감소</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonLearningCount)}개 감소</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
@@ -977,19 +977,19 @@ const MonthlyReport = () => {
                                             </div>
 
                                             <div className="flex border-t">
-                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">정확도</div>
-                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[32%] h-[50px] text-[10px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">정확도</div>
+                                                <div className="flex justify-end items-center w-[20%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
-                                                        <span className="text-[#0063ff] lg:text-[42px]">{averageAccuracy}</span>
-                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">%</span>
+                                                        <span className="text-[#0063ff] text-[10px] lg:text-[42px]">{averageAccuracy}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] text-[10px] lg:text-[26px] lg:ml-[6px]">%</span>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
+                                                <div className="flex justify-end items-center w-[48%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonAccuracy === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
-                                                                <div className="ml-[14px]">
+                                                                <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">저번 달과 동일</div>
+                                                                <div className="ml-[4px] lg:ml-[14px]">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
@@ -998,8 +998,8 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonAccuracy > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonAccuracy}% 증가</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonAccuracy}% 증가</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
@@ -1007,8 +1007,8 @@ const MonthlyReport = () => {
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonAccuracy)}% 감소</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonAccuracy)}% 감소</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
@@ -1021,32 +1021,27 @@ const MonthlyReport = () => {
                                             </div>
 
                                             <div className="flex border-t">
-                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">학습시간</div>
-                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[32%] h-[50px] text-[10px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">학습시간</div>
+                                                <div className="flex justify-end items-center w-[20%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
-
-                                                        <span className="text-[#0063ff] lg:text-[42px]">{mm(learningTimeSeconds)}</span>
-                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">분</span>
-
-
+                                                        <span className="text-[#0063ff] text-[10px] lg:text-[42px]">{mm(learningTimeSeconds)}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] text-[10px] lg:text-[26px] lg:ml-[6px]">분</span>
                                                         {
                                                             ss(learningTimeSeconds) !== "" ? (
                                                                 <Fragment>
-
-                                                                    <span className="text-[#0063ff] ml-[2px] lg:text-[42px] lg:ml-[8px]">{ss(learningTimeSeconds)}</span>
-                                                                    <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">초</span>
+                                                                    <span className="text-[#0063ff] ml-[2px] text-[10px] lg:text-[42px] lg:ml-[8px]">{ss(learningTimeSeconds)}</span>
+                                                                    <span className="text-[#0063ff] ml-[2px] text-[10px] lg:text-[26px] lg:ml-[6px]">초</span>
                                                                 </Fragment>
                                                             ) : (null)
                                                         }
-
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
+                                                <div className="flex justify-end items-center w-[48%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonLearningTimeSeconds === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
-                                                                <div className="ml-[14px]">
+                                                                <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">저번 달과 동일</div>
+                                                                <div className="ml-[4px] lg:ml-[14px]">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
@@ -1055,8 +1050,8 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonLearningTimeSeconds > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 증가</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">+ 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 증가</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
@@ -1064,8 +1059,8 @@ const MonthlyReport = () => {
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 감소</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">- 저번 달보다 {mm2(Math.abs(preMonthComparisonLearningTimeSeconds))} {ss2(Math.abs(preMonthComparisonLearningTimeSeconds))} 감소</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
@@ -1078,21 +1073,19 @@ const MonthlyReport = () => {
                                             </div>
 
                                             <div className="flex border-t border-b">
-                                                <div className="flex items-center text-[#464c52] font-bold w-[35%] h-[50px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">문제 개수</div>
-                                                <div className="flex justify-end items-center w-[25%] h-[50px] lg:w-[260px] lg:h-[100px]">
+                                                <div className="flex items-center text-[#464c52] font-bold w-[32%] h-[50px] text-[10px] lg:text-[20px] lg:w-[290px] lg:h-[100px] lg:pl-[40px]">문제 개수</div>
+                                                <div className="flex justify-end items-center w-[20%] h-[50px] lg:w-[260px] lg:h-[100px]">
                                                     <div>
-
-                                                        <span className="text-[#0063ff] lg:text-[42px]">{problemCount}</span>
-                                                        <span className="text-[#0063ff] ml-[2px] lg:text-[26px] lg:ml-[6px]">개</span>
-
+                                                        <span className="text-[#0063ff] text-[10px] lg:text-[42px]">{problemCount}</span>
+                                                        <span className="text-[#0063ff] ml-[2px] text-[10px] lg:text-[26px] lg:ml-[6px]">개</span>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-end items-center w-[40%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
+                                                <div className="flex justify-end items-center w-[48%] h-[50px] lg:w-[370px] lg:h-[100px] lg:pr-[40px]">
                                                     {
                                                         preMonthComparisonProblemCount === 0 ? (
                                                             <Fragment>
-                                                                <div className="text-[#5c5e60] lg:text-[20px]">저번 달과 동일</div>
-                                                                <div className="ml-[14px]">
+                                                                <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">저번 달과 동일</div>
+                                                                <div className="ml-[4px] lg:ml-[14px]">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-[#7e7e7e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
@@ -1101,8 +1094,8 @@ const MonthlyReport = () => {
                                                         ) : (
                                                             preMonthComparisonProblemCount > 0 ? (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonProblemCount}개 증가</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">+ 저번 달보다 {preMonthComparisonProblemCount}개 증가</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#17b20e] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                                         </svg>
@@ -1110,8 +1103,8 @@ const MonthlyReport = () => {
                                                                 </Fragment>
                                                             ) : (
                                                                 <Fragment>
-                                                                    <div className="text-[#5c5e60] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonProblemCount)}개 감소</div>
-                                                                    <div className="ml-[14px]">
+                                                                    <div className="text-[#5c5e60] text-[10px] lg:text-[20px]">- 저번 달보다 {Math.abs(preMonthComparisonProblemCount)}개 감소</div>
+                                                                    <div className="ml-[4px] lg:ml-[14px]">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="text-[#d61313] w-[14px] h-[14px] lg:h-10 lg:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                                                                         </svg>
@@ -1129,90 +1122,90 @@ const MonthlyReport = () => {
                                         </div>
 
                                         <div className="mt-[20px] flex justify-center lg:mt-[50px]">
-                                            <div>
-                                                <div className="flex items-center">
-                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
+                                            <div className="w-full px-[4px] lg:px-[0px]">
+                                                <div className="flex justify-center items-center">
+                                                    <div className="flex items-center w-[24%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#558fe8] rounded-full"></div>
                                                         <div className={topLearningMode === 1 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>오늘의 학습</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 1 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
+                                                    <div className={topLearningMode === 1 ? "text-[#d61313] w-[16%] lg:w-[100px]" : "w-[16%] lg:w-[100px]"}>
                                                         <span>
                                                             {dailyModePercent}%
                                                         </span>
                                                     </div>
                                                     <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
-                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
-                                                                <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
-                                                                <div className={"bg-[#558fe8] h-[30px]"} style={{ width: dailyModePercent + "%" }}></div>
+                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[14px] lg:h-[30px]">
+                                                                <div className="absolute w-full h-[14px] rounded-full shadow-[0_0_0_30px_#ffffff] lg:h-[30px]"></div>
+                                                                <div className={"bg-[#558fe8] h-[14px] lg:h-[30px]"} style={{ width: dailyModePercent + "%" }}></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center mt-[30px]">
-                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
+                                                <div className="flex justify-center items-center mt-[20px] lg:mt-[30px]">
+                                                    <div className="flex items-center w-[24%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#fac232] rounded-full"></div>
                                                         <div className={topLearningMode === 2 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>자유 학습</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 2 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
+                                                    <div className={topLearningMode === 2 ? "text-[#d61313] w-[16%] lg:w-[100px]" : "w-[16%] lg:w-[100px]"}>
                                                         <span>
                                                             {freeModePercent}%
                                                         </span>
                                                     </div>
                                                     <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
-                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
-                                                                <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
-                                                                <div className={"bg-[#fac232] h-[30px]"} style={{ width: freeModePercent + "%" }}></div>
+                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[14px] lg:h-[30px]">
+                                                                <div className="absolute w-full h-[14px] rounded-full shadow-[0_0_0_30px_#ffffff] lg:h-[30px]"></div>
+                                                                <div className={"bg-[#fac232] h-[14px] lg:h-[30px]"} style={{ width: freeModePercent + "%" }}></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center mt-[30px]">
-                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
+                                                <div className="flex justify-center items-center mt-[20px] lg:mt-[30px]">
+                                                    <div className="flex items-center w-[24%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#f67b70] rounded-full"></div>
                                                         <div className={topLearningMode === 3 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>일프로 도전</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 3 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
+                                                    <div className={topLearningMode === 3 ? "text-[#d61313] w-[16%] lg:w-[100px]" : "w-[16%] lg:w-[100px]"}>
                                                         <span>
                                                             {oneproModePercent}%
                                                         </span>
                                                     </div>
                                                     <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
-                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
-                                                                <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
-                                                                <div className={"bg-[#f67b70] h-[30px]"} style={{ width: oneproModePercent + "%" }}></div>
+                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[14px] lg:h-[30px]">
+                                                                <div className="absolute w-full h-[14px] rounded-full shadow-[0_0_0_30px_#ffffff] lg:h-[30px]"></div>
+                                                                <div className={"bg-[#f67b70] h-[14px] lg:h-[30px]"} style={{ width: oneproModePercent + "%" }}></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center mt-[30px]">
-                                                    <div className="flex items-center w-[20%] lg:w-[200px] lg:pl-[10px]">
+                                                <div className="flex justify-center items-center mt-[20px] lg:mt-[30px]">
+                                                    <div className="flex items-center w-[24%] lg:w-[200px] lg:pl-[10px]">
                                                         <div className="w-[0.625rem] h-[0.625rem] bg-[#3bc7b9] rounded-full"></div>
                                                         <div className={topLearningMode === 4 ? "text-[#d61313] ml-[8px]" : "ml-[8px]"}>
                                                             <span>연산 월드</span>
                                                         </div>
                                                     </div>
-                                                    <div className={topLearningMode === 4 ? "text-[#d61313] w-[20%] lg:w-[100px]" : "w-[20%] lg:w-[100px]"}>
+                                                    <div className={topLearningMode === 4 ? "text-[#d61313] w-[16%] lg:w-[100px]" : "w-[16%] lg:w-[100px]"}>
                                                         <span>
                                                             {worldModePercent}%
                                                         </span>
                                                     </div>
                                                     <div className="w-[60%] lg:w-[620px] lg:pr-[10px]">
                                                         <div className="overflow-hidden">
-                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[30px]">
-                                                                <div className="absolute w-full h-[30px] rounded-full shadow-[0_0_0_30px_#ffffff]"></div>
-                                                                <div className={"bg-[#3bc7b9] h-[30px]"} style={{ width: worldModePercent + "%" }}></div>
+                                                            <div className="relative w-full bg-[#e8e9ea] rounded-full h-[14px] lg:h-[30px]">
+                                                                <div className="absolute w-full h-[14px] rounded-full shadow-[0_0_0_30px_#ffffff] lg:h-[30px]"></div>
+                                                                <div className={"bg-[#3bc7b9] h-[14px] lg:h-[30px]"} style={{ width: worldModePercent + "%" }}></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1220,11 +1213,11 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="px-[60px] mt-[50px] text-[20px] text-[#464c52] font-bold">
+                                        <div className="px-[4px] mt-[20px] text-[#464c52] font-bold lg:px-[60px] lg:mt-[50px] lg:text-[20px]">
                                             {
                                                 topLearningMode !== 0 ? (
                                                     <div className="flex items-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                         </svg>
                                                         <div className="ml-[8px]">
@@ -1235,13 +1228,13 @@ const MonthlyReport = () => {
                                             }
                                         </div>
 
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 2
                                             </div>
                                         </div>
@@ -1250,24 +1243,24 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:mt-[50px] lg:text-[32px]">
                                             월별 학습 결과 비교
                                         </div>
-                                        <div className="text-[#464c52] text-center mt-[20px]">
+                                        <div className="text-[#464c52] text-center mt-[10px] lg:mt-[20px]">
                                             4개월 평균 학습 결과를 비교한 그래프입니다.
                                         </div>
 
-                                        <div className="text-[20px] font-bold text-[#061b3b] mt-[50px] px-[60px]">
+                                        <div className="text-[13px] mt-[20px] px-[4px] font-bold text-[#061b3b] lg:mt-[50px] lg:px-[60px] lg:text-[20px]">
                                             학습량 (스테이지 개수)
                                         </div>
 
-                                        <div className="flex justify-center items-center mt-[20px]">
-                                            <div style={{ width: "900px", height: "280px" }}>
+                                        <div className="flex justify-center items-center px-[4px] mt-[0px] lg:mt-[20px] lg:px-[0px]">
+                                            <div className="w-full h-[200px] lg:w-[900px] lg:h-[280px]">
                                                 <ResponsiveBar
                                                     data={monthlyLearningData2}
                                                     keys={['learningCount']}
                                                     indexBy="date"
-                                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                                     axisTop={null}
                                                     axisRight={null}
                                                     axisBottom={{
@@ -1277,7 +1270,7 @@ const MonthlyReport = () => {
                                                         format: (e) => {
                                                             let thisDate = new Date(e);
                                                             return (
-                                                                <tspan fontSize="18px" fill="#1b1d1f">{thisDate.getMonth() + 1}월</tspan>
+                                                                <tspan className="text-[14px] lg:text-[18px]" fill="#1b1d1f">{thisDate.getMonth() + 1}월</tspan>
                                                             )
                                                         }
                                                     }}
@@ -1286,12 +1279,11 @@ const MonthlyReport = () => {
                                                         tickPadding: 10,
                                                         tickRotation: 0,
                                                         tickValues: (maxLearningCount <= 6 ? maxLearningCount : 6),
-
                                                         format: e => Math.floor(e) === e && `${e}개`
                                                     }}
                                                     groupMode={"grouped"}
                                                     theme={{
-                                                        fontSize: "16px",
+                                                        fontSize: "14px",
                                                         textColor: "#999c9f"
                                                     }}
                                                     borderRadius={3}
@@ -1300,7 +1292,7 @@ const MonthlyReport = () => {
                                                     colorBy="id"
                                                     label={(e) => {
                                                         return (
-                                                            <tspan y="-14" fontSize="16px" fill={e.value === maxLearningCount ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
+                                                            <tspan y="-14" className="text-[14px] lg:text-[16px]" fill={e.value === maxLearningCount ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
                                                         )
                                                     }}
                                                     tooltip={(e) => {
@@ -1362,17 +1354,17 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="text-[20px] font-bold text-[#061b3b] mt-[50px] px-[60px]">
+                                        <div className="text-[13px] mt-[0px] px-[4px] font-bold text-[#061b3b] lg:mt-[50px] lg:px-[60px] lg:text-[20px]">
                                             정확도
                                         </div>
 
-                                        <div className="flex justify-center items-center mt-[20px]">
-                                            <div style={{ width: "900px", height: "280px" }}>
+                                        <div className="flex justify-center items-center px-[4px] mt-[0px] lg:mt-[20px] lg:px-[0px]">
+                                            <div className="w-full h-[200px] lg:w-[900px] lg:h-[280px]">
                                                 <ResponsiveBar
                                                     data={monthlyLearningData2}
                                                     keys={['accuracy']}
                                                     indexBy="date"
-                                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                                     axisTop={null}
                                                     axisRight={null}
                                                     axisBottom={{
@@ -1382,7 +1374,7 @@ const MonthlyReport = () => {
                                                         format: (e) => {
                                                             let thisDate = new Date(e);
                                                             return (
-                                                                <tspan fontSize="18px" fill="#1b1d1f">{thisDate.getMonth() + 1}월</tspan>
+                                                                <tspan className="text-[14px] lg:text-[18px]" fill="#1b1d1f">{thisDate.getMonth() + 1}월</tspan>
                                                             )
                                                         }
                                                     }}
@@ -1395,7 +1387,7 @@ const MonthlyReport = () => {
                                                     }}
                                                     groupMode={"grouped"}
                                                     theme={{
-                                                        fontSize: "16px",
+                                                        fontSize: "14px",
                                                         textColor: "#999c9f"
                                                     }}
                                                     borderRadius={3}
@@ -1404,7 +1396,7 @@ const MonthlyReport = () => {
                                                     colorBy="id"
                                                     label={(e) => {
                                                         return (
-                                                            <tspan y="-14" fontSize="16px" fill={e.value === maxAccuracy ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
+                                                            <tspan y="-14" className="text-[14px] lg:text-[16px]" fill={e.value === maxAccuracy ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
                                                         )
                                                     }}
                                                     tooltip={(e) => {
@@ -1466,17 +1458,17 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="text-[20px] font-bold text-[#061b3b] mt-[50px] px-[60px]">
+                                        <div className="text-[13px] mt-[0px] px-[4px] font-bold text-[#061b3b] lg:mt-[50px] lg:px-[60px] lg:text-[20px]">
                                             학습시간
                                         </div>
 
-                                        <div className="flex justify-center items-center mt-[20px]">
-                                            <div style={{ width: "900px", height: "280px" }}>
+                                        <div className="flex justify-center items-center px-[4px] mt-[0px] lg:mt-[20px] lg:px-[0px]">
+                                            <div className="w-full h-[200px] lg:w-[900px] lg:h-[280px]">
                                                 <ResponsiveBar
                                                     data={monthlyLearningData2}
                                                     keys={['learningTimeMinutes']}
                                                     indexBy="date"
-                                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                                     axisTop={null}
                                                     axisRight={null}
                                                     axisBottom={{
@@ -1486,7 +1478,7 @@ const MonthlyReport = () => {
                                                         format: (e) => {
                                                             let thisDate = new Date(e);
                                                             return (
-                                                                <tspan fontSize="18px" fill="#1b1d1f">{thisDate.getMonth() + 1}월</tspan>
+                                                                <tspan className="text-[14px] lg:text-[18px]" fill="#1b1d1f">{thisDate.getMonth() + 1}월</tspan>
                                                             )
                                                         }
                                                     }}
@@ -1499,7 +1491,7 @@ const MonthlyReport = () => {
                                                     }}
                                                     groupMode={"grouped"}
                                                     theme={{
-                                                        fontSize: "16px",
+                                                        fontSize: "14px",
                                                         textColor: "#999c9f"
                                                     }}
                                                     borderRadius={3}
@@ -1508,7 +1500,7 @@ const MonthlyReport = () => {
                                                     colorBy="id"
                                                     label={(e) => {
                                                         return (
-                                                            <tspan y="-14" fontSize="16px" fill={e.value === maxLearningTimeMinutes ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
+                                                            <tspan y="-14" className="text-[14px] lg:text-[16px]" fill={e.value === maxLearningTimeMinutes ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
                                                         )
                                                     }}
                                                     tooltip={(e) => {
@@ -1570,14 +1562,13 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 3
                                             </div>
                                         </div>
@@ -1586,24 +1577,24 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] font-bold text-[#061b3b] text-center mt-[20px] lg:mt-[50px] lg:text-[32px]">
                                             주별 학습 결과 그래프
                                         </div>
-                                        <div className="text-[18px] text-[#464c52] text-center mt-[20px]">
+                                        <div className="mt-[10px] text-[#464c52] text-center lg:mt-[20px] lg:text-[18px]">
                                             {weekStartDate} ~ {weekEndDate}
                                         </div>
 
-                                        <div className="text-[20px] font-bold text-[#061b3b] mt-[50px] px-[60px]">
+                                        <div className="text-[13px] font-bold text-[#061b3b] mt-[20px] px-[4px] lg:mt-[50px] lg:px-[60px] lg:text-[20px]">
                                             학습량 (스테이지 개수)
                                         </div>
 
-                                        <div className="flex justify-center items-center mt-[20px]">
-                                            <div style={{ width: "900px", height: "280px" }}>
+                                        <div className="flex justify-center items-center px-[4px] mt-[0px] lg:mt-[20px] lg:px-[0px]">
+                                            <div className="w-full h-[200px] lg:w-[900px] lg:h-[280px]">
                                                 <ResponsiveBar
                                                     data={weeklyLearningData2}
                                                     keys={['learningCount']}
                                                     indexBy="date"
-                                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                                     axisTop={null}
                                                     axisRight={null}
                                                     axisBottom={{
@@ -1615,7 +1606,7 @@ const MonthlyReport = () => {
                                                             let endDate = new Date(startDate);
                                                             endDate.setDate(endDate.getDate() + 6);
                                                             return (
-                                                                <tspan fontSize="18px" fill="#1b1d1f">{startDate.getDate()}일-{endDate.getDate()}일</tspan>
+                                                                <tspan className="text-[9px] lg:text-[16px]" fill="#1b1d1f">{startDate.getDate()}일-{endDate.getDate()}일</tspan>
                                                             )
                                                         }
                                                     }}
@@ -1628,7 +1619,7 @@ const MonthlyReport = () => {
                                                     }}
                                                     groupMode={"grouped"}
                                                     theme={{
-                                                        fontSize: "16px",
+                                                        fontSize: "14px",
                                                         textColor: "#999c9f"
                                                     }}
                                                     borderRadius={3}
@@ -1637,7 +1628,7 @@ const MonthlyReport = () => {
                                                     colorBy="id"
                                                     label={(e) => {
                                                         return (
-                                                            <tspan y="-14" fontSize="16px" fill={e.value === weeklyMaxLearningCount ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
+                                                            <tspan y="-14" className="text-[14px] lg:text-[16px]" fill={e.value === weeklyMaxLearningCount ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
                                                         )
                                                     }}
                                                     tooltip={(e) => {
@@ -1699,17 +1690,17 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="text-[20px] font-bold text-[#061b3b] mt-[50px] px-[60px]">
+                                        <div className="text-[13px] font-bold text-[#061b3b] mt-[0px] px-[4px] lg:mt-[50px] lg:px-[60px] lg:text-[20px]">
                                             정확도
                                         </div>
 
-                                        <div className="flex justify-center items-center mt-[20px]">
-                                            <div style={{ width: "900px", height: "280px" }}>
+                                        <div className="flex justify-center items-center px-[4px] mt-[0px] lg:mt-[20px] lg:px-[0px]">
+                                            <div className="w-full h-[200px] lg:w-[900px] lg:h-[280px]">
                                                 <ResponsiveBar
                                                     data={weeklyLearningData2}
                                                     keys={['accuracy']}
                                                     indexBy="date"
-                                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                                     axisTop={null}
                                                     axisRight={null}
                                                     axisBottom={{
@@ -1721,7 +1712,7 @@ const MonthlyReport = () => {
                                                             let endDate = new Date(startDate);
                                                             endDate.setDate(endDate.getDate() + 6);
                                                             return (
-                                                                <tspan fontSize="18px" fill="#1b1d1f">{startDate.getDate()}일-{endDate.getDate()}일</tspan>
+                                                                <tspan className="text-[9px] lg:text-[16px]" fill="#1b1d1f">{startDate.getDate()}일-{endDate.getDate()}일</tspan>
                                                             )
                                                         }
                                                     }}
@@ -1734,7 +1725,7 @@ const MonthlyReport = () => {
                                                     }}
                                                     groupMode={"grouped"}
                                                     theme={{
-                                                        fontSize: "16px",
+                                                        fontSize: "14px",
                                                         textColor: "#999c9f"
                                                     }}
                                                     borderRadius={3}
@@ -1743,7 +1734,7 @@ const MonthlyReport = () => {
                                                     colorBy="id"
                                                     label={(e) => {
                                                         return (
-                                                            <tspan y="-14" fontSize="16px" fill={e.value === weeklyMaxAccuracy ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
+                                                            <tspan y="-14" className="text-[14px] lg:text-[16px]" fill={e.value === weeklyMaxAccuracy ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
                                                         )
                                                     }}
                                                     tooltip={(e) => {
@@ -1805,17 +1796,17 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="text-[20px] font-bold text-[#061b3b] mt-[50px] px-[60px]">
+                                        <div className="text-[13px] font-bold text-[#061b3b] mt-[0px] px-[4px] lg:mt-[50px] lg:px-[60px] lg:text-[20px]">
                                             학습시간
                                         </div>
 
-                                        <div className="flex justify-center items-center mt-[20px]">
-                                            <div style={{ width: "900px", height: "280px" }}>
+                                        <div className="flex justify-center items-center px-[4px] mt-[0px] lg:mt-[20px] lg:px-[0px]">
+                                            <div className="w-full h-[200px] lg:w-[900px] lg:h-[280px]">
                                                 <ResponsiveBar
                                                     data={weeklyLearningData2}
                                                     keys={['learningTimeMinutes']}
                                                     indexBy="date"
-                                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                                     axisTop={null}
                                                     axisRight={null}
                                                     axisBottom={{
@@ -1827,7 +1818,7 @@ const MonthlyReport = () => {
                                                             let endDate = new Date(startDate);
                                                             endDate.setDate(endDate.getDate() + 6);
                                                             return (
-                                                                <tspan fontSize="18px" fill="#1b1d1f">{startDate.getDate()}일-{endDate.getDate()}일</tspan>
+                                                                <tspan className="text-[9px] lg:text-[16px]" fill="#1b1d1f">{startDate.getDate()}일-{endDate.getDate()}일</tspan>
                                                             )
                                                         }
                                                     }}
@@ -1840,7 +1831,7 @@ const MonthlyReport = () => {
                                                     }}
                                                     groupMode={"grouped"}
                                                     theme={{
-                                                        fontSize: "16px",
+                                                        fontSize: "14px",
                                                         textColor: "#999c9f"
                                                     }}
                                                     borderRadius={3}
@@ -1849,7 +1840,7 @@ const MonthlyReport = () => {
                                                     colorBy="id"
                                                     label={(e) => {
                                                         return (
-                                                            <tspan y="-14" fontSize="16px" fill={e.value === weeklyMaxLearningTimeMinutes ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
+                                                            <tspan y="-14" className="text-[14px] lg:text-[16px]" fill={e.value === weeklyMaxLearningTimeMinutes ? "#0063ff" : "#72787f"} fontWeight="700">{e.value}</tspan>
                                                         )
                                                     }}
                                                     tooltip={(e) => {
@@ -1911,13 +1902,13 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 4
                                             </div>
                                         </div>
@@ -1926,16 +1917,16 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:mt-[50px] lg:text-[32px]">
                                             학습 레벨/단원 분석
                                         </div>
 
-                                        <div className="px-[60px] mt-[50px] text-[20px] text-[#464c52] font-bold">
+                                        <div className="px-[4px] mt-[20px] text-[#464c52] font-bold lg:px-[60px] lg:mt-[50px] lg:text-[20px]">
                                             {
                                                 maxLevel > 0 ? (
                                                     <Fragment>
                                                         <div className="flex items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                             </svg>
                                                             <div className="ml-[8px]">
@@ -1946,7 +1937,7 @@ const MonthlyReport = () => {
                                                 ) : (
                                                     <Fragment>
                                                         <div className="flex items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                             </svg>
                                                             <div className="ml-[8px]">
@@ -1959,8 +1950,8 @@ const MonthlyReport = () => {
                                         </div>
 
                                         <div className="mt-[20px]">
-                                            <div className="flex justify-center items-center">
-                                                <div className="w-[320px] h-[320px]">
+                                            <div className="flex justify-center items-center px-[4px] lg:px-[0px]">
+                                                <div className="w-[35%] h-[180px] pr-[4px] lg:w-[320px] lg:h-[320px] lg:pr-[0px]">
                                                     <ResponsivePie
                                                         data={levelData2}
                                                         margin={{ top: 20, right: 0, bottom: 20, left: 0 }}
@@ -1988,25 +1979,25 @@ const MonthlyReport = () => {
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="w-[600px] h-[320px] pl-[20px]">
+                                                <div className="w-[65%] h-[180px] lg:w-[600px] lg:h-[320px] lg:pl-[20px]">
                                                     {
                                                         maxLevel > 0 ? (
-                                                            <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "column", height: "320px" }}>
+                                                            <div className="flex flex-wrap flex-col h-[180px] lg:h-[320px]">
                                                                 {
                                                                     levelData2 && levelData2.map((value, index) => (
-                                                                        <div key={index} style={{ display: "flex", alignItems: "center", fontSize: "18px", color: value.id === maxLevel ? "#0063ff" : "#464c52", width: "290px", height: "53px" }}>
-                                                                            <div className="w-[10px] flex justify-center items-center">
+                                                                        <div key={index} className={value.id === maxLevel ? "flex justify-center items-center text-[#0063ff] w-[50%] h-[30px] lg:text-[18px] lg:w-[290px] lg:h-[53px]" : "flex justify-center items-center text-[#464c52] w-[50%] h-[30px] lg:text-[18px] lg:w-[290px] lg:h-[53px]"}>
+                                                                            <div className="w-[10%] flex justify-center items-center lg:w-[10px]">
                                                                                 <div style={{ width: "10px", height: "10px", borderRadius: "25px", background: value.color }}></div>
                                                                             </div>
-                                                                            <div style={{ width: "120px", paddingLeft: "10px" }}>{value.id}레벨</div>
-                                                                            <div style={{ width: "90px" }}>{value.percent}%</div>
-                                                                            <div style={{ width: "70px" }}>{value.value}개</div>
+                                                                            <div className="w-[30%] lg:w-[120px] lg:pl-[10px]">{value.id}레벨</div>
+                                                                            <div className="w-[30%] lg:w-[90px]">{value.percent}%</div>
+                                                                            <div className="w-[30%] lg:w-[70px]">{value.value}개</div>
                                                                         </div>
                                                                     ))
                                                                 }
                                                             </div>
                                                         ) : (
-                                                            <div style={{ fontSize: "20px" }}>
+                                                            <div className="lg:text-[20px]">
                                                                 해당 월은 학습하지 않았어요.
                                                             </div>
                                                         )
@@ -2015,13 +2006,12 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-
-                                        <div className="px-[60px] mt-[50px] text-[20px] text-[#464c52] font-bold">
+                                        <div className="px-[4px] mt-[20px] text-[#464c52] font-bold lg:px-[60px] lg:mt-[50px] lg:text-[20px]">
                                             {
                                                 levelAndChapterMaxLevel > 0 ? (
                                                     <Fragment>
                                                         <div className="flex items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                             </svg>
                                                             <div className="ml-[8px]">
@@ -2033,7 +2023,7 @@ const MonthlyReport = () => {
                                                     <Fragment>
 
                                                         <div className="flex items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                                             </svg>
                                                             <div className="ml-[8px]">
@@ -2047,8 +2037,8 @@ const MonthlyReport = () => {
                                         </div>
 
                                         <div className="mt-[20px]">
-                                            <div className="flex justify-center">
-                                                <div className="w-[320px] h-[320px]">
+                                            <div className="flex justify-center items-center px-[4px] lg:px-[0px]">
+                                                <div className="w-[35%] h-[180px] pr-[4px] lg:w-[320px] lg:h-[320px] lg:pr-[0px]">
                                                     <ResponsivePie
                                                         data={levelAndChapterData2}
                                                         margin={{ top: 20, right: 0, bottom: 20, left: 0 }}
@@ -2076,7 +2066,7 @@ const MonthlyReport = () => {
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="w-[600px] h-[700px] pl-[20px]">
+                                                <div className="w-[65%] h-[180px] lg:w-[600px] lg:h-[320px] lg:pl-[20px]">
                                                     {
                                                         levelAndChapterMaxLevel > 0 ? (
                                                             <div>
@@ -2086,45 +2076,55 @@ const MonthlyReport = () => {
                                                                             <Fragment>
                                                                                 {
                                                                                     levelAndChapterData2 && levelAndChapterData2.slice(0, 12).map((value, index) => (
-                                                                                        <div key={index} style={{ height: "50px", display: "flex", alignItems: "center", color: value.level === levelAndChapterMaxLevel && value.chapter === levelAndChapterMaxChapter ? "#0063ff" : "#464c52" }}>
-                                                                                            <div className="w-[10px] flex justify-center items-center">
+                                                                                        <div key={index} className={value.level === levelAndChapterMaxLevel && value.chapter === levelAndChapterMaxChapter ? "flex items-center h-[30px] text-[#0063ff] lg:h-[50px]" : "flex items-center h-[30px] text-[#464c52] lg:h-[50px]"}>
+                                                                                            <div className="w-[10%] flex justify-center items-center lg:w-[10px]">
                                                                                                 <div style={{ width: "10px", height: "10px", borderRadius: "25px", background: value.color }}></div>
                                                                                             </div>
-                                                                                            <div className="w-[430px] pl-[10px] relative">
-                                                                                                <div>{value.level}레벨 {value.chapter}단원 [{value.chapterName && value.chapterName.length > 21 ? value.chapterName.substr(0, 21) + ".." : value.chapterName}]</div>
-                                                                                                <div className="absolute top-0 left-[10px] w-[430px] h-[28px] opacity-0 hover:opacity-100">
-                                                                                                    <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
-                                                                                                        {value.level}레벨 {value.chapter}단원 [{value.chapterName}]
+                                                                                            <div className="relative w-[60%] lg:w-[430px] lg:pl-[10px]">
+                                                                                                <div className="hidden lg:block">
+                                                                                                    <div className="text-[10px] lg:text-[18px]">{value.level}레벨 {value.chapter}단원 [{value.chapterName && value.chapterName.length > 21 ? value.chapterName.substr(0, 21) + ".." : value.chapterName}]</div>
+                                                                                                    <div className="absolute top-0 left-[10px] w-[430px] h-[28px] opacity-0 lg:hover:opacity-100">
+                                                                                                        <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
+                                                                                                            {value.level}레벨 {value.chapter}단원 [{value.chapterName}]
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                                <div className="block pr-[4px] lg:pr-[0px] lg:hidden">
+                                                                                                    <div className="text-[10px] lg:text-[18px]">{value.level}레벨 {value.chapter}단원 [{value.chapterName}]</div>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <div style={{ width: "70px" }}>{value.percent}%</div>
-                                                                                            <div style={{ width: "70px" }}>{value.value}개</div>
+                                                                                            <div className="w-[15%] lg:w-[70px]">{value.percent}%</div>
+                                                                                            <div className="w-[15%] lg:w-[70px]">{value.value}개</div>
                                                                                         </div>
                                                                                     ))
                                                                                 }
-                                                                                <div className="flex justify-center items-center h-[50px]">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                <div className="flex justify-center items-center h-[30px] lg:h-[50px]">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-[14px] w-[14px] lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                                                                                     </svg>
                                                                                 </div>
                                                                             </Fragment>
                                                                         ) : (
                                                                             levelAndChapterData2 && levelAndChapterData2.map((value, index) => (
-                                                                                <div key={index} style={{ height: "50px", display: "flex", alignItems: "center", color: value.level === levelAndChapterMaxLevel && value.chapter === levelAndChapterMaxChapter ? "#0063ff" : "#464c52" }}>
-                                                                                    <div className="w-[10px] flex justify-center items-center">
+                                                                                <div key={index} className={value.level === levelAndChapterMaxLevel && value.chapter === levelAndChapterMaxChapter ? "flex items-center h-[30px] text-[#0063ff] lg:h-[50px]" : "flex items-center h-[30px] text-[#464c52] lg:h-[50px]"}>
+                                                                                    <div className="w-[10%] flex justify-center items-center lg:w-[10px]">
                                                                                         <div style={{ width: "10px", height: "10px", borderRadius: "25px", background: value.color }}></div>
                                                                                     </div>
-                                                                                    <div className="w-[430px] pl-[10px] relative">
-                                                                                        <div>{value.level}레벨 {value.chapter}단원 [{value.chapterName && value.chapterName.length > 21 ? value.chapterName.substr(0, 21) + ".." : value.chapterName}]</div>
-                                                                                        <div className="absolute top-0 left-[10px] w-[430px] h-[28px] opacity-0 hover:opacity-100">
-                                                                                            <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
-                                                                                                {value.level}레벨 {value.chapter}단원 [{value.chapterName}]
+                                                                                    <div className="relative w-[60%] lg:w-[430px] lg:pl-[10px]">
+                                                                                        <div className="hidden lg:block">
+                                                                                            <div className="text-[10px] lg:text-[18px]">{value.level}레벨 {value.chapter}단원 [{value.chapterName && value.chapterName.length > 21 ? value.chapterName.substr(0, 21) + ".." : value.chapterName}]</div>
+                                                                                            <div className="absolute top-0 left-[10px] w-[430px] h-[28px] opacity-0 lg:hover:opacity-100">
+                                                                                                <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
+                                                                                                    {value.level}레벨 {value.chapter}단원 [{value.chapterName}]
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
+                                                                                        <div className="block pr-[4px] lg:pr-[0px] lg:hidden">
+                                                                                            <div className="text-[10px] lg:text-[18px]">{value.level}레벨 {value.chapter}단원 [{value.chapterName}]</div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div style={{ width: "70px" }}>{value.percent}%</div>
-                                                                                    <div style={{ width: "70px" }}>{value.value}개</div>
+                                                                                    <div className="w-[15%] lg:w-[70px]">{value.percent}%</div>
+                                                                                    <div className="w-[15%] lg:w-[70px]">{value.value}개</div>
                                                                                 </div>
                                                                             ))
                                                                         )
@@ -2132,7 +2132,7 @@ const MonthlyReport = () => {
                                                                 </div>
                                                             </div>
                                                         ) : (
-                                                            <div style={{ fontSize: "20px" }}>
+                                                            <div className="lg:text-[20px]">
                                                                 해당 월은 학습하지 않았어요.
                                                             </div>
                                                         )
@@ -2141,13 +2141,13 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 5
                                             </div>
                                         </div>
@@ -2156,12 +2156,12 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:mt-[50px] lg:text-[32px]">
                                             우수/취약 스테이지
                                         </div>
 
-                                        <div className="mt-[50px] h-[400px] px-[60px]">
-                                            <div className="text-[24px] text-[#061b3b] font-bold">
+                                        <div className="px-[4px] mt-[20px] h-[300px] lg:mt-[50px] lg:h-[400px] lg:px-[60px]">
+                                            <div className="text-[13px] text-[#061b3b] font-bold lg:text-[24px]">
                                                 우수 스테이지
                                             </div>
                                             <div className="flex mt-[20px] items-center">
@@ -2171,28 +2171,28 @@ const MonthlyReport = () => {
                                                 <div className="text-[#616161] font-bold ml-[10px]">칭찬해 주세요!</div>
                                             </div>
 
-                                            <div className="flex justify-center items-center border-t border-b h-[50px] mt-[20px] text-[#464c52] font-semibold">
-                                                <div className="w-[90px] pl-[10px]">번호</div>
-                                                <div className="w-[100px]">날짜</div>
-                                                <div className="w-[120px]">레벨/단원</div>
-                                                <div className="w-[430px]">스테이지</div>
-                                                <div className="w-[80px]">등급</div>
-                                                <div className="w-[100px]">정확도</div>
+                                            <div className="flex justify-center items-center border-t border-b mt-[20px] text-[#464c52] font-semibold h-[30px] text-[10px] lg:h-[50px] lg:text-[18px]">
+                                                <div className="w-[8%] lg:w-[90px] lg:pl-[10px]">번호</div>
+                                                <div className="w-[15%] lg:w-[100px]">날짜</div>
+                                                <div className="w-[20%] lg:w-[120px]">레벨/단원</div>
+                                                <div className="w-[37%] lg:w-[430px]">스테이지</div>
+                                                <div className="w-[10%] lg:w-[80px]">등급</div>
+                                                <div className="w-[10%] lg:w-[100px]">정확도</div>
                                             </div>
                                             {
                                                 excellentLearningData && Array.isArray(excellentLearningData) && excellentLearningData.length === 0 ? (
-                                                    <div className="flex items-center h-[50px] text-[#1b1d1f] pl-[10px]">
+                                                    <div className="flex items-center text-[#1b1d1f] pl-[10px] h-[30px] text-[10px] lg:text-[18px] lg:h-[50px]">
                                                         우수 스테이지가 없어요.
                                                     </div>
                                                 ) : (
                                                     excellentLearningData && excellentLearningData.slice(0, 5).map((value, index) => (
                                                         <div key={index}>
-                                                            <div className="flex justify-center items-center h-[50px] text-[#1b1d1f]">
-                                                                <div className="w-[90px] pl-[10px]">{index + 1}</div>
-                                                                <div className="w-[100px]">{parseInt(value.month)}월 {parseInt(value.day)}일</div>
-                                                                <div className="w-[120px]">{value.level}레벨/{value.chapter}단원</div>
-                                                                <div className="w-[430px]">{value.unitName}</div>
-                                                                <div className="w-[80px]">
+                                                            <div className="flex justify-center items-center text-[#1b1d1f] h-[30px] lg:h-[50px] text-[10px] lg:text-[18px]">
+                                                                <div className="w-[8%] lg:w-[90px] lg:pl-[10px]">{index + 1}</div>
+                                                                <div className="w-[15%] lg:w-[100px]">{parseInt(value.month)}월 {parseInt(value.day)}일</div>
+                                                                <div className="w-[20%] lg:w-[120px]">{value.level}레벨/{value.chapter}단원</div>
+                                                                <div className="w-[37%] lg:w-[430px] pr-[4px] lg:pr-[0px]">{value.unitName}</div>
+                                                                <div className="w-[10%] lg:w-[80px]">
                                                                     {
                                                                         value.grade === 1 ? (
                                                                             <span className="text-[#0063ff]">{value.grade}%</span>
@@ -2201,7 +2201,7 @@ const MonthlyReport = () => {
                                                                         )
                                                                     }
                                                                 </div>
-                                                                <div className="w-[100px]">{value.accuracy}%</div>
+                                                                <div className="w-[10%] lg:w-[100px]">{value.accuracy}%</div>
                                                             </div>
                                                         </div>
                                                     ))
@@ -2209,8 +2209,8 @@ const MonthlyReport = () => {
                                             }
                                         </div>
 
-                                        <div className="mt-[50px] h-[400px] px-[60px]">
-                                            <div className="text-[24px] text-[#061b3b] font-bold">
+                                        <div className="px-[4px] mt-[20px] lg:mt-[50px] lg:h-[400px] lg:px-[60px]">
+                                            <div className="text-[13px] text-[#061b3b] font-bold lg:text-[24px]">
                                                 취약 스테이지
                                             </div>
 
@@ -2221,27 +2221,27 @@ const MonthlyReport = () => {
                                                 <div className="text-[#616161] font-bold ml-[10px]">어려워 하고 있어요!</div>
                                             </div>
 
-                                            <div className="flex justify-center items-center border-t border-b h-[50px] mt-[20px] text-[#464c52] font-semibold">
-                                                <div className="w-[100px] pl-[10px]">번호</div>
-                                                <div className="w-[110px]">날짜</div>
-                                                <div className="w-[130px]">레벨/단원</div>
-                                                <div className="w-[490px]">스테이지</div>
-                                                <div className="w-[110px]">정확도</div>
+                                            <div className="flex justify-center items-center border-t border-b mt-[20px] text-[#464c52] font-semibold h-[30px] text-[10px] lg:text-[18px] lg:h-[50px]">
+                                                <div className="w-[8%] lg:w-[100px] lg:pl-[10px]">번호</div>
+                                                <div className="w-[15%] lg:w-[110px]">날짜</div>
+                                                <div className="w-[25%] lg:w-[130px]">레벨/단원</div>
+                                                <div className="w-[47%] lg:w-[490px]">스테이지</div>
+                                                <div className="w-[10%] lg:w-[110px]">정확도</div>
                                             </div>
                                             {
                                                 weekLearningData && Array.isArray(weekLearningData) && weekLearningData.length === 0 ? (
-                                                    <div className="flex items-center h-[50px] text-[#1b1d1f] pl-[10px]">
+                                                    <div className="flex items-center h-[30px] text-[#1b1d1f] pl-[10px] text-[10px] lg:text-[18px] lg:h-[50px]">
                                                         취약 스테이지가 없어요.
                                                     </div>
                                                 ) : (
                                                     weekLearningData && weekLearningData.slice(0, 5).map((value, index) => (
                                                         <div key={index}>
-                                                            <div className="flex justify-center items-center h-[50px] text-[#1b1d1f]">
-                                                                <div className="w-[100px] pl-[10px]">{index + 1}</div>
-                                                                <div className="w-[110px]">{parseInt(value.month)}월 {parseInt(value.day)}일</div>
-                                                                <div className="w-[130px]">{value.level}레벨/{value.chapter}단원</div>
-                                                                <div className="w-[490px]">{value.unitName}</div>
-                                                                <div className="w-[110px]">{value.accuracy}%</div>
+                                                            <div className="flex justify-center items-center h-[30px] text-[#1b1d1f]  text-[10px] lg:text-[18px] lg:h-[50px]">
+                                                                <div className="w-[8%] lg:w-[100px] lg:pl-[10px]">{index + 1}</div>
+                                                                <div className="w-[15%] lg:w-[110px]">{parseInt(value.month)}월 {parseInt(value.day)}일</div>
+                                                                <div className="w-[20%] lg:w-[130px]">{value.level}레벨/{value.chapter}단원</div>
+                                                                <div className="w-[47%] lg:w-[490px] pr-[4px] lg:pr-[0px]">{value.unitName}</div>
+                                                                <div className="w-[10%] lg:w-[110px]">{value.accuracy}%</div>
                                                             </div>
                                                         </div>
                                                     ))
@@ -2249,13 +2249,13 @@ const MonthlyReport = () => {
                                             }
                                         </div>
 
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 6
                                             </div>
                                         </div>
@@ -2264,66 +2264,76 @@ const MonthlyReport = () => {
 
                                 <div className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                     <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                        <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
+                                        <div className="text-[14px] mt-[20px] font-bold text-[#061b3b] text-center lg:mt-[50px] lg:text-[32px]">
                                             상세 학습 결과
                                         </div>
 
-                                        <div className="mt-[50px] px-[60px]">
-                                            <div className="text-[24px] text-[#061b3b] font-bold">
+                                        <div className="px-[4px] mt-[20px] lg:mt-[50px] lg:px-[60px]">
+                                            <div className="text-[13px] text-[#061b3b] font-bold lg:text-[24px]">
                                                 {month}월 등급 메달
                                             </div>
                                         </div>
 
-                                        <div className="flex justify-between mt-[20px] text-[20px] text-[#464c52] font-semibold px-[60px]">
-                                            <div>
-                                                <div className="h-[100px] flex items-center">
-                                                    <img src={OnePercentTrophy} alt={"onePercentTrophy"} />
+                                        <div className="flex justify-between mt-[20px] text-[#464c52] font-semibold px-[4px] lg:px-[60px] lg:text-[20px]">
+                                            <div className="flex justify-center w-[20%] lg:w-auto">
+                                                <div>
+                                                    <div className="w-[90%] h-[80px] mx-auto flex items-center lg:w-auto lg:h-[100px]">
+                                                        <img src={OnePercentTrophy} alt={"onePercentTrophy"} />
+                                                    </div>
+                                                    <div className="w-[90%] text-center mx-auto mt-[10px] lg:mt-[20px] lg:w-auto">{onePercentTrophy}개</div>
                                                 </div>
-                                                <div className="text-center mt-[20px]">{onePercentTrophy}개</div>
                                             </div>
-                                            <div>
-                                                <div className="h-[100px] flex items-center">
-                                                    <img src={TenPercentTrophy} alt={"tenPercentTrophy"} />
+                                            <div className="flex justify-center w-[20%] lg:w-auto">
+                                                <div>
+                                                    <div className="w-[72%] h-[80px] mx-auto flex items-center lg:w-auto lg:h-[100px]">
+                                                        <img src={TenPercentTrophy} alt={"tenPercentTrophy"} />
+                                                    </div>
+                                                    <div className="w-[72%] text-center mx-auto mt-[10px] lg:mt-[20px] lg:w-auto">{tenPercentTrophy}개</div>
                                                 </div>
-                                                <div className="text-center mt-[20px]">{tenPercentTrophy}개</div>
                                             </div>
-                                            <div>
-                                                <div className="h-[100px] flex items-center">
-                                                    <img src={ThirtyPercentTrophy} alt={"thirtyPercentTrophy"} />
+                                            <div className="flex justify-center w-[20%] lg:w-auto">
+                                                <div>
+                                                    <div className="w-[68%] h-[80px] mx-auto flex items-center lg:w-auto lg:h-[100px]">
+                                                        <img src={ThirtyPercentTrophy} alt={"thirtyPercentTrophy"} />
+                                                    </div>
+                                                    <div className="w-[68%] text-center mx-auto mt-[10px] lg:mt-[20px] lg:w-auto">{thirtyPercentTrophy}개</div>
                                                 </div>
-                                                <div className="text-center mt-[20px]">{thirtyPercentTrophy}개</div>
                                             </div>
-                                            <div>
-                                                <div className="h-[100px] flex items-center">
-                                                    <img src={FiftyPercentTrophy} alt={"fiftyPercentTrophy"} />
+                                            <div className="flex justify-center w-[20%] lg:w-auto">
+                                                <div>
+                                                    <div className="w-[64%] h-[80px] mx-auto flex items-center lg:w-auto lg:h-[100px]">
+                                                        <img src={FiftyPercentTrophy} alt={"fiftyPercentTrophy"} />
+                                                    </div>
+                                                    <div className="w-[64%] text-center mx-auto mt-[10px] lg:mt-[20px] lg:w-auto">{fiftyPercentTrophy}개</div>
                                                 </div>
-                                                <div className="text-center mt-[20px]">{fiftyPercentTrophy}개</div>
                                             </div>
-                                            <div>
-                                                <div className="h-[100px] flex items-center">
-                                                    <img src={GoodTrophy} alt={"goodTrophy"} />
+                                            <div className="flex justify-center w-[20%] lg:w-auto">
+                                                <div>
+                                                    <div className="w-[60%] h-[80px] mx-auto flex items-center lg:w-auto lg:h-[100px]">
+                                                        <img src={GoodTrophy} alt={"goodTrophy"} />
+                                                    </div>
+                                                    <div className="w-[60%] text-center mx-auto mt-[10px] lg:mt-[20px] lg:w-auto">{goodTrophy}개</div>
                                                 </div>
-                                                <div className="text-center mt-[20px]">{goodTrophy}개</div>
                                             </div>
                                         </div>
 
-                                        <div className="mt-[50px] flex px-[60px]">
+                                        <div className="mt-[20px] px-[4px] flex lg:px-[60px] lg:mt-[50px]">
                                             <div className="flex items-center">
                                                 <div>
                                                     <div className="w-[10px] h-[10px] rounded-full bg-[#0063ff]"></div>
                                                 </div>
-                                                <div className="flex text-[16px] font-semibold ml-[8px]">
+                                                <div className="flex font-semibold text-[10px] ml-[8px] lg:text-[16px]">
                                                     <span className="text-[#1b1d1f]">정확도</span>
                                                     <span className="text-[#0063ff]">&nbsp;90% 이상은 파란색</span>
                                                     <span className="text-[#1b1d1f]">입니다.</span>
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center ml-[50px]">
+                                            <div className="flex items-center ml-[10px] lg:ml-[50px]">
                                                 <div>
                                                     <div className="w-[10px] h-[10px] rounded-full bg-[#d61313]"></div>
                                                 </div>
-                                                <div className="flex text-[16px] font-semibold ml-[8px]">
+                                                <div className="flex font-semibold text-[10px] ml-[8px] lg:text-[16px]">
                                                     <span className="text-[#1b1d1f]">정확도</span>
                                                     <span className="text-[#d61313]">&nbsp;50% 이하는 빨간색</span>
                                                     <span className="text-[#1b1d1f]">입니다.</span>
@@ -2331,20 +2341,19 @@ const MonthlyReport = () => {
                                             </div>
                                         </div>
 
-                                        <div className="px-[60px]">
-                                            <div className="flex items-center text-[#464c52] font-semibold mt-[20px] h-[50px] border-b">
-                                                <div className="w-[80px] pl-[10px]">날짜</div>
-                                                <div className="w-[100px]">학습 모드</div>
-                                                <div className="w-[120px]">레벨/단원</div>
-                                                <div className="w-[360px]">스테이지명</div>
-                                                <div className="w-[100px]">학습시간</div>
-                                                <div className="w-[80px]">등급</div>
-                                                <div className="w-[80px]">정확도</div>
+                                        <div className="px-[4px] lg:px-[60px]">
+                                            <div className="flex items-center text-[#464c52] font-semibold mt-[20px] border-b h-[30px] text-[9px] lg:h-[50px] lg:text-[18px]">
+                                                <div className="w-[9%] lg:w-[80px] lg:pl-[10px]">날짜</div>
+                                                <div className="w-[13%] lg:w-[100px]">학습 모드</div>
+                                                <div className="w-[15%] lg:w-[120px]">레벨/단원</div>
+                                                <div className="w-[32%] lg:w-[360px]">스테이지명</div>
+                                                <div className="w-[13%] lg:w-[100px]">학습시간</div>
+                                                <div className="w-[9%] lg:w-[80px]">등급</div>
+                                                <div className="w-[9%] lg:w-[80px]">정확도</div>
                                             </div>
-
                                             {
                                                 learningData2 && Array.isArray(learningData2) && learningData2.length === 0 ? (
-                                                    <div className="flex items-center text-[#1b1d1f] h-[50px] pl-[10px]">
+                                                    <div className="flex items-center text-[#1b1d1f] h-[30px] pl-[10px] text-[9px] lg:h-[50px] lg:text-[18px]">
                                                         해당 월은 학습하지 않았어요.
                                                     </div>
                                                 ) : (
@@ -2352,23 +2361,29 @@ const MonthlyReport = () => {
                                                         {
                                                             learningData2 && learningData2.slice(0, 16).map((value, index) => (
                                                                 <div key={index}>
-                                                                    <div className="flex items-center text-[#1b1d1f] h-[50px]">
-                                                                        <div className="w-[80px] pl-[10px]">{value.month}.{value.day}</div>
-                                                                        <div className="w-[100px]">{value.learningMode}</div>
-                                                                        <div className="w-[120px]">{value.level}레벨/{value.chapter}단원</div>
-                                                                        <div className="w-[360px] relative">
-                                                                            <div>{value.unitName && value.unitName.length > 22 ? value.unitName.substr(0, 22) + ".." : value.unitName}</div>
-                                                                            <div className="absolute top-0 left-0 w-[360px] h-[50px] opacity-0 hover:opacity-100">
-                                                                                <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
-                                                                                    {value.unitName}
+                                                                    <div className="flex items-center text-[#1b1d1f] h-[30px] text-[9px] lg:h-[50px] lg:text-[18px]">
+                                                                        <div className="w-[9%] lg:w-[80px] lg:pl-[10px]">{value.month}.{value.day}</div>
+                                                                        <div className="w-[13%] lg:w-[100px]">{value.learningMode}</div>
+                                                                        <div className="w-[15%] lg:w-[120px]">{value.level}레벨/{value.chapter}단원</div>
+                                                                        <div className="w-[32%] lg:w-[360px] relative">
+                                                                            <div className="hidden lg:block">
+                                                                                <div>{value.unitName && value.unitName.length > 22 ? value.unitName.substr(0, 22) + ".." : value.unitName}</div>
+                                                                                <div className="absolute top-0 left-0 w-[360px] h-[50px] opacity-0 hover:opacity-100">
+                                                                                    <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
+                                                                                        {value.unitName}
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+
+                                                                            <div className="block lg:hidden">
+                                                                                <div className="pr-[4px] lg:pr-[0px]">{value.unitName}</div>
+                                                                            </div>                                                                            
                                                                         </div>
 
-                                                                        <div className="w-[100px]">
+                                                                        <div className="w-[13%] lg:w-[100px]">
                                                                             {mm2(value.learningTimeSeconds)} {ss2(value.learningTimeSeconds)}
                                                                         </div>
-                                                                        <div className="w-[80px]">
+                                                                        <div className="w-[9%] lg:w-[80px]">
                                                                             {
                                                                                 value.learningMode === "일프로 도전" ? (
                                                                                     <Fragment>
@@ -2380,8 +2395,6 @@ const MonthlyReport = () => {
                                                                                             )
                                                                                         }
                                                                                     </Fragment>
-
-
                                                                                 ) : (
                                                                                     <span>
                                                                                         {value.grade}%
@@ -2389,7 +2402,7 @@ const MonthlyReport = () => {
                                                                                 )
                                                                             }
                                                                         </div>
-                                                                        <div className="w-[80px]">
+                                                                        <div className="w-[9%] lg:w-[80px]">
                                                                             {
                                                                                 value.accuracy >= 90 ? (
                                                                                     <span className="text-[#0063ff]">{value.accuracy}%</span>
@@ -2411,13 +2424,13 @@ const MonthlyReport = () => {
                                             }
                                         </div>
 
-                                        <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                        <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                             <div className="w-[80px]">
                                             </div>
                                             <div>
                                                 {year}.{month}
                                             </div>
-                                            <div className="w-[80px] text-right pr-[40px]">
+                                            <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                 7
                                             </div>
                                         </div>
@@ -2426,25 +2439,25 @@ const MonthlyReport = () => {
 
                                 {[...Array(numberOfLearningData)].map((num, index) => {
                                     return (
-                                        <div key={index} className="mt-[60px] flex justify-center">
+                                        <div key={index} className="mt-[10px] flex justify-center px-[4px] lg:px-[0px] lg:mt-[60px]">
                                             <div className="relative bg-[#ffffff] w-full h-[800px] shadow-md rounded lg:w-[1040px] lg:h-[1400px]">
-                                                <div className="mt-[50px] flex px-[60px]">
+                                                <div className="mt-[20px] px-[4px] flex lg:px-[60px] lg:mt-[50px]">
                                                     <div className="flex items-center">
                                                         <div>
                                                             <div className="w-[10px] h-[10px] rounded-full bg-[#0063ff]"></div>
                                                         </div>
-                                                        <div className="flex text-[16px] font-semibold ml-[8px]">
+                                                        <div className="flex font-semibold text-[10px] ml-[8px] lg:text-[16px]">
                                                             <span className="text-[#1b1d1f]">정확도</span>
                                                             <span className="text-[#0063ff]">&nbsp;90% 이상은 파란색</span>
                                                             <span className="text-[#1b1d1f]">입니다.</span>
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex items-center ml-[50px]">
+                                                    <div className="flex items-center ml-[10px] lg:ml-[50px]">
                                                         <div>
                                                             <div className="w-[10px] h-[10px] rounded-full bg-[#d61313]"></div>
                                                         </div>
-                                                        <div className="flex text-[16px] font-semibold ml-[8px]">
+                                                        <div className="flex font-semibold text-[10px] ml-[8px] lg:text-[16px]">
                                                             <span className="text-[#1b1d1f]">정확도</span>
                                                             <span className="text-[#d61313]">&nbsp;50% 이하는 빨간색</span>
                                                             <span className="text-[#1b1d1f]">입니다.</span>
@@ -2452,37 +2465,43 @@ const MonthlyReport = () => {
                                                     </div>
                                                 </div>
 
-                                                <div className="px-[60px]">
-                                                    <div className="flex items-center text-[#464c52] font-semibold mt-[20px] h-[50px] border-b">
-                                                        <div className="w-[80px] pl-[10px]">날짜</div>
-                                                        <div className="w-[100px]">학습 모드</div>
-                                                        <div className="w-[120px]">레벨/단원</div>
-                                                        <div className="w-[360px]">스테이지명</div>
-                                                        <div className="w-[100px]">학습시간</div>
-                                                        <div className="w-[80px]">등급</div>
-                                                        <div className="w-[80px]">정확도</div>
-                                                    </div>
+                                                <div className="px-[4px] lg:px-[60px]">
+                                                    <div className="flex items-center text-[#464c52] font-semibold mt-[20px] border-b h-[30px] text-[9px] lg:h-[50px] lg:text-[18px]">
+                                                    <div className="w-[9%] lg:w-[80px] lg:pl-[10px]">날짜</div>
+                                                    <div className="w-[13%] lg:w-[100px]">학습 모드</div>
+                                                    <div className="w-[15%] lg:w-[120px]">레벨/단원</div>
+                                                    <div className="w-[32%] lg:w-[360px]">스테이지명</div>
+                                                    <div className="w-[13%] lg:w-[100px]">학습시간</div>
+                                                    <div className="w-[9%] lg:w-[80px]">등급</div>
+                                                    <div className="w-[9%] lg:w-[80px]">정확도</div>
+                                                </div>
                                                     <Fragment>
                                                         {
                                                             learningData3 && learningData3.slice(0 + (23 * index), 23 + (23 * index)).map((value, index) => (
                                                                 <div key={index}>
-                                                                    <div className="flex items-center text-[#1b1d1f] h-[50px]">
-                                                                        <div className="w-[80px] pl-[10px]">{value.month}.{value.day}</div>
-                                                                        <div className="w-[100px]">{value.learningMode}</div>
-                                                                        <div className="w-[120px]">{value.level}레벨/{value.chapter}단원</div>
-                                                                        <div className="w-[360px] relative">
-                                                                            <div>{value.unitName && value.unitName.length > 22 ? value.unitName.substr(0, 22) + ".." : value.unitName}</div>
-                                                                            <div className="absolute top-0 left-0 w-[360px] h-[50px] opacity-0 hover:opacity-100">
-                                                                                <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
-                                                                                    {value.unitName}
+                                                                    <div className="flex items-center text-[#1b1d1f] h-[30px] text-[9px] lg:h-[50px] lg:text-[18px]">
+                                                                        <div className="w-[9%] lg:w-[80px] lg:pl-[10px]">{value.month}.{value.day}</div>
+                                                                        <div className="w-[13%] lg:w-[100px]">{value.learningMode}</div>
+                                                                        <div className="w-[15%] lg:w-[120px]">{value.level}레벨/{value.chapter}단원</div>
+                                                                        <div className="w-[32%] lg:w-[360px] relative">
+                                                                            <div className="hidden lg:block">
+                                                                                <div>{value.unitName && value.unitName.length > 22 ? value.unitName.substr(0, 22) + ".." : value.unitName}</div>
+                                                                                <div className="absolute top-0 left-0 w-[360px] h-[50px] opacity-0 hover:opacity-100">
+                                                                                    <div className="absolute -top-1 -left-1 bg-[#54595e] text-[#ffffff] whitespace-nowrap inline-block p-[4px] rounded-lg">
+                                                                                        {value.unitName}
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+
+                                                                            <div className="block lg:hidden">
+                                                                                <div className="pr-[4px] lg:pr-[0px]">{value.unitName}</div>
+                                                                            </div>                                                                            
                                                                         </div>
 
-                                                                        <div className="w-[100px]">
+                                                                        <div className="w-[13%] lg:w-[100px]">
                                                                             {mm2(value.learningTimeSeconds)} {ss2(value.learningTimeSeconds)}
                                                                         </div>
-                                                                        <div className="w-[80px]">
+                                                                        <div className="w-[9%] lg:w-[80px]">
                                                                             {
                                                                                 value.learningMode === "일프로 도전" ? (
                                                                                     <Fragment>
@@ -2494,8 +2513,6 @@ const MonthlyReport = () => {
                                                                                             )
                                                                                         }
                                                                                     </Fragment>
-
-
                                                                                 ) : (
                                                                                     <span>
                                                                                         {value.grade}%
@@ -2503,7 +2520,7 @@ const MonthlyReport = () => {
                                                                                 )
                                                                             }
                                                                         </div>
-                                                                        <div className="w-[80px]">
+                                                                        <div className="w-[9%] lg:w-[80px]">
                                                                             {
                                                                                 value.accuracy >= 90 ? (
                                                                                     <span className="text-[#0063ff]">{value.accuracy}%</span>
@@ -2523,13 +2540,13 @@ const MonthlyReport = () => {
                                                     </Fragment>
                                                 </div>
 
-                                                <div className="absolute bottom-[40px] left-0 w-full flex justify-between text-[16px] font-semibold text-[#464c52]">
+                                                <div className="absolute bottom-[10px] left-0 w-full flex justify-between font-semibold text-[#464c52] lg:text-[16px] lg:bottom-[40px] ">
                                                     <div className="w-[80px]">
                                                     </div>
                                                     <div>
                                                         {year}.{month}
                                                     </div>
-                                                    <div className="w-[80px] text-right pr-[40px]">
+                                                    <div className="w-[80px] text-right pr-[10px] lg:pr-[40px]">
                                                         {8 + index}
                                                     </div>
                                                 </div>

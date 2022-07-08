@@ -668,7 +668,7 @@ const MonthlyLearning = () => {
                             </div>
                             <div className="absolute top-[33px] right-[-444px] bg-[#ffffff] border-[1px] border-[#d0d7de] rounded p-2 shadow-sm">
                                 <div className="flex items-center border-[1px] border-[#d0d7de] rounded-md px-2 bg-[#f6f8fa]">
-                                    <input type="text" className="w-[20.875rem] h-6 bg-[#f6f8fa]" ref={linkAddressInput} value={`http://localhost:3000/monthly-report/25/0/${encryptProfileNo}/${params.startdate}`} readOnly />
+                                    <input type="text" className="w-[20.875rem] h-6 bg-[#f6f8fa]" ref={linkAddressInput} value={`http://localhost:3000/monthly-report/25/0/${encryptProfileNo}/${params.startdate ? params.startdate : startDate}`} readOnly />
                                     <div className="bg-[#cccccc] w-[0.063rem] h-[2.125rem] ml-2"></div>
                                     <div className="relative w-[3.125rem] ml-2">
                                         <div>
@@ -718,7 +718,7 @@ const MonthlyLearning = () => {
                         </svg>
                     </div>
 
-                    <div className="px-[20px] font-bold text-[#464c52] select-none">{year}-{month}</div>
+                    <div className="w-[120px] px-[20px] font-bold text-[#464c52] select-none text-center">{year}-{month}</div>
 
                     <div className="w-[32px] h-[32px] bg-[#e4e7e9] rounded-lg flex justify-center items-center cursor-pointer" onClick={() => onChangeDate(1)} >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -1038,11 +1038,8 @@ const MonthlyLearning = () => {
                                 <div className="flex items-center w-[290px] h-[100px] text-[20px] text-[#464c52] font-bold pl-[40px]">학습시간</div>
                                 <div className="flex justify-end items-center w-[260px] h-[100px]">
                                     <div>
-
                                         <span className="text-[#0063ff] text-[42px]">{mm(learningTimeSeconds)}</span>
                                         <span className="text-[#0063ff] text-[26px] ml-[6px]">분</span>
-
-
                                         {
                                             ss(learningTimeSeconds) !== "" ? (
                                                 <Fragment>
@@ -1052,7 +1049,6 @@ const MonthlyLearning = () => {
                                                 </Fragment>
                                             ) : (null)
                                         }
-
                                     </div>
                                 </div>
                                 <div className="flex justify-end items-center w-[370px] h-[100px] pr-[40px]">
@@ -1095,10 +1091,8 @@ const MonthlyLearning = () => {
                                 <div className="flex items-center w-[290px] h-[100px] text-[20px] text-[#464c52] font-bold pl-[40px]">문제 개수</div>
                                 <div className="flex justify-end items-center w-[260px] h-[100px]">
                                     <div>
-
                                         <span className="text-[#0063ff] text-[42px]">{problemCount}</span>
                                         <span className="text-[#0063ff] text-[26px] ml-[6px]">개</span>
-
                                     </div>
                                 </div>
                                 <div className="flex justify-end items-center w-[370px] h-[100px] pr-[40px]">
@@ -1281,7 +1275,7 @@ const MonthlyLearning = () => {
                                     data={monthlyLearningData2}
                                     keys={['learningCount']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -1386,7 +1380,7 @@ const MonthlyLearning = () => {
                                     data={monthlyLearningData2}
                                     keys={['accuracy']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -1490,7 +1484,7 @@ const MonthlyLearning = () => {
                                     data={monthlyLearningData2}
                                     keys={['learningTimeMinutes']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -1617,7 +1611,7 @@ const MonthlyLearning = () => {
                                     data={weeklyLearningData2}
                                     keys={['learningCount']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -1723,7 +1717,7 @@ const MonthlyLearning = () => {
                                     data={weeklyLearningData2}
                                     keys={['accuracy']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -1829,7 +1823,7 @@ const MonthlyLearning = () => {
                                     data={weeklyLearningData2}
                                     keys={['learningTimeMinutes']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -2556,7 +2550,7 @@ const MonthlyLearning = () => {
             {/* 프린트 컨텐츠 시작 */}
             <div className={"opacity-0 h-0 overflow-hidden"} ref={monthlyReportContent}>
                 <div className="flex justify-center">
-                    <div className="bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="px-[40px] pt-[50px] h-[100px]">
                             <div className="text-[24px] text-[#72787f]">상위 1%가 선택한 연산앱 '일프로연산'</div>
                             <hr className="border-2 mt-[20px]" />
@@ -2585,7 +2579,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             출석 현황
                         </div>
@@ -2675,7 +2669,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             평균 학습 현황
                         </div>
@@ -3069,7 +3063,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             월별 학습 결과 비교
                         </div>
@@ -3087,7 +3081,7 @@ const MonthlyLearning = () => {
                                     data={monthlyLearningData2}
                                     keys={['learningCount']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -3192,7 +3186,7 @@ const MonthlyLearning = () => {
                                     data={monthlyLearningData2}
                                     keys={['accuracy']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -3296,7 +3290,7 @@ const MonthlyLearning = () => {
                                     data={monthlyLearningData2}
                                     keys={['learningTimeMinutes']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -3405,7 +3399,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             주별 학습 결과 그래프
                         </div>
@@ -3423,7 +3417,7 @@ const MonthlyLearning = () => {
                                     data={weeklyLearningData2}
                                     keys={['learningCount']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -3529,7 +3523,7 @@ const MonthlyLearning = () => {
                                     data={weeklyLearningData2}
                                     keys={['accuracy']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -3635,7 +3629,7 @@ const MonthlyLearning = () => {
                                     data={weeklyLearningData2}
                                     keys={['learningTimeMinutes']}
                                     indexBy="date"
-                                    margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                                    margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={{
@@ -3745,7 +3739,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             학습 레벨/단원 분석
                         </div>
@@ -3974,7 +3968,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             우수/취약 스테이지
                         </div>
@@ -4082,7 +4076,7 @@ const MonthlyLearning = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                    <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                         <div className="text-[32px] font-bold text-[#061b3b] text-center mt-[50px]">
                             상세 학습 결과
                         </div>
@@ -4245,11 +4239,11 @@ const MonthlyLearning = () => {
                     </div>
                 </div>
 
-                <div className="relative w-[920px] border">
+                <div className="relative w-[920px]">
                     {[...Array(numberOfLearningData)].map((num, index) => {
                         return (
                             <div key={index} className="flex justify-center">
-                                <div className="relative bg-[#ffffff] w-[920px] h-[1301px] border">
+                                <div className="relative bg-[#ffffff] w-[920px] h-[1300px]">
                                     <div className="mt-[50px] flex px-[60px]">
                                         <div className="flex items-center">
                                             <div>

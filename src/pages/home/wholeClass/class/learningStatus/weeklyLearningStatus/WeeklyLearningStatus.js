@@ -85,7 +85,6 @@ const WeeklyLearningStatus = () => {
     const getWeeklyStudents = (schoolNo, classNo, startDate, endDate, sort, order) => {
         weeklyStudents(schoolNo, classNo, startDate, endDate, sort, order)
                 .then((res) => {
-                    console.log(res.data);
                     setWeeklyStudentList(res.data);
                 })
                 .catch((error) => console.error(error))
@@ -201,7 +200,7 @@ const WeeklyLearningStatus = () => {
                         </svg>
                     </div>
 
-                    <div className="text-[18px] px-[20px] font-bold text-[#464c52] select-none">{startDate} ~ {endDate}</div>
+                    <div className="w-[280px] text-[18px] px-[20px] font-bold text-[#464c52] select-none text-center">{startDate} ~ {endDate}</div>
 
                     <div className="w-[32px] h-[32px] bg-[#e4e7e9] rounded-lg flex justify-center items-center cursor-pointer" onClick={() => { onChangeDate(7) }}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

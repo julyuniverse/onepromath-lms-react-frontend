@@ -377,8 +377,8 @@ const WeeklyLearning = () => {
         }
     }
 
-    const getLearningData = (studentNo, startDate, endDate) => { // 학습 데이터
-        learningData(studentNo, startDate, endDate)
+    const getLearningData = async (studentNo, startDate, endDate) => { // 학습 데이터
+        await learningData(studentNo, startDate, endDate)
             .then((res) => {
                 setLearningData2(res.data);
             })
@@ -445,7 +445,7 @@ const WeeklyLearning = () => {
                         </svg>
                     </div>
 
-                    <div className="px-[20px] font-bold text-[#464c52] select-none">{startDate} ~ {endDate}</div>
+                    <div className="w-[280px] px-[20px] font-bold text-[#464c52] select-none text-center text-[18px]">{startDate} ~ {endDate}</div>
 
                     <div className="w-[32px] h-[32px] bg-[#e4e7e9] rounded-lg flex justify-center items-center cursor-pointer" onClick={() => onChangeDate(7)} >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -799,7 +799,7 @@ const WeeklyLearning = () => {
                             data={lastWeekAndThisWeekLearningData2}
                             keys={learningCountKeys}
                             indexBy="thisWeekLearningDate"
-                            margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                            margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                             axisTop={null}
                             axisRight={null}
                             axisBottom={{
@@ -938,7 +938,7 @@ const WeeklyLearning = () => {
                             data={lastWeekAndThisWeekLearningData2}
                             keys={accuracyKeys}
                             indexBy="thisWeekLearningDate"
-                            margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                            margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                             axisTop={null}
                             axisRight={null}
                             axisBottom={{
@@ -1077,7 +1077,7 @@ const WeeklyLearning = () => {
                             data={lastWeekAndThisWeekLearningData2}
                             keys={learningTimeMinutesKeys}
                             indexBy="thisWeekLearningDate"
-                            margin={{ top: 20, right: 30, bottom: 40, left: 50 }}
+                            margin={{ top: 30, right: 30, bottom: 40, left: 50 }}
                             axisTop={null}
                             axisRight={null}
                             axisBottom={{

@@ -12,7 +12,6 @@ const Class = () => {
             classes(window.sessionStorage.getItem("schoolinfono"), params.class)
                 .then((res) => {
                     setClassList(res.data);
-                    console.log(res.data);
                 })
                 .catch((error) => { console.error(error) });
         } else {

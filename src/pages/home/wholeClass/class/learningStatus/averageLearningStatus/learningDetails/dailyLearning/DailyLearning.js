@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, forwardRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { attendanceWeek, dailyLearningData, learningData } from "../../../../../../../../api/axios";
 import ScrollToTopButton from "../../../../../../../../components/ScrollToTopButton";
@@ -7,6 +7,9 @@ import Accuracy from "../../../../../../../../assets/images/accuracy.png";
 import Time from "../../../../../../../../assets/images/time.png";
 import { ResponsiveBar } from '@nivo/bar' // nivo chart api
 import ClassicSpinnerLoader from "../../../../../../../../components/ClassicSpinnerLoader";
+import DatePicker from "react-datepicker"; // react date picker API
+import { ko } from "date-fns/esm/locale"; // react date picker 한국어 설정에 필요한 API
+import "react-datepicker/dist/react-datepicker.css"; // react date picker css import
 
 const DailyLearning = () => {
     const location = useLocation();
@@ -24,6 +27,7 @@ const DailyLearning = () => {
     const [maxAccuracy, setMaxAccuracy] = useState(0.0);
     const [maxLearningTimeMinutes, setMaxLearningTimeMinutes] = useState(0);
     const [learningData2, setLearningData2] = useState([]);
+    const [datePickerStartDate, setDatePickerStartDate] = useState("");
 
     const getDayData = async () => {
         if (params.startdate) { // params.startdate가 있을 때
@@ -33,6 +37,7 @@ const DailyLearning = () => {
             let startDateDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
             let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
             setStartDate(startDate2);
+            setDatePickerStartDate(nowDate);
 
             let tmpWeekStartDate = new Date(startDate2);
             let days = tmpWeekStartDate.getDay() === 0 ? 6 : tmpWeekStartDate.getDay() - 1;
@@ -59,6 +64,7 @@ const DailyLearning = () => {
             let startDateDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
             let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
             setStartDate(startDate2);
+            setDatePickerStartDate(nowDate);
 
             let tmpWeekStartDate = new Date(startDate2);
             let days = tmpWeekStartDate.getDay() === 0 ? 6 : tmpWeekStartDate.getDay() - 1;
@@ -225,6 +231,24 @@ const DailyLearning = () => {
         return value;
     }
 
+    const ReactDatePickerCustomInput = forwardRef(({ value, onClick }, ref) => ( // react date picker custom input
+        <button onClick={onClick} ref={ref} style={{ fontSize: "18px", color: "#464c52", fontWeight: "700" }}>
+            {value}
+        </button>
+    ));
+
+    const ReactDatePickerOnChange = (e) => { // react date picker custom onchange
+        setDatePickerStartDate(e);
+        let nowDate = new Date(e);
+        let startDateYear = nowDate.getFullYear();
+        let startDateMonth = (nowDate.getMonth() + 1) < 10 ? "0" + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
+        let startDateDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
+        setStartDate(startDate2);
+
+        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${params.studentno}/${params.studentname}/3/${startDate2}`);
+    }
+
     useEffect(async () => {
         setIsLoading(true);
         await getDayData();
@@ -252,7 +276,16 @@ const DailyLearning = () => {
                         </svg>
                     </div>
 
-                    <div className="px-[20px] font-bold text-[#464c52] select-none">{startDate}</div>
+                    <div className="w-[150px] px-[20px] font-bold text-[#464c52] select-none text-center">
+                        <DatePicker
+                            calendarClassName="rasta-stripes"
+                            locale={ko}
+                            dateFormat="yyyy-MM-dd"
+                            selected={datePickerStartDate}
+                            onChange={ReactDatePickerOnChange}
+                            customInput={<ReactDatePickerCustomInput />}
+                        />
+                    </div>
 
                     <div className="w-[32px] h-[32px] bg-[#e4e7e9] rounded-lg flex justify-center items-center cursor-pointer" onClick={() => onChangeDate(1)} >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -415,7 +448,7 @@ const DailyLearning = () => {
                                     data={dailyLearningData2}
                                     keys={['dailyLearningCount', 'freeLearningCount', 'oneproLearningCount', 'worldLearningCount']}
                                     indexBy="learningDate"
-                                    margin={{ top: 20, right: 20, bottom: 20, left: 50 }}
+                                    margin={{ top: 30, right: 20, bottom: 20, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={null}
@@ -478,7 +511,7 @@ const DailyLearning = () => {
                                     data={dailyLearningData2}
                                     keys={['dailyAccuracy', 'freeAccuracy', 'oneproAccuracy', 'worldAccuracy']}
                                     indexBy="learningDate"
-                                    margin={{ top: 20, right: 20, bottom: 20, left: 50 }}
+                                    margin={{ top: 30, right: 20, bottom: 20, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={null}
@@ -541,7 +574,7 @@ const DailyLearning = () => {
                                     data={dailyLearningData2}
                                     keys={['dailyLearningTimeMinutes', 'freeLearningTimeMinutes', 'oneproLearningTimeMinutes', 'worldLearningTimeMinutes']}
                                     indexBy="learningDate"
-                                    margin={{ top: 20, right: 20, bottom: 20, left: 50 }}
+                                    margin={{ top: 30, right: 20, bottom: 20, left: 50 }}
                                     axisTop={null}
                                     axisRight={null}
                                     axisBottom={null}

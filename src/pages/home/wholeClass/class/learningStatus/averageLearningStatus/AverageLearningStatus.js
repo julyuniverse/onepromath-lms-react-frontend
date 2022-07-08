@@ -1,10 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, forwardRef } from "react";
 import { ResponsiveScatterPlot } from '@nivo/scatterplot' // nivo chart api
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { averageStudents, averageClass } from "../../../../../../api/axios";
 import StageIcon from "../../../../../../assets/images/icon/stage.png";
 import AccuracyIcon from "../../../../../../assets/images/icon/accuracy.png";
 import TimeIcon from "../../../../../../assets/images/icon/time.png";
+import DatePicker from "react-datepicker"; // react date picker API
+import { ko } from "date-fns/esm/locale"; // react date picker 한국어 설정에 필요한 API
+import "react-datepicker/dist/react-datepicker.css"; // react date picker css import
 
 const AverageLearningStatus = () => {
     const location = useLocation();
@@ -20,6 +23,7 @@ const AverageLearningStatus = () => {
     const [averageClassData, setAverageClassData] = useState([]);
     const [year, setYear] = useState("");
     const [month, setMonth] = useState("");
+    const [datePickerStartDate, setDatePickerStartDate] = useState("");
 
     const getAverageData = () => { // 평균 데이터
         if (params.subtabmenu) { // params.subtabmenu가 존재한다면
@@ -85,6 +89,7 @@ const AverageLearningStatus = () => {
                 let getDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
                 let startDate2 = getFullYear + "-" + getMonth + "-" + getDay;
                 setStartDate(startDate2);
+                setDatePickerStartDate(nowDate);
 
                 getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2, 1, true);
                 getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2);
@@ -165,11 +170,13 @@ const AverageLearningStatus = () => {
                 let getDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
                 let startDate2 = getFullYear + "-" + getMonth + "-" + getDay;
                 setStartDate(startDate2);
+                setDatePickerStartDate(nowDate);
 
                 getAverageStudents(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2, params.sort, params.order);
                 getAverageClass(window.sessionStorage.getItem("schoolinfono"), params.classno, startDate2, startDate2);
             }
         } else {
+            setSubTabMenu(1);
             let nowDate = new Date();
             let getFullYear = nowDate.getFullYear();
             let getMonth = nowDate.getMonth();
@@ -354,6 +361,24 @@ const AverageLearningStatus = () => {
         navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/${params.subtabmenu ? params.subtabmenu : subTabMenu}/${params.startdate ? params.startdate : startDate}/${thisSort2}/${thisOrder2}`);
     }
 
+    const ReactDatePickerCustomInput = forwardRef(({ value, onClick }, ref) => ( // react date picker custom input
+        <button onClick={onClick} ref={ref} style={{ fontSize: "18px", color: "#464c52", fontWeight: "700" }}>
+            {value}
+        </button>
+    ));
+
+    const ReactDatePickerOnChange = (e) => { // react date picker custom onchange
+        setDatePickerStartDate(e);
+        let nowDate = new Date(e);
+        let startDateYear = nowDate.getFullYear();
+        let startDateMonth = (nowDate.getMonth() + 1) < 10 ? "0" + (nowDate.getMonth() + 1) : (nowDate.getMonth() + 1);
+        let startDateDay = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
+        setStartDate(startDate2);
+
+        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/${params.subtabmenu ? params.subtabmenu : subTabMenu}/${startDate2}/${sort}/${order}`);
+    }
+
     useEffect(() => {
         getAverageData();
     }, [location])
@@ -391,24 +416,32 @@ const AverageLearningStatus = () => {
                                 <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                         </div>
-
-                        <div className="text-[18px] px-[20px] font-bold text-[#464c52] select-none">
+                        {
                             {
-                                {
-                                    1: <Fragment>
+                                1: <Fragment>
+                                    <div className="w-[120px] text-[18px] px-[20px] font-bold text-[#464c52] select-none text-center">
                                         {year}-{month}
-                                    </Fragment>,
-                                    2: <Fragment>
+                                    </div>
+                                </Fragment>,
+                                2: <Fragment>
+                                    <div className="w-[280px] text-[18px] px-[20px] font-bold text-[#464c52] select-none text-center">
                                         {startDate} ~ {endDate}
-                                    </Fragment>,
-                                    3: <Fragment>
-                                        {startDate}
-                                    </Fragment>
-                                }[subTabMenu]
-
-                            }
-                        </div>
-
+                                    </div>
+                                </Fragment>,
+                                3: <Fragment>
+                                    <div className="w-[150px] text-[18px] px-[20px] font-bold text-[#464c52] select-none text-center">
+                                        <DatePicker
+                                            calendarClassName="rasta-stripes"
+                                            locale={ko}
+                                            dateFormat="yyyy-MM-dd"
+                                            selected={datePickerStartDate}
+                                            onChange={ReactDatePickerOnChange}
+                                            customInput={<ReactDatePickerCustomInput />}
+                                        />
+                                    </div>
+                                </Fragment>
+                            }[subTabMenu]
+                        }
                         <div className="w-[32px] h-[32px] bg-[#e4e7e9] rounded-lg flex justify-center items-center cursor-pointer"
                             onClick={
                                 () => {
@@ -466,7 +499,7 @@ const AverageLearningStatus = () => {
                                     gridYValues={5}
                                     tooltip={({ node }) => (
                                         <div className="w-[180px] h-[130px] text-[#f7f8f9] bg-[#525d67] rounded pt-[13px] pl-[13px] shadow">
-                                            <div className="text-[17px] font-bold">{node.data.studentName}</div>
+                                            <div className="text-[17px] font-bold">{node.data.studentName.length > 8 ? node.data.studentName.substring(0, 8) + "..." : node.data.studentName}</div>
                                             <div className="flex text-[15px] mt-[12px]">
                                                 <div className="w-[50%]">
                                                     <div>학습량</div>
