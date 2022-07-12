@@ -228,14 +228,13 @@ const WeeklyLearningStatus = () => {
                                 <div className="absolute top-[-34px] left-[2px] z-10">
                                     <div className="absolute w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-[#525d67]"></div>
                                 </div>
-                                <div className="absolute top-[-124px] left-[-70px] flex bg-[#525d67] rounded-md shadow-sm p-[14px] whitespace-nowrap text-[14px] text-[#f7f8f9]">
+                                <div className="absolute top-[-104px] left-[-88px] flex bg-[#525d67] rounded-md shadow-sm p-[14px] whitespace-nowrap text-[14px] text-[#f7f8f9]">
                                     <div className="pt-[6px] pr-[6px]">
                                         <div className="w-[8px] h-[8px] bg-[#f7f8f9] rounded-xl"></div>
                                     </div>
                                     <div>
-                                        학습한 스테이지에<br />
-                                        해당하는 학년을<br />
-                                        의미합니다.
+                                        색상은 학습한 스테이지에<br />
+                                        해당하는 학년을 의미합니다.
                                     </div>
                                 </div>
                             </div>
