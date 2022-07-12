@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const TopNavigation = () => {
     const location = useLocation();
     const [menuName, setMenuName] = useState('전체 학급');
-    const [menuPathName, setMenuPathName] = useState("/home/wholeclass/999");
+    const [menuPathName, setMenuPathName] = useState("/home/whole-class/999");
     const [subMenuName, setSubMenuName] = useState("");
     const [subMenuPathName, setSubMenuPathName] = useState("");
     const [className, setClassName] = useState("");
@@ -25,14 +25,14 @@ const TopNavigation = () => {
         
         if (Array.isArray(arr) && arr.length === 0) {
             setSubMenuName("전체보기");
-            setSubMenuPathName("/home/wholeclass/999");
+            setSubMenuPathName("/home/whole-class/999");
             setClassName("");
             setLearningStatus("");
             setLearningDetails("");
             setLastMenu(2);
         } else {
             // 메뉴
-            if (arr[1] === "wholeclass") {
+            if (arr[1] === "whole-class") {
                 setMenuName("전체 학급");
 
                 // 서브 메뉴
@@ -70,7 +70,7 @@ const TopNavigation = () => {
                     setLastMenu(2);
                 } else {
                     setSubMenuName("전체보기");
-                    setSubMenuPathName("/home/wholeclass/999");
+                    setSubMenuPathName("/home/whole-class/999");
                     setLastMenu(2);
                 }
 
@@ -84,9 +84,9 @@ const TopNavigation = () => {
                 // 학습 현황
                 if (arr[5]) {
                     if (arr[6]) {
-                        if (arr[6] === "weeklylearningstatus") { // 주간 학습 현황
+                        if (arr[6] === "weekly-learning-status") { // 주간 학습 현황
                             setLearningStatus("주간 학습 현황");
-                        } else if (arr[6] === "averagelearningstatus") { // 평균 학습 현황
+                        } else if (arr[6] === "average-learning-status") { // 평균 학습 현황
                             setLearningStatus("평균 학습 현황");
                         }
                         setLearningStatusPathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/${arr[5]}/${arr[6]}`);
@@ -102,7 +102,7 @@ const TopNavigation = () => {
 
                 // 학습 상세
                 if (arr[6]) {
-                    if (arr[6] === "averagelearningstatus") {
+                    if (arr[6] === "average-learning-status") {
                         if (arr[10]) {
                             if (arr[10] === "1") {
                                 setLearningDetails("월간 보고서");

@@ -100,7 +100,7 @@ const WeeklyLearningStatus = () => {
             let tmpDay = tmpDate2.getDate() < 10 ? "0" + tmpDate2.getDate() : tmpDate2.getDate();
             let startDate2 = tmpYear + "-" + tmpMonth + "-" + tmpDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}/${params.sort}/${params.order}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/weekly-learning-status/${startDate2}/${params.sort}/${params.order}`);
         } else {
             let newDate = new Date(startDate);
             let tmpDate = newDate.setDate(newDate.getDate() + number);
@@ -110,7 +110,7 @@ const WeeklyLearningStatus = () => {
             let tmpDay = tmpDate2.getDate() < 10 ? "0" + tmpDate2.getDate() : tmpDate2.getDate();
             let startDate2 = tmpYear + "-" + tmpMonth + "-" + tmpDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${startDate2}/${sort}/${order}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/weekly-learning-status/${startDate2}/${sort}/${order}`);
         }
     }
 
@@ -122,7 +122,7 @@ const WeeklyLearningStatus = () => {
             thisOrder2 = true;
         }
 
-        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/weeklylearningstatus/${params.startdate ? params.startdate : startDate}/${thisSort2}/${thisOrder2}`);
+        navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/weekly-learning-status/${params.startdate ? params.startdate : startDate}/${thisSort2}/${thisOrder2}`);
     }
 
     const hh = (seconds) => {
@@ -356,7 +356,7 @@ const WeeklyLearningStatus = () => {
                                     </div>
                                 </div>
                                 <div className="w-[100px] flex justify-center items-center border-l-2 border-[#f3f7ff]">
-                                    <Link to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName}/2/${startDate}`} className="block w-[74px] h-[28px] bg-[#eef4fb] rounded-md">
+                                    <Link to={`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${value.studentNo}/${value.studentName}/2/${startDate}`} className="block w-[74px] h-[28px] bg-[#eef4fb] rounded-md">
                                         <div className="h-full flex justify-center items-center text-[#3f8ce8]">
                                             상세보기
                                         </div>

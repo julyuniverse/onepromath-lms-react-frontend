@@ -513,7 +513,7 @@ const MonthlyLearning = () => {
             let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${params.studentno}/${params.studentname}/1/${startDate2}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${params.studentno}/${params.studentname}/1/${startDate2}`);
         } else {
             let nowDate = new Date();
             let getFullYear = nowDate.getFullYear();
@@ -532,7 +532,7 @@ const MonthlyLearning = () => {
             let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${params.studentno}/${params.studentname}/1/${startDate2}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${params.studentno}/${params.studentname}/1/${startDate2}`);
         }
     }
 
@@ -608,7 +608,7 @@ const MonthlyLearning = () => {
         const student = students2.find(student => Number(student.studentNo) === Number(event.target.value));
         let studentName = student.studentName.length > 8 ? student.studentName.substring(0, 8) + "..." : student.studentName;
 
-        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${student.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
+        navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${student.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
     }
 
     const onChangeProfileNumber2 = (chevron) => { // 방향 클릭 시 studentNo 변경
@@ -620,7 +620,7 @@ const MonthlyLearning = () => {
                 let student2 = students2[index - 1];
                 let studentName = student2.studentName.length > 8 ? student2.studentName.substring(0, 8) + "..." : student2.studentName;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${student2.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${student2.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
             }
         } else if (chevron === "right") {
             const lastIndex = students2.length - 1;
@@ -629,7 +629,7 @@ const MonthlyLearning = () => {
                 let student2 = students2[index + 1];
                 let studentName = student2.studentName.length > 8 ? student2.studentName.substring(0, 8) + "..." : student2.studentName;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${student2.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${student2.studentNo}/${studentName}/1/${params.startdate ? params.startdate : startDate}`);
             }
         }
     }

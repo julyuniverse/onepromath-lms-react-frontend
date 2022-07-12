@@ -238,11 +238,11 @@ const AverageLearningStatus = () => {
     // 월별, 주별, 일별 변경 시
     const settingSubTabeMenu = (subTabMenuValue) => {
         if (subTabMenuValue === 1) {
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/1`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/1`);
         } else if (subTabMenuValue === 2) {
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/2`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/2`);
         } else if (subTabMenuValue === 3) {
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/3`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/3`);
         }
     }
 
@@ -266,7 +266,7 @@ const AverageLearningStatus = () => {
                 let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/1/${startDate2}/${sort}/${order}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/1/${startDate2}/${sort}/${order}`);
             } else if (Number(params.subtabmenu) === 2 && (!params.startdate)) { // 주별 학습 평균 (params.startdate가 없을 때)
                 let nowDate = new Date(startDate);
                 let thisDate = new Date(nowDate.setDate(nowDate.getDate() + number));
@@ -276,7 +276,7 @@ const AverageLearningStatus = () => {
                 let tmpStartDateDay = thisDate.getDate() < 10 ? "0" + thisDate.getDate() : thisDate.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/2/${startDate2}/${sort}/${order}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/2/${startDate2}/${sort}/${order}`);
             } else if (Number(params.subtabmenu) === 3 && (!params.startdate)) { // 일별 학습 평균 (params.startdate가 없을 때)
                 let nowDate = new Date(startDate);
                 let thisDate = new Date(nowDate.setDate(nowDate.getDate() + number));
@@ -286,7 +286,7 @@ const AverageLearningStatus = () => {
                 let tmpStartDateDay = thisDate.getDate() < 10 ? "0" + thisDate.getDate() : thisDate.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/3/${startDate2}/${sort}/${order}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/3/${startDate2}/${sort}/${order}`);
             } else if (Number(params.subtabmenu) === 1) { // 월별 학습 평균 (params.startdate가 있을 때)
                 let nowDate = new Date(params.startdate);
                 let getFullYear = nowDate.getFullYear();
@@ -306,7 +306,7 @@ const AverageLearningStatus = () => {
                 let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/1/${startDate2}/${sort}/${order}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/1/${startDate2}/${sort}/${order}`);
             } else if (Number(params.subtabmenu) === 2) { // 주별 학습 평균 (params.startdate가 있을 때)
                 let nowDate = new Date(params.startdate);
                 let thisDate = new Date(nowDate.setDate(nowDate.getDate() + number));
@@ -316,7 +316,7 @@ const AverageLearningStatus = () => {
                 let tmpStartDateDay = thisDate.getDate() < 10 ? "0" + thisDate.getDate() : thisDate.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/2/${startDate2}/${sort}/${order}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/2/${startDate2}/${sort}/${order}`);
             } else if (Number(params.subtabmenu) === 3) { // 일별 학습 평균 (params.startdate가 있을 때)
                 let nowDate = new Date(params.startdate);
                 let thisDate = new Date(nowDate.setDate(nowDate.getDate() + number));
@@ -326,7 +326,7 @@ const AverageLearningStatus = () => {
                 let tmpStartDateDay = thisDate.getDate() < 10 ? "0" + thisDate.getDate() : thisDate.getDate();
                 let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-                navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/3/${startDate2}/${sort}/${order}`);
+                navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/3/${startDate2}/${sort}/${order}`);
             }
         } else {
             let nowDate = new Date(startDate);
@@ -346,7 +346,7 @@ const AverageLearningStatus = () => {
             let tmpStartDateDay = tmpStartDate2.getDate() < 10 ? "0" + tmpStartDate2.getDate() : tmpStartDate2.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/1/${startDate2}/${sort}/${order}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/1/${startDate2}/${sort}/${order}`);
         }
     }
 
@@ -358,7 +358,7 @@ const AverageLearningStatus = () => {
             thisOrder2 = true;
         }
 
-        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/${params.subtabmenu ? params.subtabmenu : subTabMenu}/${params.startdate ? params.startdate : startDate}/${thisSort2}/${thisOrder2}`);
+        navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/${params.subtabmenu ? params.subtabmenu : subTabMenu}/${params.startdate ? params.startdate : startDate}/${thisSort2}/${thisOrder2}`);
     }
 
     const ReactDatePickerCustomInput = forwardRef(({ value, onClick }, ref) => ( // react date picker custom input
@@ -376,7 +376,7 @@ const AverageLearningStatus = () => {
         let startDate2 = startDateYear + "-" + startDateMonth + "-" + startDateDay;
         setStartDate(startDate2);
 
-        navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/${params.subtabmenu ? params.subtabmenu : subTabMenu}/${startDate2}/${sort}/${order}`);
+        navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/${params.subtabmenu ? params.subtabmenu : subTabMenu}/${startDate2}/${sort}/${order}`);
     }
 
     useEffect(() => {
@@ -671,7 +671,7 @@ const AverageLearningStatus = () => {
                                             </table>
                                         </div>
                                         <Link
-                                            to={`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${value.studentNo}/${value.studentName.length > 8 ? value.studentName.substring(0, 8) + "..." : value.studentName}/${subTabMenu}/${startDate}`}
+                                            to={`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${value.studentNo}/${value.studentName.length > 8 ? value.studentName.substring(0, 8) + "..." : value.studentName}/${subTabMenu}/${startDate}`}
                                             className={"w-[210px] h-[50px] mt-[10px] border-2 border-[#eef4fb] bottom-[16px] flex items-center justify-center rounded shadow-sm bg-[#eef4fb] hover:border-blue-500 hover:shadow"}>
                                             학습 결과 상세
                                         </Link>

@@ -15,9 +15,9 @@ const LearningStatus = () => {
             return el !== null && el !== undefined && el !== "";
         });
 
-        if (arr[6] === "weeklylearningstatus") {
+        if (arr[6] === "weekly-learning-status") {
             setTabMenu(1);
-        } else if (arr[6] === "averagelearningstatus") {
+        } else if (arr[6] === "average-learning-status") {
             setTabMenu(2);
         } else {
             setTabMenu(1);
@@ -32,7 +32,7 @@ const LearningStatus = () => {
         <div>
             <div className="flex">
                 {/* 상위 경로 후행에 "*"를 설정하면 하위 경로에서는 상위 경로는 생략하고 이후 경로부터 설정. */}
-                <Link to={`weeklylearningstatus`} className={tabMenu === 1 ? "block w-[192px] h-[70px] bg-[#ffffff] rounded-t-3xl relative" : "block w-[192px] h-[70px] bg-[#dce9ff] rounded-t-3xl relative"} onClick={() => { setTabMenu(1) }}>
+                <Link to={`weekly-learning-status`} className={tabMenu === 1 ? "block w-[192px] h-[70px] bg-[#ffffff] rounded-t-3xl relative" : "block w-[192px] h-[70px] bg-[#dce9ff] rounded-t-3xl relative"} onClick={() => { setTabMenu(1) }}>
                     {
                         tabMenu === 1 ? (
                             <div className="absolute w-[4px] h-[40px] bg-[#0063ff] left-0 top-[15px] rounded-tr-3xl rounded-br-3xl">
@@ -44,7 +44,7 @@ const LearningStatus = () => {
                         주간 학습 현황
                     </div>
                 </Link>
-                <Link to={`averagelearningstatus`} className={tabMenu === 2 ? "block w-[192px] h-[70px] bg-[#ffffff] rounded-t-3xl relative ml-[10px]" : "block w-[192px] h-[70px] bg-[#dce9ff] rounded-t-3xl relative ml-[10px]"} onClick={() => { setTabMenu(2) }}>
+                <Link to={`average-learning-status`} className={tabMenu === 2 ? "block w-[192px] h-[70px] bg-[#ffffff] rounded-t-3xl relative ml-[10px]" : "block w-[192px] h-[70px] bg-[#dce9ff] rounded-t-3xl relative ml-[10px]"} onClick={() => { setTabMenu(2) }}>
                     {
                         tabMenu === 2 ? (
                             <div className="absolute w-[4px] h-[40px] bg-[#0063ff] left-0 top-[15px] rounded-tr-3xl rounded-br-3xl">
@@ -59,11 +59,11 @@ const LearningStatus = () => {
             </div>
             <Routes>
                 {/* 상위 경로 후행에 "*"를 설정하면 하위 경로에서는 상위 경로는 생략하고 이후 경로부터 설정. */}
-                <Route path="weeklylearningstatus" element={<WeeklyLearningStatus />}></Route>
-                <Route path="weeklylearningstatus/:startdate/:sort/:order" element={<WeeklyLearningStatus />}></Route>
-                <Route path="averagelearningstatus" element={<AverageLearningStatus />}></Route>
-                <Route path="averagelearningstatus/:subtabmenu" element={<AverageLearningStatus />}></Route>
-                <Route path="averagelearningstatus/:subtabmenu/:startdate/:sort/:order" element={<AverageLearningStatus />}></Route>
+                <Route path="weekly-learning-status" element={<WeeklyLearningStatus />}></Route>
+                <Route path="weekly-learning-status/:startdate/:sort/:order" element={<WeeklyLearningStatus />}></Route>
+                <Route path="average-learning-status" element={<AverageLearningStatus />}></Route>
+                <Route path="average-learning-status/:subtabmenu" element={<AverageLearningStatus />}></Route>
+                <Route path="average-learning-status/:subtabmenu/:startdate/:sort/:order" element={<AverageLearningStatus />}></Route>
                 <Route path="*" element={<WeeklyLearningStatus />}></Route>
             </Routes>
         </div>

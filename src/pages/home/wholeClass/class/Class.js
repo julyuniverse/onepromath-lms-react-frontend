@@ -69,7 +69,7 @@ const Class = () => {
                                         ))
                                     ) : (
                                         classList && classList.map((value, index) => (
-                                            <Link key={index} to={`/home/wholeclass/${(params.class) ? params.class : 999}/${value.schoolClassNo}/${value.className}/learningstatus`}
+                                            <Link key={index} to={`/home/whole-class/${(params.class) ? params.class : 999}/${value.schoolClassNo}/${value.className}/learning-status`}
                                                 className="block relative w-[192px] h-[192px] bg-[#ffffff] mr-[40px] mb-[40px] rounded-[10px] p-[20px] transition duration-300 ease-in-out transform shadow-md hover:shadow-lg hover:-translate-y-1">
                                                 <div className="text-[18px] font-bold">
                                                     {value.className}

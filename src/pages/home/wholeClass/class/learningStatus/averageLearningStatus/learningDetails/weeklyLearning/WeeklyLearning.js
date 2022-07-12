@@ -145,7 +145,7 @@ const WeeklyLearning = () => {
             let tmpStartDateDay = thisDate.getDate() < 10 ? "0" + thisDate.getDate() : thisDate.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${params.studentno}/${params.studentname}/2/${startDate2}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${params.studentno}/${params.studentname}/2/${startDate2}`);
         } else {
             let nowDate = new Date(startDate);
             let thisDate = new Date(nowDate.setDate(nowDate.getDate() + number));
@@ -155,7 +155,7 @@ const WeeklyLearning = () => {
             let tmpStartDateDay = thisDate.getDate() < 10 ? "0" + thisDate.getDate() : thisDate.getDate();
             let startDate2 = tmpStartDateYear + "-" + tmpStartDateMonth + "-" + tmpStartDateDay;
 
-            navigate(`/home/wholeclass/${params.class}/${params.classno}/${params.classname}/learningstatus/averagelearningstatus/learningdetails/${params.studentno}/${params.studentname}/2/${startDate2}`);
+            navigate(`/home/whole-class/${params.class}/${params.classno}/${params.classname}/learning-status/average-learning-status/learning-details/${params.studentno}/${params.studentname}/2/${startDate2}`);
         }
     }
 

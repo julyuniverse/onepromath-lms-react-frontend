@@ -24,7 +24,7 @@ const LeftNavigation = () => {
             return el !== null && el !== undefined && el !== "";
         });
 
-        if (arr[1] === "wholeclass") {
+        if (arr[1] === "whole-class") {
             setMenu(1);
 
             if (arr[2]) {
@@ -82,7 +82,7 @@ const LeftNavigation = () => {
                             </div>
                         ) : (null)
                     }
-                    <Link to={`/home/wholeclass/999`} className="block">
+                    <Link to={`/home/whole-class/999`} className="block">
                         <div className={menu === 1 ? "bg-[#f1f3f7] flex items-center h-[60px] pl-[20px] cursor-pointer" : "flex items-center h-[60px] pl-[20px] cursor-pointer"}>
                             <div>
                                 <svg className={menu === 1 ? "w-[28px] h-[28px] stroke-[#3569e7]" : "w-[28px] h-[28px] stroke-[#72787f]"} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#000000" strokeWidth="2" fill="none"> <rect width="7" height="7" x="3" y="3" /> <rect width="7" height="7" x="14" y="3" /> <rect width="7" height="7" x="3" y="14" /> <rect width="7" height="7" x="14" y="14" /> </svg>
@@ -109,7 +109,7 @@ const LeftNavigation = () => {
                     menu === 1 ? (
                         <div>
                             {classMenu && classMenu.map((value, index) => (
-                                <Link key={index} to={`/home/wholeclass/${value.id}`} className="block">
+                                <Link key={index} to={`/home/whole-class/${value.id}`} className="block">
                                     <div className={subMenu === value.id ? "flex items-center h-[50px] pl-[60px] text-[#72787f] font-semibold" : "flex items-center h-[50px] pl-[60px] text-[#999c9f]"}>
                                         {value.name}
                                     </div>
