@@ -8,6 +8,7 @@ const TopNavigation = () => {
     const [subMenuName, setSubMenuName] = useState("");
     const [subMenuPathName, setSubMenuPathName] = useState("");
     const [className, setClassName] = useState("");
+    const [classNamePathName, setClassNamePathName] = useState("");
     const [learningStatus, setLearningStatus] = useState("");
     const [learningStatusPathName, setLearningStatusPathName] = useState("");
     const [learningDetails, setLearningDetails] = useState("");
@@ -77,8 +78,10 @@ const TopNavigation = () => {
                 // 반 이름
                 if (arr[4]) {
                     setClassName(arr[4]);
+                    setClassNamePathName(`/${arr[0]}/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}/learning-status`);
                 } else {
                     setClassName("");
+                    setClassNamePathName("");
                 }
 
                 // 학습 현황
@@ -174,14 +177,14 @@ const TopNavigation = () => {
                 {
                     className !== "" ? (
                         <div>
-                            <div>
+                            <Link to={classNamePathName} className="block">
                                 <div className="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                     </svg>
-                                    <div>{decodeURIComponent(className)}</div>
+                                    <div className="hover:text-[#0063ff]">{decodeURIComponent(className)}</div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ) : (null)
                 }
