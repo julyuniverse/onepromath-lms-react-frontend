@@ -670,7 +670,7 @@ const MonthlyLearning = () => {
                             </div>
                             <div className="absolute top-[33px] right-[-444px] bg-[#ffffff] border-[1px] border-[#d0d7de] rounded p-2 shadow-sm">
                                 <div className="flex items-center border-[1px] border-[#d0d7de] rounded-md px-2 bg-[#f6f8fa]">
-                                    <input type="text" className="w-[20.875rem] h-6 bg-[#f6f8fa]" ref={linkAddressInput} value={`http://localhost:3000/monthly-report/25/0/${encryptProfileNo}/${params.startdate ? params.startdate : startDate}`} readOnly />
+                                    <input type="text" className="w-[20.875rem] h-6 bg-[#f6f8fa]" ref={linkAddressInput} value={`http://일프로선생님.kr/monthly-report/25/0/${encryptProfileNo}/${params.startdate ? params.startdate : startDate}`} readOnly />
                                     <div className="bg-[#cccccc] w-[0.063rem] h-[2.125rem] ml-2"></div>
                                     <div className="relative w-[3.125rem] ml-2">
                                         <div>
