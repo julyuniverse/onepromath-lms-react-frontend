@@ -152,11 +152,11 @@ const WeeklyLearningStatus = () => {
             <div>
                 <div className="flex items-center justify-end text-[14px]">
                     <div className="w-[10px] h-[10px] bg-[#ffea00] rounded-full"></div>&nbsp;1학년&nbsp;
-                    <div className="w-[10px] h-[10px] bg-[#ffa500] rounded-full"></div>&nbsp;2학년&nbsp;
-                    <div className="w-[10px] h-[10px] bg-[#ff0000] rounded-full"></div>&nbsp;3학년&nbsp;
-                    <div className="w-[10px] h-[10px] bg-[#ee82ee] rounded-full"></div>&nbsp;4학년&nbsp;
-                    <div className="w-[10px] h-[10px] bg-[#0000ff] rounded-full"></div>&nbsp;5학년&nbsp;
-                    <div className="w-[10px] h-[10px] bg-[#00ff00] rounded-full"></div>&nbsp;6학년
+                    <div className="w-[10px] h-[10px] bg-[#ffa500] rounded-full ml-[10px]"></div>&nbsp;2학년&nbsp;
+                    <div className="w-[10px] h-[10px] bg-[#ff0000] rounded-full ml-[10px]"></div>&nbsp;3학년&nbsp;
+                    <div className="w-[10px] h-[10px] bg-[#ee82ee] rounded-full ml-[10px]"></div>&nbsp;4학년&nbsp;
+                    <div className="w-[10px] h-[10px] bg-[#0000ff] rounded-full ml-[10px]"></div>&nbsp;5학년&nbsp;
+                    <div className="w-[10px] h-[10px] bg-[#00ff00] rounded-full ml-[10px]"></div>&nbsp;6학년
                 </div>
                 <div className="flex items-center justify-end text-[14px] text-[#464c52] mt-[10px]">
                     ※ 하늘색 칸은 학습을 하지 않은 날을 나타냅니다.
