@@ -601,7 +601,7 @@ const WeeklyLearning = () => {
                                 tooltip={(e) => {
                                     return (
                                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "4px 6px", fontSize: "16px", borderRadius: "8px", background: "#fafafa", boxShadow: "4px 4px 4px 1px rgba(192, 192, 192, 0.8)" }}>
-                                            {e.datum.data.level}레벨: {e.datum.data.percent}%
+                                            {e.datum.data.id}레벨: {e.datum.data.percent}%
                                         </div>
                                     )
                                 }}
